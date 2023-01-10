@@ -1,0 +1,466 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Go——基础（2） | mumumu的个人小站</title><meta name="keywords" content="Go"><meta name="author" content="mumumu,cuihsgg@qq.com"><meta name="copyright" content="mumumu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="更多类型：struct、slice和映射">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go——基础（2）">
+<meta property="og:url" content="http://example.com/2023/01/10/Go%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89/index.html">
+<meta property="og:site_name" content="mumumu的个人小站">
+<meta property="og:description" content="更多类型：struct、slice和映射">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.vika.cn/space/2023/01/10/d0d77550c8404b9c8909854671c580de">
+<meta property="article:published_time" content="2023-01-10T12:10:00.000Z">
+<meta property="article:modified_time" content="2023-01-10T12:40:02.694Z">
+<meta property="article:author" content="mumumu">
+<meta property="article:tag" content="Go">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.vika.cn/space/2023/01/10/d0d77550c8404b9c8909854671c580de"><link rel="shortcut icon" href="https://pic2.zhimg.com/v2-786f59b6202258d45951f7b8fe6efd43_xl.jpg?source=32738c0c"><link rel="canonical" href="http://example.com/2023/01/10/Go%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Go——基础（2）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-01-10 20:40:02'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><svg aria-hidden="true" style="position:absolute; overflow:hidden; width:0; height:0"><symbol id="icon-sun" viewBox="0 0 1024 1024"><path d="M960 512l-128 128v192h-192l-128 128-128-128H192v-192l-128-128 128-128V192h192l128-128 128 128h192v192z" fill="#FFD878" p-id="8420"></path><path d="M736 512a224 224 0 1 0-448 0 224 224 0 1 0 448 0z" fill="#FFE4A9" p-id="8421"></path><path d="M512 109.248L626.752 224H800v173.248L914.752 512 800 626.752V800h-173.248L512 914.752 397.248 800H224v-173.248L109.248 512 224 397.248V224h173.248L512 109.248M512 64l-128 128H192v192l-128 128 128 128v192h192l128 128 128-128h192v-192l128-128-128-128V192h-192l-128-128z" fill="#4D5152" p-id="8422"></path><path d="M512 320c105.888 0 192 86.112 192 192s-86.112 192-192 192-192-86.112-192-192 86.112-192 192-192m0-32a224 224 0 1 0 0 448 224 224 0 0 0 0-448z" fill="#4D5152" p-id="8423"></path></symbol><symbol id="icon-moon" viewBox="0 0 1024 1024"><path d="M611.370667 167.082667a445.013333 445.013333 0 0 1-38.4 161.834666 477.824 477.824 0 0 1-244.736 244.394667 445.141333 445.141333 0 0 1-161.109334 38.058667 85.077333 85.077333 0 0 0-65.066666 135.722666A462.08 462.08 0 1 0 747.093333 102.058667a85.077333 85.077333 0 0 0-135.722666 65.024z" fill="#FFB531" p-id="11345"></path><path d="M329.728 274.133333l35.157333-35.157333a21.333333 21.333333 0 1 0-30.165333-30.165333l-35.157333 35.157333-35.114667-35.157333a21.333333 21.333333 0 0 0-30.165333 30.165333l35.114666 35.157333-35.114666 35.157334a21.333333 21.333333 0 1 0 30.165333 30.165333l35.114667-35.157333 35.157333 35.157333a21.333333 21.333333 01030.165333-30.165333z" fill="#030835" p-id="11346"></path></symbol></svg><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mouse.css"><link rel="stylesheet" href="/css/load.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic2.zhimg.com/v2-786f59b6202258d45951f7b8fe6efd43_xl.jpg?source=32738c0c" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle"><i class="fa-fw fas fa-link"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s1.vika.cn/space/2023/01/10/d0d77550c8404b9c8909854671c580de')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">mumumu的个人小站</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/fcircle"><i class="fa-fw fas fa-link"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Go——基础（2）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-10T12:10:00.000Z" title="发表于 2023-01-10 20:10:00">2023-01-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-01-10T12:40:02.694Z" title="更新于 2023-01-10 20:40:02">2023-01-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Go/">Go</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Go——基础（2）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="更多类型：struct、slice和映射"><a href="#更多类型：struct、slice和映射" class="headerlink" title="更多类型：struct、slice和映射"></a>更多类型：struct、slice和映射</h1><h2 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h2><ul>
+<li>指针保存了值的内存的地址</li>
+<li>*T是指向T的指针，零值为==nil==</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p *<span class="type">int</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>==&amp;操作符==会生成一个指向其操作数的指针</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">i:=<span class="number">2</span></span><br><span class="line">p=&amp;i</span><br></pre></td></tr></table></figure>
+<ul>
+<li>==*操作符==表示指针指向的底层值</li>
+<li>与C不同，Go没有指针运算</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    i,j:=<span class="number">12</span>,<span class="number">31</span></span><br><span class="line">    p:=&amp;i<span class="comment">//p是指向i的指针</span></span><br><span class="line">    fmt.Println(*p)</span><br><span class="line">    *p=<span class="number">21</span><span class="comment">//通过指针改变i的值</span></span><br><span class="line">    </span><br><span class="line">    p=&amp;j<span class="comment">//p指向j,因为在前面p已经声明过了，所以不用:=</span></span><br><span class="line">    *p=*p/<span class="number">2</span><span class="comment">//通过指针对j进行除法运算</span></span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><p>一个结构体就是一组字段</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> jiegou <span class="keyword">struct</span>&#123;</span><br><span class="line">    X <span class="type">int</span> </span><br><span class="line">    Y <span class="type">int</span> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    fmt.Println(jiegou&#123;<span class="number">1</span>,<span class="number">2</span>&#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出结果为&#123;1,2&#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="结构体字段"><a href="#结构体字段" class="headerlink" title="结构体字段"></a>结构体字段</h4><p>结构体字段使用<strong>点号</strong>来访问</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Vertex <span class="keyword">struct</span> &#123;</span><br><span class="line">    x <span class="type">int</span></span><br><span class="line">    y <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    v:=Vertex&#123;<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">    v.x=<span class="number">3</span></span><br><span class="line">    fmt.Println(v.x)</span><br><span class="line">&#125;<span class="comment">//输出：3</span></span><br></pre></td></tr></table></figure>
+<h4 id="结构体指针"><a href="#结构体指针" class="headerlink" title="结构体指针"></a>结构体指针</h4><ul>
+<li>结构体字段可以用结构体指针来访问</li>
+<li>如果我们有一个指向结构体的指针p，通过（*p）.x就可以访问字段x，直接写成==p.x==也可以</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Vertex <span class="keyword">struct</span> &#123;</span><br><span class="line">    x <span class="type">int</span></span><br><span class="line">    y <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    v:=Vertex&#123;<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">    p:=&amp;v</span><br><span class="line">    p.x=<span class="number">3</span></span><br><span class="line">    fmt.Println(v)<span class="comment">//结果为（3，2）</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="结构体文法"><a href="#结构体文法" class="headerlink" title="结构体文法"></a>结构体文法</h4><p>结构体文法通过==直接列出字段的值==来新分配一个结构体</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Vertex <span class="keyword">struct</span> &#123;</span><br><span class="line">    x <span class="type">int</span></span><br><span class="line">    y <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    v1=Vertex&#123;<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">    v2=Vertex&#123;x:<span class="number">1</span>&#125;<span class="comment">//默认y:0</span></span><br><span class="line">    v3=Vertex&#123;&#125;<span class="comment">//默认x:0,y:0</span></span><br><span class="line">    p=&amp;Vertex&#123;<span class="number">1</span>,<span class="number">2</span>&#125;<span class="comment">//p是指向&#123;1,2&#125;的结构体指针</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>[n]T表示n个T类型的数组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var a[10]int </span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> main ()&#123;</span><br><span class="line">    <span class="keyword">var</span> a[<span class="number">2</span>]<span class="type">string</span></span><br><span class="line">    a[<span class="number">0</span>]=<span class="string">&quot;hello&quot;</span></span><br><span class="line">    a[<span class="number">1</span>]=<span class="string">&quot;world&quot;</span></span><br><span class="line">    </span><br><span class="line">    b:=[<span class="number">6</span>]<span class="type">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h2><ul>
+<li>每个数组的大小都是固定的，而切片为数组提供==动态大小的、灵活的视角==，在实践中，切片比数组更常用。</li>
+<li>类型[ ]T表示一个元素类型为T的切片</li>
+<li>切片通过两个下标来定，一个<strong>上界</strong>一个<strong>下界</strong>，二者用<strong>冒号</strong>分离  ==a[low : high]==</li>
+<li>它会选择一个半开区间，<strong>包括第一个元素，但排除最后一个元素</strong></li>
+<li>例：包含下标从1到3的切片</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a[<span class="number">1</span>:<span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    b:=[<span class="number">6</span>]<span class="type">int</span> &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> s[]<span class="type">int</span> = b[<span class="number">1</span>:<span class="number">4</span>]<span class="comment">//切片s包含b1-b3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="切片就像数组的引用"><a href="#切片就像数组的引用" class="headerlink" title="切片就像数组的引用"></a>切片就像数组的引用</h4><ul>
+<li>切片不存储数据，只是描述了<strong>底层数组的一段</strong></li>
+<li>更改切片的元素会修改其底层数组对应的元素</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    names:=[<span class="number">4</span>]<span class="type">string</span> &#123;</span><br><span class="line">        <span class="string">&quot;LiHua&quot;</span></span><br><span class="line">        <span class="string">&quot;Mike&quot;</span></span><br><span class="line">        <span class="string">&quot;Tom&quot;</span></span><br><span class="line">        <span class="string">&quot;ha&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    a:=names[<span class="number">0</span>:<span class="number">2</span>]</span><br><span class="line">    a[<span class="number">0</span>]=<span class="string">&quot;Jack&quot;</span></span><br><span class="line">    fmt.Pritln(names)<span class="comment">//names[0]就改为了jack</span></span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="切片文法"><a href="#切片文法" class="headerlink" title="切片文法"></a>切片文法</h4><ul>
+<li>切片文法类似于没有长度的数组文法</li>
+<li>数组文法</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">3</span>]<span class="type">bool</span>&#123;<span class="literal">true</span>,<span class="literal">false</span>,<span class="literal">true</span>&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>切片文法</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[]<span class="type">bool</span>&#123;<span class="literal">true</span>,<span class="literal">false</span>,<span class="literal">true</span>&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    q:=[]<span class="type">int</span> &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">5</span>&#125;</span><br><span class="line">    p:=[]<span class="type">bool</span>&#123;<span class="literal">true</span>,<span class="literal">false</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="切片的默认行为"><a href="#切片的默认行为" class="headerlink" title="切片的默认行为"></a>切片的默认行为</h4><ul>
+<li>在进行切片时，可以利用默认行为<strong>忽略上下界</strong>，切片的<strong>下界默认值为0，上界则是该切片的长度</strong></li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a[<span class="number">10</span>]<span class="type">int</span> </span><br><span class="line">a[<span class="number">0</span>:<span class="number">10</span>]</span><br><span class="line">a[:<span class="number">10</span>]</span><br><span class="line">a[<span class="number">0</span>:]</span><br><span class="line">a[:]是等价的</span><br></pre></td></tr></table></figure>
+<h4 id="切片的长度和容量"><a href="#切片的长度和容量" class="headerlink" title="切片的长度和容量"></a>切片的长度和容量</h4><ul>
+<li>切片的长度：包含的元素个数</li>
+<li>切片的容量：从第一个元素开始数，底层数组元素末尾的个数</li>
+<li>用len(s)获取长度，cap(s)获取容量</li>
+<li>可以通过<strong>重新</strong>切片扩展一个切片，给它提供足够容量</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    s:=[]<span class="type">int</span> &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;</span><br><span class="line">    </span><br><span class="line">    s=s[:<span class="number">0</span>]<span class="comment">//使其长度为0</span></span><br><span class="line">    s=s[<span class="number">0</span>:<span class="number">4</span>]<span class="comment">//重新切片扩展切片</span></span><br><span class="line">    s=s[<span class="number">2</span>:]<span class="comment">//舍弃前两个值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="nil切片"><a href="#nil切片" class="headerlink" title="nil切片"></a>nil切片</h4><ul>
+<li>切片的零值是<strong>nil</strong></li>
+<li>含义：切片的长度和容量都为0，且没有底层数组</li>
+</ul>
+<h4 id="用make创建切片"><a href="#用make创建切片" class="headerlink" title="用make创建切片"></a>用make创建切片</h4><ul>
+<li>切片可以用内建函数<strong>make</strong>创建，这也是创建<strong>动态数组</strong>的方式</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a:=<span class="built_in">make</span>([]<span class="type">int</span>,<span class="number">2</span>,<span class="number">2</span>)<span class="comment">//切片a的长度为2，容量为2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    a:=<span class="built_in">make</span>([]<span class="type">int</span> <span class="number">5</span>)</span><br><span class="line">    printslice(<span class="string">&quot;a&quot;</span>,a)b</span><br><span class="line">    </span><br><span class="line">    b:=<span class="built_in">make</span>([]<span class="type">int</span>,<span class="number">0</span>,<span class="number">5</span>)</span><br><span class="line">    printslice(<span class="string">&quot;b&quot;</span>,b)</span><br><span class="line">    </span><br><span class="line">    c:=b[<span class="number">0</span>:<span class="number">2</span>]</span><br><span class="line">    printslice(<span class="string">&quot;c&quot;</span>,c)</span><br><span class="line">    </span><br><span class="line">    d:=c[<span class="number">2</span>:<span class="number">5</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="切片的切片"><a href="#切片的切片" class="headerlink" title="切片的切片"></a>切片的切片</h4><p>切片可以包含任何类型，包括切片</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    a:=[][]<span class="type">string</span>&#123;</span><br><span class="line">		[]<span class="type">string</span>&#123;<span class="string">&quot;_&quot;</span>, <span class="string">&quot;_&quot;</span>, <span class="string">&quot;_&quot;</span>&#125;,</span><br><span class="line">		[]<span class="type">string</span>&#123;<span class="string">&quot;_&quot;</span>, <span class="string">&quot;_&quot;</span>, <span class="string">&quot;_&quot;</span>&#125;,</span><br><span class="line">		[]<span class="type">string</span>&#123;<span class="string">&quot;_&quot;</span>, <span class="string">&quot;_&quot;</span>, <span class="string">&quot;_&quot;</span>&#125;,</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="向切片追加元素"><a href="#向切片追加元素" class="headerlink" title="向切片追加元素"></a>向切片追加元素</h4><p>使用内建函数append函数为切片追加新的元素</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> s[]<span class="type">int</span></span><br><span class="line">    </span><br><span class="line">    s=<span class="built_in">append</span>(s,<span class="number">0</span>)<span class="comment">//添加一个空切片</span></span><br><span class="line"></span><br><span class="line">    s=<span class="built_in">append</span>(s,<span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line">    s=<span class="built_in">append</span>(s,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)<span class="comment">//可以一次性添加多个元素</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Range"><a href="#Range" class="headerlink" title="Range"></a>Range</h4><p>for循环的range形式可以<strong>遍历切片或映射</strong></p>
+<p>当用for循环遍历切片时，每次迭代都会返回<strong>两个值</strong>，第一个为<strong>当前元素下标</strong>，第二个为<strong>该下标所对应元素的一份副本</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pow[]&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> i;v=<span class="keyword">range</span> pow&#123;</span><br><span class="line">        fmt.Println(<span class="string">&quot;%d,%d&quot;</span>,i,v)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以将下标或值赋予_来忽略它</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i, _ := <span class="keyword">range</span> pow<span class="comment">//只返回下标</span></span><br><span class="line"><span class="keyword">for</span> _, value := <span class="keyword">range</span> pow<span class="comment">//只返回值</span></span><br></pre></td></tr></table></figure>
+<p>如果只需要索引，忽略第二个变量即可</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i := <span class="keyword">range</span> pow</span><br></pre></td></tr></table></figure>
+<h2 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h2><ul>
+<li>映射将键映射到值</li>
+<li>映射的零值为nil，nil映射没有键，也不会添加键</li>
+<li>make函数会<strong>返回给定类型的映射</strong>，并将其初始化备用</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Vertex <span class="keyword">struct</span>&#123;</span><br><span class="line">	Lat,Long <span class="type">float64</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> m <span class="keyword">map</span>[<span class="type">string</span>] Vertex</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    m=<span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]Vertex)</span><br><span class="line">    m[<span class="string">&quot;Bell Labs&quot;</span>]=Vertex&#123;</span><br><span class="line">       	<span class="number">40.2</span>,<span class="number">-32</span> </span><br><span class="line">    &#125;</span><br><span class="line">    fmt.Println(m[<span class="string">&quot;Bell Labs&quot;</span>])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="映射的文法"><a href="#映射的文法" class="headerlink" title="映射的文法"></a>映射的文法</h4><ul>
+<li>映射的文法和结构体类似，但<strong>必须有键名</strong></li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> m <span class="keyword">map</span>[<span class="type">string</span>]Vertex&#123;</span><br><span class="line">    <span class="string">&quot;Bell Labs&quot;</span>:Vertex&#123;</span><br><span class="line">        <span class="number">2</span>,<span class="number">3</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="string">&quot;Google&quot;</span>:Vertex&#123;</span><br><span class="line">        <span class="number">2</span>,<span class="number">4</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>若顶级类型只是一个类型名，在文法元素中可以省略</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> m = <span class="keyword">map</span>[<span class="type">string</span>]Vertex&#123;</span><br><span class="line">	<span class="string">&quot;Bell Labs&quot;</span>: &#123;<span class="number">40.68433</span>, <span class="number">-74.39967</span>&#125;,</span><br><span class="line">	<span class="string">&quot;Google&quot;</span>:    &#123;<span class="number">37.42202</span>, <span class="number">-122.08408</span>&#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="修改映射"><a href="#修改映射" class="headerlink" title="修改映射"></a>修改映射</h4><ul>
+<li>在m中插入或修改元素</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m[key]=elem</span><br></pre></td></tr></table></figure>
+<ul>
+<li>获取元素</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">elem=m[key]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>删除元素</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">delete</span>(m,key)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>检测某个键是否存在：通过双赋值，若key在m中，ok为true，否则为false。若key不在m，则elem是该映射元素类型的零值</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">elem,ok=<span class="keyword">map</span>[key]</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    m:=<span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]<span class="type">int</span>)</span><br><span class="line">    </span><br><span class="line">    m[<span class="string">&quot;answer&quot;</span>]=<span class="number">19</span></span><br><span class="line"> 	m[<span class="string">&quot;answer&quot;</span>]=<span class="number">121</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">delete</span>(m,<span class="string">&quot;answer&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    v,ok:=m[<span class="string">&quot;answer&quot;</span>]</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="函数值"><a href="#函数值" class="headerlink" title="函数值"></a>函数值</h2><ul>
+<li>函数也是值，可以像其他值一样<strong>传递</strong></li>
+<li>函数值可以作为函数的<strong>参数或返回值</strong></li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">compute</span> <span class="params">(fn <span class="keyword">func</span>(<span class="type">float64</span>,<span class="type">float64</span>)</span></span><span class="type">float64</span>)<span class="type">float64</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (fn(<span class="number">3</span>,<span class="number">4</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="函数的闭包"><a href="#函数的闭包" class="headerlink" title="函数的闭包"></a>函数的闭包</h4><ul>
+<li><p>闭包：能够读取<strong>其他函数内部变量</strong>的函数</p>
+</li>
+<li><p>Go函数可以是一个闭包。闭包是一个<strong>函数值</strong>，它引用了函数体之外的变量，该函数可以访问并赋予其引用变量的值，即该函数被这些变量绑定在一起。</p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">mumumu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2023/01/10/Go%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89/">http://example.com/2023/01/10/Go%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">mumumu的个人小站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Go/">Go</a></div><div class="post_share"><div class="addtoany"><div class="a2a_kit a2a_kit_size_32 a2a_default_style"><a class="a2a_button_facebook"></a><a class="a2a_button_twitter"></a><a class="a2a_button_wechat"></a><a class="a2a_button_sina_weibo"></a><a class="a2a_button_facebook_messenger"></a><a class="a2a_button_email"></a><a class="a2a_button_copy_link"></a><a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a></div></div><script async="async" src="https://static.addtoany.com/menu/page.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/01/10/Go%E2%80%94%E2%80%94%E6%96%B9%E6%B3%95%E5%92%8C%E6%8E%A5%E5%8F%A3/"><img class="prev-cover" src="https://w.wallhaven.cc/full/2y/wallhaven-2y89my.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Go——方法和接口</div></div></a></div><div class="next-post pull-right"><a href="/2023/01/10/Go%E5%9F%BA%E7%A1%80%EF%BC%881%EF%BC%89/"><img class="next-cover" src="https://s1.vika.cn/space/2023/01/10/df2ae2942f754fe6b463dcdb994dba78" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Go——基础（1）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/01/10/Go%E2%80%94%E2%80%94%E6%96%B9%E6%B3%95%E5%92%8C%E6%8E%A5%E5%8F%A3/" title="Go——方法和接口"><img class="cover" src="https://w.wallhaven.cc/full/2y/wallhaven-2y89my.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-10</div><div class="title">Go——方法和接口</div></div></a></div><div><a href="/2023/01/10/Go%E5%9F%BA%E7%A1%80%EF%BC%881%EF%BC%89/" title="Go——基础（1）"><img class="cover" src="https://s1.vika.cn/space/2023/01/10/df2ae2942f754fe6b463dcdb994dba78" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-10</div><div class="title">Go——基础（1）</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="lv-container" data-id="city" data-uid="MTAyMC81NzE4Ny8zMzY1MQ=="></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://pic2.zhimg.com/v2-786f59b6202258d45951f7b8fe6efd43_xl.jpg?source=32738c0c" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">mumumu</div><div class="author-info__description">mumumu的blog，欢迎访问</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/mumushu1"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/mumushu1" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="maito:cuihsgg@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://space.bilibili.com/632978272?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="fa-brands fa-bilibili"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎访问我的网站，博主大三在读，目前正在学习C++，数据结构，计网，操作系统。对魔改博客也很感兴趣！可以跟我留言一起讨论，想交换友链的也可以留言给我！🥰</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E7%B1%BB%E5%9E%8B%EF%BC%9Astruct%E3%80%81slice%E5%92%8C%E6%98%A0%E5%B0%84"><span class="toc-number">1.</span> <span class="toc-text">更多类型：struct、slice和映射</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E9%92%88"><span class="toc-number">1.1.</span> <span class="toc-text">指针</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-number">1.2.</span> <span class="toc-text">结构体</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E5%AD%97%E6%AE%B5"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">结构体字段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E6%8C%87%E9%92%88"><span class="toc-number">1.2.0.2.</span> <span class="toc-text">结构体指针</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E6%96%87%E6%B3%95"><span class="toc-number">1.2.0.3.</span> <span class="toc-text">结构体文法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">1.3.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%87%E7%89%87"><span class="toc-number">1.4.</span> <span class="toc-text">切片</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%87%E7%89%87%E5%B0%B1%E5%83%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%BC%95%E7%94%A8"><span class="toc-number">1.4.0.1.</span> <span class="toc-text">切片就像数组的引用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%87%E7%89%87%E6%96%87%E6%B3%95"><span class="toc-number">1.4.0.2.</span> <span class="toc-text">切片文法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%87%E7%89%87%E7%9A%84%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA"><span class="toc-number">1.4.0.3.</span> <span class="toc-text">切片的默认行为</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%87%E7%89%87%E7%9A%84%E9%95%BF%E5%BA%A6%E5%92%8C%E5%AE%B9%E9%87%8F"><span class="toc-number">1.4.0.4.</span> <span class="toc-text">切片的长度和容量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nil%E5%88%87%E7%89%87"><span class="toc-number">1.4.0.5.</span> <span class="toc-text">nil切片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8make%E5%88%9B%E5%BB%BA%E5%88%87%E7%89%87"><span class="toc-number">1.4.0.6.</span> <span class="toc-text">用make创建切片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%87%E7%89%87%E7%9A%84%E5%88%87%E7%89%87"><span class="toc-number">1.4.0.7.</span> <span class="toc-text">切片的切片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%91%E5%88%87%E7%89%87%E8%BF%BD%E5%8A%A0%E5%85%83%E7%B4%A0"><span class="toc-number">1.4.0.8.</span> <span class="toc-text">向切片追加元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Range"><span class="toc-number">1.4.0.9.</span> <span class="toc-text">Range</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%A0%E5%B0%84"><span class="toc-number">1.5.</span> <span class="toc-text">映射</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%98%A0%E5%B0%84%E7%9A%84%E6%96%87%E6%B3%95"><span class="toc-number">1.5.0.1.</span> <span class="toc-text">映射的文法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%98%A0%E5%B0%84"><span class="toc-number">1.5.0.2.</span> <span class="toc-text">修改映射</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%80%BC"><span class="toc-number">1.6.</span> <span class="toc-text">函数值</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E7%9A%84%E9%97%AD%E5%8C%85"><span class="toc-number">1.6.0.1.</span> <span class="toc-text">函数的闭包</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/01/10/Go%E2%80%94%E2%80%94%E6%96%B9%E6%B3%95%E5%92%8C%E6%8E%A5%E5%8F%A3/" title="Go——方法和接口"><img src="https://w.wallhaven.cc/full/2y/wallhaven-2y89my.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Go——方法和接口"/></a><div class="content"><a class="title" href="/2023/01/10/Go%E2%80%94%E2%80%94%E6%96%B9%E6%B3%95%E5%92%8C%E6%8E%A5%E5%8F%A3/" title="Go——方法和接口">Go——方法和接口</a><time datetime="2023-01-10T12:21:00.000Z" title="发表于 2023-01-10 20:21:00">2023-01-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/10/Go%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89/" title="Go——基础（2）"><img src="https://s1.vika.cn/space/2023/01/10/d0d77550c8404b9c8909854671c580de" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Go——基础（2）"/></a><div class="content"><a class="title" href="/2023/01/10/Go%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89/" title="Go——基础（2）">Go——基础（2）</a><time datetime="2023-01-10T12:10:00.000Z" title="发表于 2023-01-10 20:10:00">2023-01-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/10/Go%E5%9F%BA%E7%A1%80%EF%BC%881%EF%BC%89/" title="Go——基础（1）"><img src="https://s1.vika.cn/space/2023/01/10/df2ae2942f754fe6b463dcdb994dba78" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Go——基础（1）"/></a><div class="content"><a class="title" href="/2023/01/10/Go%E5%9F%BA%E7%A1%80%EF%BC%881%EF%BC%89/" title="Go——基础（1）">Go——基础（1）</a><time datetime="2023-01-10T12:05:00.000Z" title="发表于 2023-01-10 20:05:00">2023-01-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/09/%E5%A6%82%E4%BD%95%E5%A4%8D%E4%B9%A0/" title="寒假的大概复习时间以及计划"><img src="https://s1.vika.cn/space/2023/01/09/4866f5c5c2cc410dbcb46e3ff9d25c43" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="寒假的大概复习时间以及计划"/></a><div class="content"><a class="title" href="/2023/01/09/%E5%A6%82%E4%BD%95%E5%A4%8D%E4%B9%A0/" title="寒假的大概复习时间以及计划">寒假的大概复习时间以及计划</a><time datetime="2023-01-09T03:52:06.108Z" title="发表于 2023-01-09 11:52:06">2023-01-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/26/%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B9%9F%E6%9E%81%E6%9C%89%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%80%E5%90%8E%E4%B8%80%E7%AF%87%E7%9A%842022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="第一篇也极有可能是最后一篇的2022年终总结"><img src="https://w.wallhaven.cc/full/rr/wallhaven-rr288w.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第一篇也极有可能是最后一篇的2022年终总结"/></a><div class="content"><a class="title" href="/2022/12/26/%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B9%9F%E6%9E%81%E6%9C%89%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%80%E5%90%8E%E4%B8%80%E7%AF%87%E7%9A%842022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="第一篇也极有可能是最后一篇的2022年终总结">第一篇也极有可能是最后一篇的2022年终总结</a><time datetime="2022-12-26T03:10:35.344Z" title="发表于 2022-12-26 11:10:35">2022-12-26</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://s1.vika.cn/space/2023/01/10/d0d77550c8404b9c8909854671c580de')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023  <i id="heartbeat" class="fa fas fa-heartbeat"></i> mumumu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">在最高点乘着叶片往前飞</div></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><a class="icon-V hidden" onclick="switchNightMode()" title="浅色和深色模式转换"><svg width="25" height="25" viewBox="0 0 1024 1024"><use id="modeicon" xlink:href="#icon-moon"></use></svg></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadLivere () {
+  if (typeof LivereTower === 'object') {
+    window.LivereTower.init()
+  }
+  else {
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  }
+}
+
+if ('Livere' === 'Livere' || !false) {
+  if (false) btf.loadComment(document.getElementById('lv-container'), loadLivere)
+  else loadLivere()
+}
+else {
+  function loadOtherComment () {
+    loadLivere()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="8579379212" data-server="tencent" data-type="playlist" data-fixed="true" data-autoplay="true"> </div><script src="/js/custom/sun_moon.js" async></script><script data-pjax src="https://cdn.jsdelivr.net/gh/Jnylife/CDN@1.3/js/fish.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+document.querySelectorAll('script[data-pjax], .pjax-reload script').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="pjax-reload"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '700ms');
+    arr[i].setAttribute('data-wow-delay', '700ms');
+    arr[i].setAttribute('data-wow-offset', '100');
+    arr[i].setAttribute('data-wow-iteration', '1');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer="defer" src="https://fastly.jsdelivr.net/gh/graingert/wow@1.3.0/dist/wow.min.js"></script><script defer="defer" src="/js/wow_init.js"></script></div><!-- hexo injector body_end start --><script>
+    // 全局变量声明区域
+    var fdata = {
+      apiurl: 'https://hexo-friendcircle-api-ai9d4hwad-anzhiyu-c.vercel.app/api',
+      initnumber: 20, //【可选】页面初始化展示文章数量
+      stepnumber: 10, //【可选】每次加载增加的篇数
+      error_img: 'https://npm.elemecdn.com/akilar-candyassets/image/404.gif' //【可选，头像图片加载失败时的默认头像】
+    }
+    //存入本地存储
+    localStorage.setItem("fdatalist",JSON.stringify(fdata))
+    </script>
+    <script defer src="https://npm.elemecdn.com/hexo-filter-fcircle/assets/js/fetch.min.js"></script><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = 'b16a1fa0e63c46a4b8f28abfb06ae3fe';
+  var gaud_map_key = 'e2b04289e870b005374ee030148d64fd&s=rsv3';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '112.982279,28.19409';
+  var clock_default_rectangle_enable = 'false';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;2022/10/16/计网——可靠数据传输原理/&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src="https://w.wallhaven.cc/full/l8/wallhaven-l8qmlp.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-10-16</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;2022/10/16/计网——可靠数据传输原理/&quot;);" href="javascript:void(0);" alt="">计网——可靠数据传输原理</a><div class="blog-slider__text">我来想想怎么描述它...</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;2022/10/16/计网——可靠数据传输原理/&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;2022/10/03/OS——经典进程同步问题/&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src="https://w.wallhaven.cc/full/gp/wallhaven-gpzve7.png" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2022-10-03</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;2022/10/03/OS——经典进程同步问题/&quot;);" href="javascript:void(0);" alt="">OS——经典进程同步问题</a><div class="blog-slider__text">我来想想怎么描述它...</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;2022/10/03/OS——经典进程同步问题/&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>
