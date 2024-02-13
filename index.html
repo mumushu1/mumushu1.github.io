@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta property="og:type" content="website">
@@ -73,6 +73,7 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="拒绝熬夜" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -101,6 +102,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -125,11 +127,38 @@
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -152,10 +181,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/13/Hexo%20+%20Butterfly%20%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/16/%E8%AE%A1%E7%BD%91%E2%80%94%E2%80%94%E5%8F%AF%E9%9D%A0%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E5%8E%9F%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/source%5Cimages%5Cavatar.jpg">
       <meta itemprop="name" content="John Doe">
       <meta itemprop="description" content="">
     </span>
@@ -166,7 +195,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2024/02/13/Hexo%20+%20Butterfly%20%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">Hexo + Butterfly 搭建博客</a>
+            <a href="/2022/10/16/%E8%AE%A1%E7%BD%91%E2%80%94%E2%80%94%E5%8F%AF%E9%9D%A0%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">计网——可靠数据传输原理</a>
         </h2>
 
         <div class="post-meta">
@@ -176,1145 +205,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2024-02-13 16:39:56" itemprop="dateCreated datePublished" datetime="2024-02-13T16:39:56+08:00">2024-02-13</time>
+              <time title="创建时间：2022-10-16 10:10:00" itemprop="dateCreated datePublished" datetime="2022-10-16T10:10:00+08:00">2022-10-16</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-06 22:15:38" itemprop="dateModified" datetime="2022-09-06T22:15:38+08:00">2022-09-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" itemprop="url" rel="index"><span itemprop="name">博客搭建</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span></span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>NaN:aN</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Hexo-Butterfly-搭建博客"><a href="#Hexo-Butterfly-搭建博客" class="headerlink" title="Hexo + Butterfly 搭建博客"></a>Hexo + Butterfly 搭建博客</h1><p>最近刚忙完字节青训的一些事情，暑假还剩大概一周的时间，闲来无事突然想着搭建一个个人博客，就跟着b站的视频以及GitHub的教程一步步搭了起来。其中博客框架选择Hexo，这是目前较为主流的博客框架之一，选择它一是因为它的布局相对美观，二是因为这个框架已经较为成熟，在搭建过程中遇到的大多数问题都可以Google到解决方案。博客的主题我选用的是Butterfly，这个的选择是全凭个人审美了，大家可以去GitHub上直接搜索 hexo themes选择喜欢的主题。那么话不多说，开始今天Hexo + Butterfly 搭建博客的教程。</p>
-<p>##Hexo的安装</p>
-<h4 id="Node-js的安装"><a href="#Node-js的安装" class="headerlink" title="Node.js的安装"></a>Node.js的安装</h4><ol>
-<li>下载地址：<a target="_blank" rel="noopener" href="https://node.js.org/%EF%BC%8C%E4%B8%8B%E8%BD%BD%E5%AE%8C%E5%AE%89%E8%A3%85%E5%8D%B3%E5%8F%AF%EF%BC%88%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E6%97%A0%E8%84%91%E7%82%B9%E4%B8%8B%E4%B8%80%E6%AD%A5%EF%BC%89">https://node.js.org/，下载完安装即可（安装过程无脑点下一步）</a></li>
-<li>打开命令行工具sudo进入root用户<ul>
-<li>node -v查看node的版本</li>
-<li>npm -v查看包管理器的版本</li>
-</ul>
-</li>
-</ol>
-<p>安装完node.js后就可以进行hexo的安装了</p>
-<h4 id="hexo的安装"><a href="#hexo的安装" class="headerlink" title="hexo的安装"></a>hexo的安装</h4><ul>
-<li>安装hexo要借助npm来安装，由于国内镜像源速度很慢，所以先利用npm安装cnpm来提高安装速度</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=<span class="string">&quot;http://registry.npm.taobao.org&quot;</span></span><br><span class="line"></span><br><span class="line">cnmp -v 查看版本</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>cnpm安装hexo</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br><span class="line"></span><br><span class="line">hexo -v 查看版本</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>建立你的blog文件夹，我这里是建在D盘。以后你博客的所有内容都将在这个文件夹中设置、</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> D:\blog</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>cd进blog文件夹中，初始化博客</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">sudo hexo init</span><br><span class="line"><span class="built_in">ls</span> -l 查看安装后生成的文件</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>启动博客，可以看到已经成功启动，并且为你自动生成了第一篇博客：Hello World</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>新建一篇文章</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo n <span class="string">&quot;第一篇blog&quot;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>几个常用命令</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo c	清理</span><br><span class="line">hexo g 	生成</span><br><span class="line">hexo s	启动</span><br></pre></td></tr></table></figure>
-
-<h2 id="将博客部署到GitHub上"><a href="#将博客部署到GitHub上" class="headerlink" title="将博客部署到GitHub上"></a>将博客部署到GitHub上</h2><ul>
-<li>新建一个仓库，命名为**”你的GitHub用户名”.github.io**,例如我的用户名为mumushu1，这里命名如下：</li>
-</ul>
-<p><img src="/%5Cimg%5Cimage-20220904082320570.png" alt="image-20220904082320570"></p>
-<ul>
-<li>安装hexo-deployer-git 插件</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>返回blog文件夹，使用vim修改_config.yml文件。翻到页尾会发现刚刚安装的deployer，下面对这一项进行配置。（repo和branch需要自己添加）<ul>
-<li>type：git</li>
-<li>repo：刚刚你建的GitHub仓库的地址</li>
-<li>branch：master</li>
-</ul>
-</li>
-</ul>
-<p><img src="/%5Cimg%5Cimage-20220904083018602.png" alt="image-20220904083018602">	</p>
-<ul>
-<li>使用命令部署到远端，系统会弹出界面让你输入GitHub的账号和密码</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
-<p>如果这里有报错的话则在hexo d之前敲上</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.email <span class="string">&quot;xxx&quot;</span></span><br><span class="line">git config --global user.name <span class="string">&quot;xxx&quot;</span>     //xxx是你GitHub的邮箱和用户名</span><br></pre></td></tr></table></figure>
-
-<p>返回GitHub仓库即可查看里面多了一些东西，即是生成blog的内容</p>
-<ul>
-<li>复制你的仓库名到浏览器访问，即可进入你的博客</li>
-</ul>
-<p><img src="/%5Cimg%5Cimage-20220904083522805.png" alt="image-20220904083522805"></p>
-<p>当然我这里是使用主题装饰好的，正常刚打开封面是一个Hexo的图片，和你当时hexo s后打开的界面相同。 至此，一个简单的hexo框架就搭建好了，并且利用GitHub部署到了远端。下面的内容就是博客的装修部分，我选用了butterfly主题，下面也会展开讲一下如何使用这个主题来装饰你的博客。</p>
-<h2 id="Butterfly主题装饰博客"><a href="#Butterfly主题装饰博客" class="headerlink" title="Butterfly主题装饰博客"></a>Butterfly主题装饰博客</h2><h4 id="butterfly安装"><a href="#butterfly安装" class="headerlink" title="butterfly安装"></a>butterfly安装</h4><ul>
-<li>在GitHub上直接搜索<a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">hexo-theme-butterfly</a>，在readme文件里找到这里，进入butterfly的说明文档</li>
-</ul>
-<p><img src="/%5Cimg%5Cimage-20220904090534875.png" alt="image-20220904090534875">	</p>
-<ul>
-<li><p>在【快速开始】中可以找到安装教程</p>
-<ul>
-<li>git安装，直接在blog文件夹中git clone即可</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改_config文件，把主题（theme）改为butterfly&#x3D;&#x3D;（从这里开始建议用vscode打开blog文件夹进行编辑）&#x3D;&#x3D;，直接Ctrl F查找theme修改即可<img src="/%5Cimg%5Cimage-20220904091232277.png" alt="image-20220904091232277"></p>
-</li>
-<li><p>安装pug以及stylus的渲染器</p>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-renderer-pug hexo-renderer-stylus --save</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>创建主题的配置文件（减少升级主题后带来的不便）</p>
-<ul>
-<li><p>在hexo的根目录建立一个文件，命名为&#x3D;&#x3D;_config.butterfly.yml&#x3D;&#x3D;，并把目录的&#x3D;&#x3D;_config.yml&#x3D;&#x3D;文件内容复制到里面去</p>
-</li>
-<li><p><img src="/%5Cimg%5Cimage-20220904091840581.png" alt="image-20220904091840581">	</p>
-</li>
-<li><p>注意</p>
-<ul>
-<li><p><strong>复制的是theme文件夹的_config.yml，不是hexo的config.yml</strong></p>
-</li>
-<li><p><strong>不要把主题的_config.yml删掉</strong></p>
-</li>
-<li><p><strong>以后只要在_config.butterfly.yml配置即可</strong></p>
-</li>
-<li><p><strong>如果使用了 _config.butterfly.yml， 配置主题的 _config.yml 将不会有效果。</strong></p>
-</li>
-<li><p><strong>Hexo会自动合并主题中的config.yml和 config.butterfly.yml里的配置，如果存在同名配置，会使用_config.butterfly.yml的配置，其优先度较高。</strong></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>至此，butterfly的安装以及配置已经完毕，接下来的内容就是如何使用butterfly主题修饰你的博客，使你的博客丰满起来。</p>
-<h4 id="修改-创建博客的基本信息"><a href="#修改-创建博客的基本信息" class="headerlink" title="修改&amp;创建博客的基本信息"></a>修改&amp;创建博客的基本信息</h4><ul>
-<li>网站资料（标题，副标题，邮箱等资料），修改<strong>博客根目录的_config.yml</strong></li>
-</ul>
-<p><img src="/%5Cimg%5Cimage-20220904092944082.png" alt="image-20220904092944082"></p>
-<ul>
-<li>创建标签页<ul>
-<li>前往博客跟目录</li>
-<li>使用命令行工具输入 hexo new page tags</li>
-<li>输入后可以找到 source&#x2F;tags&#x2F;index.md 这个文件，进行修改即可，主要设置是前三项，top_img为置顶图，设置方法在后续会讲</li>
-</ul>
-</li>
-</ul>
-<p>​		<img src="/%5Cimg%5Cimage-20220904093207663.png" alt="image-20220904093207663">		</p>
-<ul>
-<li><p>使用同样的方法创建分类页和友情链接，详情见官方文档</p>
-</li>
-<li><p>404页面（访问出错的网站跳到404页面），在_config butterfly.yml中更改</p>
-</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># A simple 404 page</span></span><br><span class="line"><span class="attr">error_404:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">subtitle:</span> <span class="string">&quot;页面没有找到&quot;</span></span><br><span class="line">  <span class="attr">background:</span> </span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="基本工具-排版-图像设置"><a href="#基本工具-排版-图像设置" class="headerlink" title="基本工具&amp;&amp;排版&amp;&amp;图像设置"></a>基本工具&amp;&amp;排版&amp;&amp;图像设置</h4><ul>
-<li><p>语言</p>
-<ul>
-<li><p>修改hexo根目录的_config.yml</p>
-</li>
-<li><p>默认语言是en，支持三种语言</p>
-<p>default(en)<br>zh-CN (简体中文)<br>zh-TW (繁体中文)</p>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="/%5Cimg%5Cimage-20220904093934361.png" alt="image-20220904093934361"></p>
-<ul>
-<li>导航菜单<ul>
-<li>修改主题配置文件</li>
-</ul>
-</li>
-</ul>
-<p><img src="/%5Cimg%5Cimage-20220904094102432.png" alt="image-20220904094102432"></p>
-<ul>
-<li><p>代码（都是在主题配置文件中修改）</p>
-<ul>
-<li>代码高亮</li>
-</ul>
-<p>其中有多种高亮颜色可以选择，可以去官网查看自己选取</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">highlight_theme:</span> <span class="string">light</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>代码复制</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">highlight_copy:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>代码框展开&#x2F;关闭<ul>
-<li>true：全部代码框不展开，需手动点击按钮展开</li>
-<li>false：代码框展开，有展开按钮</li>
-<li>none：不显示展开按钮</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">highlight_shrink:</span> <span class="literal">true</span> <span class="comment">#代码框不展开，需点击 &#x27;&gt;&#x27; 打开</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>代码换行</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">code_word_wrap:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>代码高度限制(配置代码框的最大高度，超出部分会隐藏，并显示展开按钮)</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">highlight_height_limit:50</span> <span class="comment"># unit: px</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>社交图标</p>
-<ul>
-<li>在主题配置文件中找到 social settings 修改即可</li>
-<li>书写格式：<strong>图标名：url || 描述性文字</strong></li>
-<li>图标和图标名都可以在这里找到<a target="_blank" rel="noopener" href="https://fontawesome.com/icons?from=io">https://fontawesome.com/icons?from=io</a></li>
-<li><img src="/%5Cimg%5Cimage-20220904095611759.png" alt="image-20220904095611759"></li>
-</ul>
-</li>
-<li><p>顶部图</p>
-<ul>
-<li>不需要顶部图可以直接配置</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">disable_top_img:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><table>
-<thead>
-<tr>
-<th>index_img</th>
-<th>主页的顶部图</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>archive_img</td>
-<td>归档页面的顶部图</td>
-</tr>
-<tr>
-<td>tag_img</td>
-<td>标签子页面的顶部图</td>
-</tr>
-<tr>
-<td>category_img</td>
-<td>分类子页面的顶部图</td>
-</tr>
-</tbody></table>
-</li>
-<li><p>如果想要更改分类&#x2F;标签等自建页面的顶部图，需要到对应的md文档中修改，这里演示更改标签页面的顶部图</p>
-</li>
-<li><p><img src="/%5Cimg%5Cimage-20220904100758069.png" alt="image-20220904100758069"></p>
-</li>
-</ul>
-</li>
-</ul>
-<p>​					直接使用top_img添加图片地址链接即可</p>
-<ul>
-<li><p>文章封面</p>
-<ul>
-<li>在文章的md文档中添加&#x3D;&#x3D;cover&#x3D;&#x3D;，并填上图片地址</li>
-<li>如果不配置cover，可以设置显示默认的cover</li>
-<li>如果不想在首页显示cover，可以设置false</li>
-<li><img src="/%5Cimg%5Cimage-20220904101039698.png" alt="image-20220904101039698"></li>
-</ul>
-</li>
-<li><p>头像</p>
-<ul>
-<li>修改主题配置文件</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">avatar:</span></span><br><span class="line">  <span class="attr">img:</span> <span class="string">/img/avatar.png</span></span><br><span class="line">  <span class="attr">effect:</span> <span class="literal">true</span> <span class="comment"># 头像会一直转圈</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>以上演示了一些最基本的配置，还有一些在文章中没有涉及到，但根据官网的文档以及借鉴上述的方法可以很轻松的配置完一些基本的设置。由于本人也是小白，最近也在学习一些更高级的设置，学会的话有机会也更在博客中。</p>
-<p><strong>参考内容：</strong></p>
-<p>butterfly官方文档：<a target="_blank" rel="noopener" href="https://butterfly.js.org/">https://butterfly.js.org/</a></p>
-<p>哔哩哔哩up主CodeSheep的视频【手把手教你从0开始搭建自己的个人博客 |无坑版视频教程| hexo】：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Yb411a7ty?spm_id_from=333.1007.top_right_bar_window_history.content.click&vd_source=ef7dc76f807d26d86d33be41cf55ea77">https://www.bilibili.com/video/BV1Yb411a7ty?spm_id_from=333.1007.top_right_bar_window_history.content.click&amp;vd_source=ef7dc76f807d26d86d33be41cf55ea77</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/13/C++%E6%9F%A5%E7%BC%BA%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="拒绝熬夜">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/02/13/C++%E6%9F%A5%E7%BC%BA%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/" class="post-title-link" itemprop="url">C++语法查缺学习(1)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-02-13 16:39:56" itemprop="dateCreated datePublished" datetime="2024-02-13T16:39:56+08:00">2024-02-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-06 22:18:15" itemprop="dateModified" datetime="2022-09-06T22:18:15+08:00">2022-09-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">语言学习</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span></span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>NaN:aN</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>数据类型，变量声明，左值右值，定义常量，修饰符类型，类型限定符，存储类</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/02/13/C++%E6%9F%A5%E7%BC%BA%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/13/%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E9%87%8D%E7%82%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="拒绝熬夜">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/02/13/%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E9%87%8D%E7%82%B9/" class="post-title-link" itemprop="url">信息管理重点</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-02-13 16:39:56" itemprop="dateCreated datePublished" datetime="2024-02-13T16:39:56+08:00">2024-02-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-09 20:00:49" itemprop="dateModified" datetime="2022-12-09T20:00:49+08:00">2022-12-09</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span></span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>NaN:aN</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>对信息管理和信息资源的管理的理解是整本书的重点</p>
-<p>第一章</p>
-<ul>
-<li><p>1.1管理的概念 定义</p>
-</li>
-<li><p>管理五要素</p>
-</li>
-<li><p>管理科学两种解释</p>
-</li>
-<li><p>管理科学流派（只是提了一嘴 不是重点）</p>
-</li>
-<li><p>1.2管理思想演变（重点）△</p>
-</li>
-<li><p>管理的基本职能</p>
-</li>
-<li><p>1.3怎么提出的信息管理课题</p>
-</li>
-<li><p>信息在管理中的地位和作用</p>
-</li>
-<li><p>信息管理的定义△（信息资源管理这一块必考）</p>
-</li>
-<li><p>OR MIS IRM的区别</p>
-</li>
-<li><p>对IRM的理解</p>
-</li>
-<li><p>信息管理和信息资源管理的区别（概括起来）</p>
-</li>
-</ul>
-<hr>
-<p>第二章 1 2 4节是重点</p>
-<ul>
-<li>什么是信息（五个角度：香农，维纳，管理界 忠义信的定义，企业管理界的定义 ，霍顿）课本12-14，注意企业管理的分层</li>
-<li>数据和信息的关系</li>
-<li>信息的特征（很重点）</li>
-<li>信息加工的模式（一次，二次，三次信息）</li>
-<li>信息科学理论（三论）每个论的代表人物及其思想</li>
-<li>2.3：信息方法：课本的那个示意图</li>
-<li>信息生命周期的含义</li>
-<li>2.4信息资源的引入（课本23）为什么信息能称为资源？</li>
-<li>霍顿等四个人的角度对信息资源的定义（理解性，不用背的意思？）</li>
-<li>狭义和广义对信息资源的定义</li>
-<li>信息资源的三要素<ul>
-<li>她最后说2.4.2全看</li>
-</ul>
-</li>
-<li>2.4.6信息化也看一下，要知道</li>
-</ul>
-<hr>
-<p>第三章：3.1全部 3.2（除了3.2.3）3.3（除了3.3.3）3.4（前三节）</p>
-<ul>
-<li>信息资源管理的定义（三个角度），起源和发展了解即可</li>
-<li>信息资源管理的层次，手段</li>
-<li>信息资源管理和管理信息系统的区别，关系</li>
-<li>3.2对信息管理的理解（广义狭义）</li>
-<li>信息资源管理和信息管理的联系</li>
-<li>信息管理的定义</li>
-<li>信息管理的发展历程（三个时期）<ul>
-<li>每个时期的象征（手工 电子 信息资源）36-37</li>
-</ul>
-</li>
-<li>现代信息管理发展阶段</li>
-<li>3.3知道图3-3和图3-4</li>
-<li>3.4信息管理学实用体系框架</li>
-<li>信息资源管理的三要素</li>
-<li>信息资源管理的过程</li>
-<li>信息技术：定义<ul>
-<li>通信技术（2C 3C）48页</li>
-<li>信息处理技术的三个阶段（重点是数据库阶段）</li>
-<li>通信技术的核心：计算机网络相关知识点</li>
-<li>什么是信息告诉公路</li>
-</ul>
-</li>
-<li>信息系统建设的过程（重点△）<ul>
-<li>什么是信息系统</li>
-<li>信息系统的发展过程</li>
-</ul>
-</li>
-<li>3.4.4  3.5不用看</li>
-</ul>
-<hr>
-<p>第四章（前三节是重点）</p>
-<ul>
-<li>4.1信息源区分的原则</li>
-<li>信息采集的核心，原则</li>
-<li>信息组织：正序的方法：分类</li>
-<li>信息组织的基本要求</li>
-<li>信息流是什么，根据流动方向的分类</li>
-<li>4.2信息管理的两个层次（71页）</li>
-<li>4.3信息宿是什么，什么是信息需求，什么是信息行为，从需求到行为的过程</li>
-<li>信息行为的分类</li>
-<li>信息用户的行为的分类</li>
-<li>信息需求的分类</li>
-<li>信息使用方法的分类</li>
-<li>4.4不用看</li>
-</ul>
-<hr>
-<p>第五章 5.4不用看，其他都看</p>
-<ul>
-<li>信息管理的两个方法</li>
-<li>战略数据规划：过程（第一步第二步第三步）</li>
-</ul>
-<hr>
-<p>第六章</p>
-<ul>
-<li>企业战略、战略管理的概念（好多个定义）</li>
-<li>什么是信息战略：含义</li>
-<li>战略信息管理和信息战略的 区别 | 联系</li>
-<li>五个阶段看一下</li>
-<li>6.2霍国庆博士的思想要掌握（集成）</li>
-<li>战略的信息技术规划，战略的信息资源规划<ul>
-<li>什么是~，步骤（前者考点）</li>
-<li>管理过程和四个阶段（后者考点）</li>
-</ul>
-</li>
-</ul>
-<hr>
-<p>第七章 重点前三节</p>
-<ul>
-<li>信息管理机构及其职能，功能</li>
-<li>7.2需要什么样的机构才能形成信息主管部门</li>
-<li>7.3 CIO职责</li>
-</ul>
-<hr>
-<p>第八章 每一节都需要看</p>
-<ul>
-<li>什么是信息需求  分层问题（企业底层 中层 高层）</li>
-<li>信息服务定义 目的 分类</li>
-<li>8.2信息收集的过程 方式 原则 分类</li>
-<li>信息加工的内容（顺序）</li>
-<li>信息加工的分类</li>
-<li>8.2.6不用看</li>
-<li>8.3没听懂她在说啥<ul>
-<li>信息维护，检索不用看</li>
-</ul>
-</li>
-<li>计算机检索的四种形式</li>
-<li>互联网检索（重点△）<ul>
-<li>万维网是怎么工作的 一定要看</li>
-</ul>
-</li>
-<li>8.4.2是8.4重点 <ul>
-<li>计网由哪四个部分构成</li>
-<li>网络拓扑是什么，结构有哪些类型</li>
-</ul>
-</li>
-<li>网络安全功能</li>
-<li>8.4.5 8.4.6不看了</li>
-</ul>
-<hr>
-<p>第九章</p>
-<ul>
-<li><p>信息系统的三个行为部件</p>
-</li>
-<li><p>诺兰模型</p>
-</li>
-<li><p>管理信息系统的概念和<strong>要素</strong></p>
-</li>
-<li><p>管理信息系统的技术平台有哪三个代表性的技术</p>
-<ul>
-<li>CS</li>
-<li>内联网</li>
-<li>外联网</li>
-</ul>
-</li>
-<li><p>9.1.3不看</p>
-</li>
-<li><p>9.2管理信息系统横向和纵向有哪些子系统</p>
-</li>
-<li><p>9.3 159页9-1那个表，6个步骤</p>
-</li>
-<li><p>9.4整个都要看 </p>
-</li>
-<li><p>9.5不看</p>
-</li>
-</ul>
-<p>学习通作业延到考试</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/13/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="拒绝熬夜">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/02/13/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/" class="post-title-link" itemprop="url">线性代数的本质</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-02-13 16:39:56" itemprop="dateCreated datePublished" datetime="2024-02-13T16:39:56+08:00">2024-02-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-21 11:32:11" itemprop="dateModified" datetime="2023-04-21T11:32:11+08:00">2023-04-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span></span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>NaN:aN</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>线代想不明白了，偶然发现这个视频，讲的很好但理解起来也很困难，暂时看到第六讲，以后有需要再继续看</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/02/13/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%887%EF%BC%89%E6%A0%88%E7%9A%84%E5%BA%94%E7%94%A8%E2%80%94%E2%80%94%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="拒绝熬夜">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/02/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%887%EF%BC%89%E6%A0%88%E7%9A%84%E5%BA%94%E7%94%A8%E2%80%94%E2%80%94%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">数据结构（7）栈的应用——括号匹配问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-02-13 16:39:56" itemprop="dateCreated datePublished" datetime="2024-02-13T16:39:56+08:00">2024-02-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-19 21:20:23" itemprop="dateModified" datetime="2022-10-19T21:20:23+08:00">2022-10-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span></span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>NaN:aN</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="栈的应用——括号匹配问题"><a href="#栈的应用——括号匹配问题" class="headerlink" title="栈的应用——括号匹配问题"></a>栈的应用——括号匹配问题</h2><h4 id="什么是括号匹配问题"><a href="#什么是括号匹配问题" class="headerlink" title="什么是括号匹配问题"></a>什么是括号匹配问题</h4><p>顾名思义就是把括号组起来，左小括号对右小括号，左中括号对右中括号，左大括号对右大括号，最理想的情况下是匹配成功，即例如以下的括号排列：</p>
-<p>( 	{	[	]	}	)</p>
-<h4 id="和栈的关系"><a href="#和栈的关系" class="headerlink" title="和栈的关系"></a>和栈的关系</h4><p>了解什么是括号匹配之后，再来聊聊它和栈的关系。我们知道栈的特性是<strong>后进先出</strong>，那如果我们这样：把已知的<strong>左括号压入栈中</strong>，每有一个右括号，就和栈顶元素匹配，如果匹配成功就pop出栈顶元素，这样就把括号匹配问题变为了熟悉的入栈，出栈操作。当然，这只是一个大体思路，具体操作时会有很多临界条件，这里整理出一张流程图：</p>
-<p><img src="https://s1.vika.cn/space/2022/09/30/80aa5f56b05b4a0d8cdb7c711e37cc0e"></p>
-<p>具体代码实现不算难，但是昨天一直运行出问题，我把每个临界条件都打印输出出来也没找到问题，今早一看原来是入栈函数的临界条件写成了if(S,top &#x3D; MaxSize-1)….，少了一个等号。</p>
-<p>这里直接贴代码了：</p>
-<ul>
-<li>栈的相关操作</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> OK 1</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ERROR 0</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MaxSize 10</span></span><br><span class="line"><span class="comment">//建栈</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">char</span> data[MaxSize];</span><br><span class="line">    <span class="type">int</span> top;</span><br><span class="line">&#125;SqStack;</span><br><span class="line"><span class="comment">//初始化</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">InitStack</span><span class="params">(SqStack &amp;S)</span>&#123;</span><br><span class="line">    S.top = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//入栈</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">Push</span><span class="params">(SqStack &amp;S,<span class="type">char</span> c)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(S.top == MaxSize<span class="number">-1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> ERROR;<span class="comment">//栈满</span></span><br><span class="line">    &#125;</span><br><span class="line">    S.top = S.top + <span class="number">1</span>;</span><br><span class="line">    S.data[S.top] = c;</span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//出栈</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">Pop</span><span class="params">(SqStack &amp;S,<span class="type">char</span> *c)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(S.top == <span class="number">-1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    *c = S.data[S.top];</span><br><span class="line">    S.top = S.top - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">Print</span><span class="params">(SqStack S)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(S.top == <span class="number">-1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(S.top;S.top&gt;<span class="number">-1</span>;S.top--)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c\t&quot;</span>,S.data[S.top]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//栈空</span></span><br><span class="line"><span class="type">bool</span> <span class="title function_">Empty</span><span class="params">(SqStack S)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(S.top == <span class="number">-1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>匹配函数</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> <span class="title function_">pipei</span><span class="params">(<span class="type">char</span> str[],<span class="type">int</span> length)</span>&#123;</span><br><span class="line">    SqStack S;</span><br><span class="line">    InitStack(S);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;length;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(str[i]==<span class="string">&#x27;(&#x27;</span> || str[i]==<span class="string">&#x27;[&#x27;</span> || str[i]==<span class="string">&#x27;&#123;&#x27;</span>)</span><br><span class="line">            Push(S,str[i]);</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(Empty(S))&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;栈空，匹配失败\n&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">char</span> ElemTop;</span><br><span class="line">            Pop(S,&amp;ElemTop);</span><br><span class="line">            <span class="keyword">if</span>(str[i]==<span class="string">&#x27;)&#x27;</span> &amp;&amp; ElemTop!=<span class="string">&#x27;(&#x27;</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;小括号匹配失败\n&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(str[i]==<span class="string">&#x27;]&#x27;</span> &amp;&amp; ElemTop!=<span class="string">&#x27;[&#x27;</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;中括号匹配失败\n&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(str[i]==<span class="string">&#x27;&#125;&#x27;</span> &amp;&amp; ElemTop!=<span class="string">&#x27;&#123;&#x27;</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;大括号匹配失败\n&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(Empty(S)== <span class="literal">true</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;匹配成功！！！\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(Empty(S)== <span class="literal">false</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;匹配失败，栈中还有剩余左括号单身\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>主函数及运行</li>
-</ul>
-<p>	</p>
-<img src="https://s1.vika.cn/space/2022/09/30/f1999f06f8cb438f835f0e08643b75db" style="zoom:67%;" />	
-
-<img src="https://s1.vika.cn/space/2022/09/30/70574117a967477ba6d2e320f343f0d5" style="zoom:67%;" />	
-
-<img src="https://s1.vika.cn/space/2022/09/30/cc26fda033a04e3090bd7a1d591e34f5" style="zoom:67%;" />	
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/13/%E5%A6%82%E4%BD%95%E5%A4%8D%E4%B9%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="拒绝熬夜">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/02/13/%E5%A6%82%E4%BD%95%E5%A4%8D%E4%B9%A0/" class="post-title-link" itemprop="url">寒假的大概复习时间以及计划</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-02-13 16:39:56" itemprop="dateCreated datePublished" datetime="2024-02-13T16:39:56+08:00">2024-02-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-01-09 12:12:14" itemprop="dateModified" datetime="2023-01-09T12:12:14+08:00">2023-01-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%80%83%E7%A0%94/" itemprop="url" rel="index"><span itemprop="name">考研</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span></span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>NaN:aN</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="如何复习"><a href="#如何复习" class="headerlink" title="如何复习"></a>如何复习</h3><h4 id="英语"><a href="#英语" class="headerlink" title="英语"></a>英语</h4><ul>
-<li><p>单词：最早1月底，最晚2月初能学完一遍，但不是全部结束复习。</p>
-</li>
-<li><p>语法</p>
-<ul>
-<li><p>简单句</p>
-<ul>
-<li>简单句核心大约还需4天</li>
-<li>简单句扩展大约还需4天</li>
-</ul>
-</li>
-<li><p>长难句</p>
-<ul>
-<li>并列句：1天</li>
-<li>复合句<ul>
-<li>名词性从句：3天</li>
-<li>定语从句：2天</li>
-<li>状语从句：2天</li>
-</ul>
-</li>
-<li>特殊句式：3天</li>
-</ul>
-</li>
-<li><p>长难句分析</p>
-<ul>
-<li>第一章<ul>
-<li>断开：4天</li>
-<li>简化：1天</li>
-</ul>
-</li>
-<li>第二章：3天</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>共27天，往后延3天：1个月，也是2月初。</p>
-<p>再谈一点点之后，过完一遍单词后可以买一本闪过，过一遍高频词。</p>
-<h4 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h4><p>看完9    10天</p>
-<p>看完19  18天</p>
-<p>寒假结束前大概率搞不完，因为还没有找到舒服的节奏，以及每天的时间分配也暂定，所以先一放。</p>
-<p>这还只是看课，没算做题以及复习的时间。</p>
-<img src="https://s1.vika.cn/space/2023/01/09/317b3e6cf84548b2954245a796b5787c" style="zoom:50%;" />	
-
-
-
-<img src="https://s1.vika.cn/space/2023/01/09/be9e0b0ec6e6489f8768b0cdcf2c16b3" style="zoom:50%;" />	
-
-<img src="https://s1.vika.cn/space/2023/01/09/d8127b2fbe874008a88a76eeb8224814" style="zoom:50%;" />	
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/13/%E6%8E%92%E5%BA%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="拒绝熬夜">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/02/13/%E6%8E%92%E5%BA%8F/" class="post-title-link" itemprop="url">DS内排总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-02-13 16:39:56" itemprop="dateCreated datePublished" datetime="2024-02-13T16:39:56+08:00">2024-02-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-14 14:18:22" itemprop="dateModified" datetime="2023-04-14T14:18:22+08:00">2023-04-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span></span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>NaN:aN</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>内部排序 思想，代码，效率...</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/02/13/%E6%8E%92%E5%BA%8F/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/13/%E8%B7%AF%E7%94%B1%E5%99%A8%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="拒绝熬夜">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/02/13/%E8%B7%AF%E7%94%B1%E5%99%A8%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">路由器交换机的命令行模式以及相关命令</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-02-13 16:39:56" itemprop="dateCreated datePublished" datetime="2024-02-13T16:39:56+08:00">2024-02-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-19 21:43:57" itemprop="dateModified" datetime="2022-10-19T21:43:57+08:00">2022-10-19</time>
+                <time title="修改时间：2022-10-19 21:16:50" itemprop="dateModified" datetime="2022-10-19T21:16:50+08:00">2022-10-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1332,14 +230,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span></span>
+              <span>6.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>NaN:aN</span>
+              <span>6 分钟</span>
             </span>
 
         </div>
@@ -1351,408 +249,249 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>今天第一次上计网的实验课，讲了一些交换机，路由器的一些命令行模式，因为在ppt里面很杂，这里整理列出来供以后参考。（使用的软件是思科模拟器）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/02/13/%E8%B7%AF%E7%94%B1%E5%99%A8%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
+          <h2 id="计网——可靠数据传输原理"><a href="#计网——可靠数据传输原理" class="headerlink" title="计网——可靠数据传输原理"></a>计网——可靠数据传输原理</h2><p>最近也是用了几天时间读了一下top-down中运输层的可靠数据传输原理，之后看了一下科大的网课。其中的内容也是相当多，一节课的内容足足学了几天。在写这篇文章前，关于计网我从来没写过以书中知识为内容的博客，因为在之前的第一章总述以及应用层的学习中，计网都给我一种知识点很零碎的感觉，第一章相当于是把整本书的内容做了一个缩略的介绍，之后是应用层，应用层有很多协议，每个协议都有自己的知识点，所以没办法一条线把它们串起来。</p>
+<p>但学到运输层给我的感觉就不一样了，先学了运输层的一个职责（把网络层主机到主机间的通信转换为不同主机上进程与进程之间的通信），接着又学习了多路复用和分解的技术，这是实现运输层职责的关键。至此，我们可以用多路复用和解复用技术完成运输层的一个基本职责。但是我们知道，网络层的IP协议向上层交付的数据是<strong>尽力而为的交付</strong>，也就是不可靠的服务，那么在应用层能否把不可靠的服务转变为可靠的服务呢？在学习这一章之前，我们在早期的学习中了解到这是TCP协议可以实现的功能，在学习TCP如何实现这些功能前，我们先来看如何来传输可靠的数据，即——可靠数据传输原理。</p>
+<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>在正式开始学习前，我们要写了解这个问题。我们知道，计算机网络的每一层都是接受下层的服务然后实现功能为上层提供服务。我们假设提供可靠数据传输(rdt)的是运输层（实际上rdt的实现也会在链路层以及应用层），图示说明了我们学习可靠数据传输的框架：为上层提供服务的抽象是：数据可以通过一条<strong>可靠的信道</strong>传输，借助与可靠信道，数据就不会损坏或丢失，且按顺序交付。</p>
+<img src="https://s1.vika.cn/space/2022/10/15/e5d8b79855d144caa9044edfe55b32b9" style="zoom:67%;" />	
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/13/%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B9%9F%E6%9E%81%E6%9C%89%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%80%E5%90%8E%E4%B8%80%E7%AF%87%E7%9A%842022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="拒绝熬夜">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/02/13/%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B9%9F%E6%9E%81%E6%9C%89%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%80%E5%90%8E%E4%B8%80%E7%AF%87%E7%9A%842022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">第一篇也极有可能是最后一篇的2022年终总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-02-13 16:39:56" itemprop="dateCreated datePublished" datetime="2024-02-13T16:39:56+08:00">2024-02-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-26 11:12:05" itemprop="dateModified" datetime="2022-12-26T11:12:05+08:00">2022-12-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">年终总结</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span></span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>NaN:aN</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="第一篇也极有可能是最后一篇的2022年终总结"><a href="#第一篇也极有可能是最后一篇的2022年终总结" class="headerlink" title="第一篇也极有可能是最后一篇的2022年终总结"></a>第一篇也极有可能是最后一篇的2022年终总结</h2><p>又到了一年年底，最近也是刚刚忙完学校里的各种作业，在正式开始寒假之前，来写一写这一年所发生的事。因为之前也没写过什么正儿八经的年终总结，自己也不想去看大佬的年终总结长啥样了，所以就随心发挥了。</p>
-<h3 id="学习篇"><a href="#学习篇" class="headerlink" title="学习篇"></a>学习篇</h3><p>可以说2022年是我真正转变为一个学生身份的一年，在大一刚开学的时候，便整天浑浑噩噩，大一上学期挂了一门C语言，大一下学期挂了一门离散数学。在大二上学期时，当时记得是2021年11月左右，因为12月的四级和期末挨得很近，我意识到不能再继续挂下去了，于是从11月开始突击复习，最后也是艰难的完成了任务。2023年1月3日，我正式告别了2021年的我，背起行李坐上了回家的列车。</p>
-<p><img src="https://s1.vika.cn/space/2022/12/26/e8eac1b9d1bd459bba052b4dfc837c26" style="zoom: 10%;" />	<img src="https://s1.vika.cn/space/2022/12/26/f0e2b15235c842a498b7d2614b222306" style="zoom:10%;" />	</p>
-<p>下面就跟随时间的视角，回忆一下这12个月我的学习与成长。</p>
-<ul>
-<li>1月份：回到家后，简单休息了几天，去了附近的一家自习室，这也是我第一次去自习室。当时的我对未来很迷茫，只知道内心是想要考研的，对自己的就业方向毫不了解，甚至每个岗位的职责我都丝毫不知道。于是在看了一下大二下学期的课表后，发现有一门专选是web前端，因为也不知道自己喜欢什么，于是干脆就从前端试试了。再想到之后要准备考研，而自己大一时高数学的很差，于是就计划寒假把高数上学完。就这样，我轰轰烈烈（偷偷摸摸）的第一次自习计划开始了。在1月底，我基本学完了前端的html和高数的前三章内容，当然，每天的单词也是没落下。</li>
-</ul>
-<p>​	<img src="https://s1.vika.cn/space/2022/12/26/4b645631e6be45fd833576c3ac3ce259" style="zoom: 10%;" />	</p>
-<ul>
-<li>2月份：被朋友发现了我偷偷卷的行为，于是拉他一起去了另一家自习室（因为之前那家人数已经满了）。开始几天效率还好，把高数第四章看完了，每天都背着单词。但越到后来，我俩就越来越不想学，有时候学着学着就跑出去喝奶茶了，有时候自习室里就我们俩人，我们就在那聊天划水，总之也是没学多少东西。在2月底，和朋友们告别之后，我们各自开学了。</li>
-<li>3月-5月份：整个三月到五月，在学习方面大概就是上课，自习。但这个时候的自习时间也并不多，一天能抽出完整的一上午或一下午就不错了，其余时间还是在宿舍休息。这个时间段对我来说时间也并没有安排的很挤。不过当时的课还是蛮多的，特别是有些课上的非常痛苦。诸如算法课这种的，因为之前的C语言一塌糊涂，更别说写算法了。于是在这期间，我在b站自己找课程，将C语言从头到尾重新学了一遍，也是在这期间，看了很多up的视频，算是对计科专业以及以后的工作有了一个初步的认识。</li>
-<li>6月份：又是一个六级+期末两重天的考试月，实际上六级应该是从5月初就开始复习了，这段时间算是很忙了，几乎每天除了上课就是去自习。期间比较有成就感的是自己独立完成了大部分的计组课程设计。6月11日考完六级后，开始了苦逼期末复习。当时济南的天气非常热，大概每天最高温都38，39这样，每天必须起很早去占图书馆的位置，因为我们学校只有图书馆有空调。最后也是忙忙碌碌的过完复习周，考试周。6月25日，放假回家！</li>
-</ul>
-<p><img src="https://s1.vika.cn/space/2022/12/26/e59276543d7d4aa59a1ef2ed046c7430" style="zoom: 50%;" />	<img src="https://s1.vika.cn/space/2022/12/26/2b8f7ca64ee049eb92a68f454d533efa" style="zoom:6%;" /></p>
-<ul>
-<li>7月份：简单休息几天后又来到了熟悉的自习室，我开始思考在这个暑假我应该干些什么。无意中注意到了字节这边的青训营活动，还是本着试试自己喜好的想法，就报名参加了。而这一参加，便贯穿了我的整个暑假。之后就是笔试，入营，整个过程还是很简单的。在这期间也学习了Linux的一些相关知识，以及把数据结构重新学了一点。</li>
-</ul>
-<p><img src="https://s1.vika.cn/space/2022/12/26/1ce0def5b80b4124b42af045a93bfa63">	</p>
-<ul>
-<li>8月份：几乎整个8月都在为青训营忙碌。因为自己担心被分到很摆的小组，在发了几条求队信息都没人要我（大概是因为我真滴太菜了），于是就想着自己组一个。即使这样，最后也只有一个人跟我留了下来，其余人都是分配的。几乎每天都在看录播，因为课程内容真的很硬核，一般看完一节课精力已经全没了。到8月7号开始，我们组内就开始讨论做项目。但因为组内基础实在有限，练语言（Go）我们都是现学的，到最后也只是学习了一个别人的项目（tinysql），然后拿到答辩报告中去答辩。如果只从项目完成的进度来看结果的话，可以说成果几乎为0。但是对我来说，此次青训营还是颇有收获的，首先就是了解使用了一些计科专业几乎必须掌握的技能，诸如git，github，Linux中的vim，docker部署，这些以前感觉很复杂很高级的东西，在这次实践中也是彻彻底底的用到了。其次就是组内还有比我优秀的队友，他向我们分享了他的网站，也算是为我打开了个人blog的大门，于是在青训营结束后，我用了几天时间也搭建并装饰了一下自己的博客。组内还有一位研究生学长，在青训营结束后，我也向他问了很多考研的问题。当然最主要的收获还是可以和字节的一些大牛进行对话，这也是我一直想要坚持到最后的原因之一吧，即使我们的项目是学习的现有的项目， 但我们最终也撰写完了报告，完成了答辩。</li>
-</ul>
-<img src="https://s1.vika.cn/space/2022/12/26/0d2eb7cf7dda401099b8dae442d2794e" style="zoom:50%;" />	
+<p>但刚刚提到过，网络层IP协议提供的是不可靠的服务，所以在运输层中，我们需要实现一些协议，来把不可靠的数据传输变为可靠的数据传输，这个协议就是**可靠数据传输协议(rdt)**。我们还是以应用层，运输层，网络层为例：</p>
+<img src="https://s1.vika.cn/space/2022/10/15/1613f2185a4943e7ab07e0490ec754a1" style="zoom: 67%;" />				
 
 <ul>
-<li>9月份-11月份：我只想用两个字形容这个阶段的学习状态：死学。自开学之后，一天内几乎不存在大片的在宿舍玩的时间。在这期间中午的睡眠质量有时也相当差。每次学不进去我都会仔细思考当前学习方法的不足，然后进行下一步的调整。学习内容基本为：计网，操作系统贯穿始终，前期完成了C++面向对象的学习，数据结构学到了图的部分，后期因为要准备六级暂缓数据结构（没错我六级上次挂了）单词也是一直坚持在背，直到今天。值得一提的是，自己作为组长组起了两个课设的组队，分别是数据库软工的课设和操作系统的课设，当然在这些工作在12月才彻底完成。</li>
+<li>调用<strong>rdt_send()<strong>函数，上层可以</strong>调用rdt发送方</strong>，把要传输的数据交付给它</li>
+<li>rdt的发送方和接收方都需调用**udt_send()**发送分组给对方（udt为不可靠数据传输）</li>
+<li>当分组通过信道到达接收方时，调用<strong>rdt_rcv()</strong></li>
+<li>通过**deliver_data()**，rdt向上层交付数据</li>
 </ul>
-<img src="https://s1.vika.cn/space/2022/12/26/d96263f4b5414995a2edb69263eb3fa3" style="zoom: 25%;" />	
+<h3 id="研究方法"><a href="#研究方法" class="headerlink" title="研究方法"></a>研究方法</h3><p>我们知道，一个可靠的数据传输协议可以使数据不受损，不丢失，不乱序。现在我们将一步步的研究rdt协议，先从最简单的情况考虑起，一步步构造一个完美、可靠的数据传输协议。在正式开始之前，我们要先知道：<strong>底层的可靠性决定了rdt协议实体的复杂度</strong>。什么意思呢？还是拿IP协议举例，如果IP自己就可以实现可靠的数据传输，那我运输层只需要做一个多路复用就可以了，此时的rdt协议便非常简单。所以我们先假设IP协议是一个完美无缺的可靠性数据传输协议，再一层层放开这个假设，最终使IP协议变为一个不可靠的（即现在的IP协议的样子），在此过程中，我们的rdt协议也将一点点复杂起来。此外，我们使用**有限状态机（FSM)**来描述发送方和接收方的状态。</p>
+<p><img src="https://s1.vika.cn/space/2022/10/15/00e828d947334842b8277530e99588af">	</p>
+<h3 id="rdt1-0（经完全可靠信道的可靠数据传输）"><a href="#rdt1-0（经完全可靠信道的可靠数据传输）" class="headerlink" title="rdt1.0（经完全可靠信道的可靠数据传输）"></a>rdt1.0（经完全可靠信道的可靠数据传输）</h3><p>首先我们考虑最简单的情况，即底层信道是完全可靠的，没有比特出错，也没有分组丢失。那么此时发送方和接收方的FSM为：</p>
+<ul>
+<li>发送方从上层拿到要方式的数据，将数据发送至下层信道</li>
+<li>接收方从下层信道接收数据，将数据deliver到上层</li>
+</ul>
+<img src="https://s1.vika.cn/space/2022/10/15/ed9d2705b3a840b0b61b00b6250449bb" style="zoom:67%;" />	
+
+<h3 id="rdt2-0（经有比特差错信道的可靠数据传输）"><a href="#rdt2-0（经有比特差错信道的可靠数据传输）" class="headerlink" title="rdt2.0（经有比特差错信道的可靠数据传输）"></a>rdt2.0（经有比特差错信道的可靠数据传输）</h3><p>在rdt1.0中，我们假设底层信道是完全可靠的，现在我们放开一点这个条件，我们假设<strong>经底层信道传输的数据可能会出现比特差错</strong>，其余不可靠的情况不会出现。那么此时，rdt协议应如何设计呢？我们不妨来设想一个场景中的三种情况：</p>
+<ul>
+<li><p>在课堂中，老师在课堂上提问你，这道题的答案是什么，在通常情况下，你回答了老师，老师会对你说“OK”，但如果你在回答的时候没有说清楚，老师可能会让你“重复一下你的回答”，人们是这样的，协议亦是如此。在接收方收到正确的分组时，它会告诉发送方一个<strong>肯定确认</strong>（ACK），相反就告诉发送方一个<strong>否定确认</strong>（NAK）。</p>
+</li>
+<li><p>现在再次回到我们的课堂场景，在老师向你提出“请重复一遍你的回答”后，你会再向老师说一遍这个答案。在协议中，如果接收方给发送方一个否定回答，那么发送方将会<strong>重传该分组</strong>，基于这样重传机制的可靠数据传输协议称为<strong>自动重传请求协议（ARQ）</strong>。</p>
+</li>
+<li><p>最后再来思考一个问题，老师可以辨别你答案是否清楚明确是因为老师有自己的判断机制，当你没说清楚时老师可以直接听出来。那么放在协议中，接收方怎么知道发送方传的分组是错的呢？还记得在学习UDP的时候，UDP<strong>校验和</strong>提供了差错检测功能，在rdt协议中，我们同样可以使用校验和来进行差错检测。</p>
+</li>
+</ul>
+<p>至此，针对经有比特差错信道的可靠数据传输，rdt也通过了上述三种功能来解决它，即<strong>差错检验、接收方反馈以及重传</strong>。以下为rdt2.0中发送方与接收方的FSM，我们分别来盘一下：</p>
+<img src="https://s1.vika.cn/space/2022/10/15/38b8c4eb7a7c45659687cf5bb2f9e54e" style="zoom:67%;" />	
 
 <ul>
-<li>12月份：冲刺六级，赶大作业。这段时间只能说，非常痛苦。隔几天就会因为校区出阳被封在宿舍，在宿舍连一个学习的桌子都就没有。与此同时，教室自习的人也越来越少，12月9号离开教室的时候，只剩两个人还在学习。那几天每天都在担心会不会明天又被封在宿舍，会不会六级出延期的消息（因为我就是想考六级才留校了，不然已经可以返乡了），所幸最后也是顺利的考完了试。回家后简单休息了一下就一直赶作业，数据库软工的课设几乎是自己一个人肝完了，然后接着是OS的课设，时序分析的大作业，专业英语的报告，一直到昨天，才算大概写完。</li>
-</ul>
-<p>这就是这一年中的学习篇，我自己是觉得还是ok的，完成了很多的第一次，明年2023年不出意外的话要准备考研了，我在之前就觉得，2023年将会是在以后的人生中都会印象深刻的一年，希望自己好好努力，绘制精彩的2023！</p>
-<h3 id="良师篇"><a href="#良师篇" class="headerlink" title="良师篇"></a>良师篇</h3><p>这一年真的遇到了好多好多的指路人，我真的很想把他们拿出来夸一夸。他们有的是老师，有的是up主，反正真的真的给我带来了很大帮助。</p>
-<ul>
-<li>湾区书记汤姆</li>
-</ul>
-<img src="https://s1.vika.cn/space/2022/12/26/2b6252c629994292a5521af9e8d97190" style="zoom: 67%;" />	
-
-<p>之前的名字应该是叫汤姆还在写代码，真的是一个神仙级up，我有很多关于计算机从0到1的知识都是看他的视频知道的，从C++校招学习路线入坑他的视频，这个视频我看过不下三次了，每学一段时间都会看一遍检验一下自己学到什么程度了。他的学习路线非常详细，里面也有具体的学习方法以及一些资源。不过不知道因为什么原因以及几个月没更新视频了，只有公众号还在发文章。</p>
-<ul>
-<li>中科大-郑烇老师</li>
-</ul>
-<img src="https://s1.vika.cn/space/2022/12/26/cd316646828346f4a46033c932b113e8" style="zoom:67%;" />	
-
-<p>是一位讲计网的老师，视频内容非常硬核，不是一昧的照本宣科，感觉老师对每一节的知识都有自己的理解，然后再讲给学生。老实说，视频长度很长，而且内容不偏向于应试，而且教材是国内的那本黑皮书，理应是不太适合我这个准备考研的人看的。但是老师讲的真的太好了，忍不住想听完全部。除此之外，郑老师直到现在都坚持在评论区答疑，只要你问他基本都会回答，真的是很棒的一位老师了。</p>
-<p>除此之外还遇到了好多好多人，就不一一列出来啦。</p>
-<h3 id="运动篇"><a href="#运动篇" class="headerlink" title="运动篇"></a>运动篇</h3><p>今年说起运动，也算是开辟新天地了。上半年没怎么动，最多就是在学校里晚上出去跑跑步，但后来因为知道自己是大体重便也不敢跑了。暑假期间去了两个月的健身房，减掉了15斤，开学之后也在济南当地的健身房练了一个月，之后大概是因为自己懒了加上学习任务增加了一些，就没再去。</p>
-<img src="https://s1.vika.cn/space/2022/12/26/95f97a748e1d4a3e92ea6b770e75af41" style="zoom: 10%;" />	
-
-<p>至于今年，还是很想去的。这两天因为没保护好自己，阳了，等到康复一段时间再考虑冲一冲。</p>
-<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>这就是我的2022啦，还是蛮坎坷的。上学期间被封了很久很久，上半学期3-5月基本一直都是网课，6月才解封，但也到考试月了。下半学期是最绝望的，是我真正觉得疫情有在影响我的一个学期，有几天封宿舍不能自习，几乎每天一次核酸，到最后校区一天出很多阳，学校干脆不上报了。考六级前的两天复习的很差很差，在宿舍窝着不敢出去。但还好现在也已经过去啦，还是要向前看的。</p>
-<p>最后贴一张现在的图吧，希望自己可以经历一个精彩的2023！</p>
-<img src="https://s1.vika.cn/space/2022/12/26/f64bfe4b55d84fd787a06aad34b3ac7a" style="zoom:10%;" />	
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/13/OS%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="拒绝熬夜">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/02/13/OS%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">OS——基本存储管理(1)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-02-13 16:39:56" itemprop="dateCreated datePublished" datetime="2024-02-13T16:39:56+08:00">2024-02-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-22 14:43:06" itemprop="dateModified" datetime="2022-10-22T14:43:06+08:00">2022-10-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span></span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>NaN:aN</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="基本存储管理"><a href="#基本存储管理" class="headerlink" title="基本存储管理"></a>基本存储管理</h2><p>终于也是跨过了处理机管理，来到内存管理的内容了。目前基本存储管理这一章还差分页、分段以及段页三种管理方式没有学，之所以在学之前来写这一篇文章，主要是觉得这一章的内容过于零碎了，不易成逻辑又很容易忘掉，所以写这一篇来串一下已学的内容，在复习的基础上为学接下来的做一些铺垫。</p>
-<h3 id="大致框架"><a href="#大致框架" class="headerlink" title="大致框架"></a>大致框架</h3><img src="https://s1.vika.cn/space/2022/10/22/464eb9737d6346eea282e077b62603b0" style="zoom:67%;" />	
-
-<p>在第一节基本就把存储管理的大致框架说明了，首先是一些基本概念，之后是存储管理的基本功能。基本功能几乎是整个第六章的内容，内存的分配与回收功能是最主要的，已经学的分区以及后面的分页，分段等等都是说这个的。接着是地址重定位，这在第一节已经说清楚了，之后是内存的共享和保护，这里课本上涉及不多，但是在看课时也略微学到一些。最后是内存的扩充，这一章主要介绍了覆盖和交换技术，至于虚拟内存技术要留在下一章讲了。</p>
-<p>那么，大概了解框架后，我们就正式开始。</p>
-<h3 id="存储系统基本概念"><a href="#存储系统基本概念" class="headerlink" title="存储系统基本概念"></a>存储系统基本概念</h3><h4 id="物理地址-逻辑地址"><a href="#物理地址-逻辑地址" class="headerlink" title="物理地址&amp;逻辑地址"></a>物理地址&amp;逻辑地址</h4><ul>
-<li>物理地址：就是数据在内存中实际存放的位置，是一个绝对地址。</li>
-<li>逻辑地址：程序员编的一个相对地址。</li>
-</ul>
-<p>举个例子：一段程序在内存中的存放位置是100-149，这是它的物理地址。那么程序员在编写时，可以将逻辑地址设为0-50。</p>
-<p>那么问题就来了，我们写的时候直接用物理地址写，然后再装入内存不就好了，为什么要再使用一个逻辑地址？原因是在<strong>多道程序环境中</strong>，程序员无法知道程序被装入内存的哪个区域执行。在单道程序环境下，是可以使用物理地址的。</p>
-<h4 id="程序修行学"><a href="#程序修行学" class="headerlink" title="程序修行学"></a>程序修行学</h4><p>这里用一张图说明一个程序从编写到装入内存需要经历的事，我们假设编辑的是一个C程序：</p>
-<p><img src="https://s1.vika.cn/space/2022/10/22/23929ad3cbc94742b074e744b8876fbb"></p>
-<ul>
-<li>经程序员编写后，形成最初的.c文件</li>
-<li>.c文件经过编译，将高级语言翻译为机器语言，形成目标模块.o文件<ul>
-<li>目标模块中的指令使用的地址是<strong>逻辑地址</strong></li>
+<li>对于发送方：接收上层的数据后，封装好并设置好<strong>校验和</strong>，发送给接收方后，自身变为<strong>等待ACK或NAK的状态</strong>，若收到接收方的NAK，则重发分组；若收到接收方的ACK，发送方转变为等待上层调用的状态。<ul>
+<li>需要注意的是，发送方在<strong>等待ACK或NAK状态</strong>时不能从上层获得更多的数据，即不会出现rdt_send()事件，发送方也<strong>不会发生新的数据</strong>，仅当接收到ACK离开此状态才会继续发送新的数据。这样的协议被称为<strong>停等协议</strong>。</li>
 </ul>
 </li>
-<li>若干目标模块经过链接，形成装入模块.exe，在<strong>链接</strong>的过程中将目标模块中分散的逻辑地址合并为完整的逻辑地址</li>
-<li>最后装入模块经过地址重定位后转换为物理地址，最后装入内存</li>
-</ul>
-<p>在这个过程中我们需要研究的重点是：</p>
-<ul>
-<li>怎样完成逻辑地址到物理地址的转换——地址重定位</li>
-<li>怎么完成程序的装入</li>
-<li>几种链接方式</li>
-</ul>
-<h4 id="地址重定位"><a href="#地址重定位" class="headerlink" title="地址重定位"></a>地址重定位</h4><p>我们知道逻辑地址是一个相对地址，和其加载到内存中的物理地址是不对应的，所以程序想顺利执行就得把逻辑地址转换成物理地址，这个过程就称之为地址重定位。</p>
-<p>我们根据地址重定位的<strong>时机不同</strong>，分为静态地址重定位与动态地址重定位。</p>
-<h5 id="静态地址重定位"><a href="#静态地址重定位" class="headerlink" title="静态地址重定位"></a>静态地址重定位</h5><p>重定位时机：程序被装入内存的过程中，程序运行前</p>
-<p>物理地址 &#x3D; 装入内存的起始地址 + 逻辑地址</p>
-<p>图解：</p>
-<img src="https://s1.vika.cn/space/2022/10/22/0baa789e44a6484faa8b121af2abc146" style="zoom:50%;" />	
-
-<p>优点：不需要硬件支持（动态需要重定位寄存器）</p>
-<p>缺点：</p>
-<ul>
-<li>程序只能装入内存的一片<strong>连续区域</strong>上，不能离散装</li>
-<li>一旦装进去，就不能移动</li>
-</ul>
-<p>😶‍🌫️分割线——-</p>
-<h5 id="动态地址重定位"><a href="#动态地址重定位" class="headerlink" title="动态地址重定位"></a>动态地址重定位</h5><p>重定位时机：程序运行过程中。即程序在装入内存中<strong>先不地址转换</strong>，等到执行时，再转换。（也就是装入的是逻辑地址）	</p>
-<p>使用<strong>重定位寄存器</strong>存放装入模块存放的<strong>起始位置</strong></p>
-<p>物理地址 &#x3D; 重定位寄存器的值 + 逻辑地址</p>
-<p>优点</p>
-<ul>
-<li>支持程序执行过程在内存中移动，只需修改重定位寄存器的值（起始地址的值）</li>
-<li>支持程序在内存中离散存储，也是修改重定位寄存器的值</li>
-</ul>
-<p>缺点：需要硬件支持。</p>
-<p>现代OS基本采用的是动态地址重定位。</p>
-<h4 id="程序的装入方式"><a href="#程序的装入方式" class="headerlink" title="程序的装入方式"></a>程序的装入方式</h4><p>根据地址重定位的方式不同，其装入内存的方式也不同，我们分为3类，其和地址重定位的方式是一一对应的。</p>
-<h5 id="绝对装入"><a href="#绝对装入" class="headerlink" title="绝对装入"></a>绝对装入</h5><p>装入模块使用物理地址直接装进去，无需地址重定位。</p>
-<p>这是在<strong>单道程序设计</strong>阶段实现的，用户提前知道物理地址，因此无需转换。</p>
-<h5 id="静态重定位装入（可重定位装入）"><a href="#静态重定位装入（可重定位装入）" class="headerlink" title="静态重定位装入（可重定位装入）"></a>静态重定位装入（可重定位装入）</h5><p>即使用静态地址重定位的装入方法，不再赘述。</p>
-<h5 id="动态重定位（动态运行时装入）"><a href="#动态重定位（动态运行时装入）" class="headerlink" title="动态重定位（动态运行时装入）"></a>动态重定位（动态运行时装入）</h5><p>即使用动态地址重定位的装入方式，装入内存的是逻辑地址，直到运行时利用重定位寄存器转换为物理地址。</p>
-<h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><p>看完最核心的两步之后，我们折返回来看看链接。链接的目的形成完整的逻辑地址，我们根据<strong>链接的时机</strong>，也可以分为三种链接方式：</p>
-<ul>
-<li>静态链接：在程序运行前，将若干目标函数以及他们所需要的库函数链接为一个完整的可执行文件（装入模块），之后不再拆开。</li>
-<li>装入时动态链接：将目标模块装入内存时，<strong>边装入边链接</strong></li>
-<li>运行时动态链接：在程序执行过程中，<strong>需要该目标模块时</strong>，才对其链接。<ul>
-<li>有若干模块，需要谁链接谁</li>
-<li>便于修改和更新</li>
-<li>便于实现对目标模块的共享</li>
+<li>对于接收方，接收分组后<ul>
+<li>如果corrupt（腐败），代表没有通过校验，即发生了比特差错，则发送NAK给发送方。</li>
+<li>如果notcorrupt（未腐败），代表通过校验和，则发送ACK给发送方。</li>
 </ul>
 </li>
 </ul>
-<h3 id="分区存储管理（内存的分配-回收）"><a href="#分区存储管理（内存的分配-回收）" class="headerlink" title="分区存储管理（内存的分配&amp;回收）"></a>分区存储管理（内存的分配&amp;回收）</h3><p>在上面的地址重定位是内存管理的基本功能之一，现在我们再来讲讲内存管理的另一个基本功能——内存的分配和回收。</p>
-<p>其按照分配的方式可分为连续分配存储管理和非连续分配存储管理。</p>
-<ul>
-<li>连续分配存储管理：为一个程序分配一个连续的空间，其中这一节要说的单一连续分配、固定分区分配、动态分区分配都是连续分配</li>
-<li>非连续分配存储管理：大概就是分配的空间是不连续的，这块的学习还在后面。</li>
-</ul>
-<p>在正式开始之前，我们先明确两个概念——内碎片和外碎片</p>
-<ul>
-<li>内碎片：某进程用不完其分到的分组<ul>
-<li>例：给一个10MB的进程分配了12MB的内存，就有2MB为内碎片</li>
-</ul>
-</li>
-<li>外碎片：内存中某些空闲分区因太小而难以利用<ul>
-<li>例：一个内存经分配后空闲分区先后为：1MB,1MB,2MB,1MB，此时如果来一个5MB的进程，是无法满足的。</li>
-</ul>
-</li>
-</ul>
-<p>在如下的讲解中我们都会分析这种方式是否有内碎片或外碎片。下面就来正式看一下这节要说的三种连续分配方式：</p>
-<h4 id="单一连续分配"><a href="#单一连续分配" class="headerlink" title="单一连续分配"></a>单一连续分配</h4><p>内存被分为<strong>系统区</strong>和<strong>用户区</strong>。</p>
-<ul>
-<li>系统区位于低地址：存放操作系统相关数据</li>
-<li>用户区：存放用户进程相关数据</li>
-</ul>
-<img src="https://s1.vika.cn/space/2022/10/22/346f67f7d0694076a433be295d9201bd" style="zoom:50%;" />	
+<h3 id="rdt2-1（解决rdt2-0的致命缺陷）"><a href="#rdt2-1（解决rdt2-0的致命缺陷）" class="headerlink" title="rdt2.1（解决rdt2.0的致命缺陷）"></a>rdt2.1（解决rdt2.0的致命缺陷）</h3><p>在刚刚的rdt2.0的假设中，我们只考虑到了分组在传输信道中受损的情况，如果接收方给ACK，发送方就传下一个分组，如果接收方给NAK，发送方就重传当前分组，但我们没有考虑到<strong>ACK或NAK分组受损的可能性</strong>。即如果接收方给发送方的ACK或NAK受损后变成了“乌拉乌拉”，那么2.0的发送方将直接懵比，所以为了解决这个问题，我们让<strong>发送方对其数据分组进行编号</strong>。而编号也并非需要很多序号，只需要0,1两个即可，分别表示前一个分组以及一个新分组两种状态。以下为rdt2.1中发送方和接收方的FSM，一眼看上去好像很复杂，我们一点点来看：</p>
+<p><strong>发送方</strong></p>
+<img src="https://s1.vika.cn/space/2022/10/15/514a053b8a2e45dd92ab53e0c5bc5573" style="zoom: 80%;" />	
 
-<p>单一连续分配即<strong>一个进程占一个用户区</strong>，显然这种情况只使用于单道程序环境下。</p>
-<p><strong>有内碎片</strong>：很显然啦，那么大一个用户区就一个进程，存储器利用很低</p>
-<p><strong>无外碎片</strong>：大概是因为全是内碎片？</p>
-<h4 id="固定分区分配"><a href="#固定分区分配" class="headerlink" title="固定分区分配"></a>固定分区分配</h4><p>可能是大佬们觉得单一分配太低效辣，然后多道程序环境一出，就想着一片内存给多个进程，咋办呢？于是就把用户区分区了，每个分区装一个程序，分区一旦划好，不能重分。而且分区大小和数量都是固定的，这也就是叫固定分区的原因了。</p>
-<p>划分方式：根据划定的分区大小是否相等，分为分区大小相等&amp;分区大小不等。</p>
-<h5 id="分区大小相等"><a href="#分区大小相等" class="headerlink" title="分区大小相等"></a>分区大小相等</h5><p>看图</p>
-<img src="https://s1.vika.cn/space/2022/10/22/be385b72ec624f9ea3620bb84a2d7889" style="zoom: 50%;" />	
+<p>大概可以看出发送方的状态数变成了2倍，因为要区分0和1</p>
+<ul>
+<li>上层通过rdt_send()调用后，打包分组，设置好校验和发送，这和rdt之前的版本无任何区别</li>
+<li>发送分组0后，发送方转换为<strong>等待ACK或NAK0状态</strong><ul>
+<li>若接收方给出ACK，则转换为等待上层的调用1状态</li>
+<li>若接收方给出<strong>NAK0</strong>或<strong>接收方给出的确定受损</strong>，给出“乌拉乌拉”，则<strong>重发0号分组</strong>，直到收到ACK</li>
+</ul>
+</li>
+<li>发送1号分组以及等待ACK或NAK1两个状态和上面相同，不再说明。</li>
+</ul>
+<p><strong>接收方</strong></p>
+<img src="https://s1.vika.cn/space/2022/10/15/b47441a8ae554b69b0ec527728bd7239" style="zoom:80%;" />	
 
-<p>这种方式就有点缺乏灵活性，比如来一个12MB的大程序，就没有它的容身之地，来一些很小的程序，一个程序占一个分区，就会<strong>产生大量内碎片</strong>。</p>
-<p>但不会产生外碎片，为什么？因为是固定分区，一个分区就一个进程，外碎片大概是要动态分区才会产生。</p>
-<p>虽然这种方式很呆，但不可否认的是，其<strong>适用于一台计算机控制多个相同对象的场合</strong>。</p>
-<h5 id="分区大小不等"><a href="#分区大小不等" class="headerlink" title="分区大小不等"></a>分区大小不等</h5><p>看图</p>
-<img src="https://s1.vika.cn/space/2022/10/22/c4dadd055424474db4fea4b361ef2c3c" style="zoom:50%;" />	
+<p>通过大体的浏览这个图我们大概可以看出来接收方一个状态是有三个动作的，我们一个个来看，还是拿<strong>收到分组0</strong>来看，分组1原理相同</p>
+<ul>
+<li>收到分组0，但corrupt（校验出错），发送NAK给发送方</li>
+<li>收到分组0，校验没出错，发送ACK给发送方，自己转换到<strong>等1的状态</strong></li>
+<li>在<strong>等0的时候收到了1</strong>（左二行），则发送ACK给发送方，因为只有这样发送方才能发1</li>
+</ul>
+<p>其中第三点需要注意一下，在等0的时候收到了1，就意味着接收方自己在<strong>上一次的分组确认受损了</strong>，导致发送方收到了乌拉呜啊，就重新把上一个分组发送了一遍，此时<strong>接收方要给出ACK确认该分组</strong>，<strong>使发送方发送下一个分组</strong></p>
+<p>为了方便理解，贴一张实际运行中可能出现的情景：</p>
+<img src="https://s1.vika.cn/space/2022/10/15/ecc87f391bb54355addb55851067e7ad" style="zoom: 50%;" />	
 
-<p>就一定程序上解决了分区大小相等的问题，系统可以根据程序的大小选择适合的分区，<strong>减少了内碎片的数量</strong>（但是也有）。而且较大的分区也有机会找到一个大分区运行。</p>
-<h5 id="分区说明表"><a href="#分区说明表" class="headerlink" title="分区说明表"></a>分区说明表</h5><p>既然一个用户区被划了好几块，就得用一个数据结构管管它——分区说明表。</p>
-<p>功能是来记录每个分区的大小，起始地址和状态等信息。</p>
-<h5 id="固定分区分配的优缺点"><a href="#固定分区分配的优缺点" class="headerlink" title="固定分区分配的优缺点"></a>固定分区分配的优缺点</h5><p>优点</p>
+<h3 id="rdt2-2（无NAK"><a href="#rdt2-2（无NAK" class="headerlink" title="rdt2.2（无NAK)"></a>rdt2.2（无NAK)</h3><p>rdt2.2在功能上和2.1无任何区别，只是<strong>把否定确认NAK变为对前一个分组的ACK</strong>，即如果收到1，校验失败，按照rdt2.1应发送NAK给发送方，在rdt2.2则直接发送ACK0即可，这样就可以实现一个无NAK的可靠数据传输协议。</p>
+<p>这里还是带入一个生活中的例子，是中科大的郑老师在课堂上讲的，觉得很有意思，这里也分享出来。假设一个女生问你：我温柔吗？你觉得她很温柔，于是回答她：你很温柔。接着她问你：我漂亮吗？你觉得她在你心中不漂亮，于是你回答她：你很温柔。这就是rdt2.2，<strong>对本次分组的否定用对上一个分组的肯定来代替</strong>。如果按rdt2.1的逻辑来，你应该直接回她：你不漂亮。</p>
+<p>所以rdt2.2发送方和接收方的FSM和2.1的区别就在于，<strong>等待ACK或NAK的状态</strong>变为<strong>等待ACK0</strong>（等0的情况）。</p>
+<h3 id="rdt3-0（经有比特差错的丢包信道的可靠数据传输）"><a href="#rdt3-0（经有比特差错的丢包信道的可靠数据传输）" class="headerlink" title="rdt3.0（经有比特差错的丢包信道的可靠数据传输）"></a>rdt3.0（经有比特差错的丢包信道的可靠数据传输）</h3><p>在前面的讨论中我们主要针对比特差错进行了学习，但在数据传输时，除了数据可能会出差错外，丢包也是经常会出现的问题（丢包包括丢数据或丢确认信息），那么针对丢包，我们又该如何解决呢？解决步骤大概分为两步，第一步就是<strong>如何检验丢包</strong>，第二步就是<strong>检查出丢包后我们该做些什么</strong>。</p>
+<p>我们令发送方负责检查和恢复丢包工作，采取的方法是让发送方选择一个<strong>时间值</strong>，如果在这个时间内没有收到确认信息，就判定发生了丢包。之后将<strong>重新传该分组</strong>。（一个分组如果经历了很长的时延，发送方可能会重新发送）</p>
+<p>既然设置了一个时间值，我们就需要一个<strong>倒计数定时器</strong>来计时，如果timeout，则判定丢包，重发分组。所以发送方应做到：</p>
 <ul>
-<li>相对单一分配，无疑是增加了内存利用率</li>
+<li>每发送一个分组，启动一个倒计数 定时器</li>
+<li>响应定时器中断</li>
+<li>终止定时器</li>
 </ul>
-<p>缺点</p>
+<p><strong>rdt3.0发送方的FSM：</strong>在分析是还是拿发送0来举例</p>
+<img src="https://s1.vika.cn/space/2022/10/15/ab37229874574294ad26ec23d4dd5038" style="zoom: 80%;" />	
+
 <ul>
-<li>分区一开始就确定了，限制了系统并发进程数目。（就很像打仗时就带这么多兵，万一对方比预想的很强就直接gg）</li>
-<li>还是存在很多内碎片，浪费内存空间。</li>
+<li>收到上层调用后，打包分组，设置好校验和，<strong>启动计时器</strong>，发送后进入<strong>等待ACK0状态</strong></li>
+<li>若接收方给出ACK1或乌拉乌拉，重发0，这是rdt2.2的内容</li>
+<li>若接收方校验成功，给出ACK给发送方，则发送方<strong>停止这个分组的计时器</strong></li>
+<li>若在<strong>等待ACK0状态</strong>中一直没有收到确认信息，等待<strong>超时后</strong>，重传该分组。</li>
 </ul>
-<h4 id="动态分区存储管理"><a href="#动态分区存储管理" class="headerlink" title="动态分区存储管理"></a>动态分区存储管理</h4><p>分区不是固定划分好的，而是根据进程实际需要动态划分（可以让分区大小正好适合进程需要），果然是大佬们看不下去静态分区有那么多内碎片了。</p>
-<h5 id="采用的数据结构"><a href="#采用的数据结构" class="headerlink" title="采用的数据结构"></a>采用的数据结构</h5><ul>
-<li>分区说明表：和静态的相同，描述内存中分区的情况。</li>
-<li>空闲分区表&#x2F;链：记录每个<strong>空闲分区</strong>的情况，包括起始地址，分区大小等。</li>
-</ul>
-<h5 id="分区的分配-回收"><a href="#分区的分配-回收" class="headerlink" title="分区的分配&amp;回收"></a>分区的分配&amp;回收</h5><p>分配</p>
+<p>以上就是发送方的动作，接收方的动作和rdt2.2相同，因为解决丢包这事全是发送方干的。为了便于理解，这里还是贴一张实时运行中可能出现的情况，因为无丢包出现的时候流程和rdt2.2相同，所以这里只画出 出现丢包操作时的流程</p>
+<img src="https://s1.vika.cn/space/2022/10/15/2e54be60f01345bdb1c895b37b337068" style="zoom:50%;" />	
+
+<h3 id="流水线可靠数据传输协议"><a href="#流水线可靠数据传输协议" class="headerlink" title="流水线可靠数据传输协议"></a>流水线可靠数据传输协议</h3><p>rdt3.0，在功能上已经是一个完备的协议，但它的性能并不高，原因就在于它是一个<strong>停等协议</strong>，发送一个分组时单独占用一个信道，后一个分组必须等前一个分组传完之后才能传，也就是说<strong>发送方一次只能发送一个数据</strong>，它的信道利用率是极低的，就像这样：</p>
+<img src="https://s1.vika.cn/space/2022/10/15/931e263595c04bf8bd17114c54841de6" style="zoom: 67%;" />	
+
+<p>我们解决这个问题的一个方法就是不以停等的方式运行，允许<strong>发送方发送多个分组无需等待</strong>，即：</p>
+<img src="https://s1.vika.cn/space/2022/10/15/354e100497df43c1a945a3f48d172bb6" style="zoom: 67%;" />	
+
+<p>发送方一次发送多个分组的方式称为**流水线（pipeline）技术 **，对于流水线技术，我们应该注意：</p>
 <ul>
-<li>来进程-&gt;按照一定算法查空闲分区-&gt;查到就塞进去-&gt;空闲分区被分为两部分：<strong>装入进程的部分以及一个新的空闲分区</strong>-&gt;修改数据结构</li>
-<li>没查到就分配失败</li>
+<li><strong>增加序号范围</strong>，每个在传输中的分组必须有唯一序号，可见之前的0和1已经不能满足流水线的需求。</li>
+<li>发送方和接收方需要<strong>缓存多个分组。</strong></li>
+<li><strong>所需序号范围</strong>和<strong>对缓冲的要求</strong>取决于数据传输协议如何处理丢失、损坏以及延时大的分组。</li>
 </ul>
-<p>回收：进程运行完时内存需回收分区，我们需要考虑<strong>回收分区是否与空闲分区相邻</strong></p>
+<p>其中第三点是摘抄的top-down原话，要很好的解释它，我们必须先引出<strong>滑动窗口</strong>的内容。</p>
+<h3 id="滑动窗口（Slide-Window）协议"><a href="#滑动窗口（Slide-Window）协议" class="headerlink" title="滑动窗口（Slide Window）协议"></a>滑动窗口（Slide Window）协议</h3><p>在了解什么是滑动窗口之前，我们先回忆一下之前的内容。rdt协议中，发送方一次发送一个分组，接收方一次接收一个分组。但是人们不满足rdt协议的性能，于是提出流水线技术，使发送方一次发送多个分组，所以发送方需要缓存多个分组，按照缓存区内分组的不同类型，我们大概可以分为以下几种：①已发送且被确认的分组 ②已发送但未被确认的分组 ③待发送的分组</p>
+<p>我们把<strong>已发送但未确认</strong>的分组和<strong>待发送</strong>的分组的区域称为<strong>发送缓冲区</strong>，图中N即为缓冲区的大小</p>
+<p>把<strong>已发送但未确认</strong>的分组构成的空间称为<strong>发送窗口</strong>。可以发现，发送窗口是发送缓冲区的一部分。</p>
 <ul>
-<li>不相邻：为该回收区建立一个空闲分区表&#x2F;链，添加其首地址与大小</li>
-<li>相邻：回收分区与相邻的空闲分区合并为一个大的空闲分区，并根据情况不同修改其<strong>大小与首地址</strong></li>
+<li>发送窗口的后沿等于发送缓冲区的后沿</li>
+<li>发送窗口的前沿不超过发送缓冲区的前沿</li>
+<li><strong>之后讨论的移动是指发送窗口在移动，发送窗口在0-N之间变化</strong></li>
 </ul>
-<h5 id="动态分区分配算法"><a href="#动态分区分配算法" class="headerlink" title="动态分区分配算法"></a>动态分区分配算法</h5><ul>
-<li>首次适应算法<ul>
-<li>空闲分区以地址由低到高排列</li>
-<li>来一个进程就从头开始找，找到第一个就用，然后修改空闲分区表&#x2F;链</li>
-<li>缺点<ul>
-<li>低地址部分不断被划分，出现了很多难以利用的小分区</li>
-<li>每次都从低地址开始找，然后每次都会遍历一遍上一条出现的很小的分区，就会增加寻找的开销</li>
+<img src="https://s1.vika.cn/space/2022/10/16/a0e28df51cc242a19ba8b290d5c1c67a" style="zoom:80%;" />	
+
+<p>关于以上的内容在第一次写这篇文章时一直没想明白，就去科大底下提问了，郑老师也很好的解答了我的疑惑：</p>
+<img src="https://s1.vika.cn/space/2022/10/16/ed51aec18d334e41bdafd9d6aa74a5bb" style="zoom: 67%;" />	
+
+<p>我们知道，rdt一次只能发送一个分组，所以sw &#x3D; 1（send window我们简称为sw，接收窗口简称为rw），而流水线技术中，一次可以发送多个分组 ，所以sw &gt; 1。而事实上，不仅是sw可以&gt;1，接收窗口rw也可以&gt;1，即一次接收确认多个分组。下面用一张表格来表示其中的关系：</p>
+<table>
+<thead>
+<tr>
+<th>sw</th>
+<th>rw</th>
+<th>协议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sw &#x3D; 1</td>
+<td>rw &#x3D; 1</td>
+<td>rdt协议</td>
+</tr>
+<tr>
+<td>sw &gt; 1</td>
+<td>rw &#x3D; 1</td>
+<td>GBN协议</td>
+</tr>
+<tr>
+<td>sw &gt; 1</td>
+<td>rw &gt; 1</td>
+<td>SR协议</td>
+</tr>
+</tbody></table>
+<p>至此，我们再次回到那就摘抄的话：<strong>所需序号范围</strong>和<strong>对缓冲的要求</strong>取决于数据传输协议如何处理丢失、损坏以及延时大的分组。这句话的后半句是：解决流水线的差错恢复有两种基本的方法：回退N步（GBN）和选择重传（SR）。下面我们就分别来看一下这两个协议。</p>
+<h3 id="回退N步（GBN）协议"><a href="#回退N步（GBN）协议" class="headerlink" title="回退N步（GBN）协议"></a>回退N步（GBN）协议</h3><p>首先我们来考虑，在正常情况下GBN协议中发送方和接收方两窗口的互动。对于发送窗口，可以参考上面的图。</p>
+<img src="https://s1.vika.cn/space/2022/10/15/d771a367504a4b5c9fee492547a64dfa" style="zoom: 80%;" />	
+
+<img src="https://s1.vika.cn/space/2022/10/15/4236ea5a8eca4879a0f995161fc1f65e" style="zoom:67%;" />	
+
+<p>其中有以下几点需要注意：</p>
+<ul>
+<li>因为rw &#x3D; 1，GBN协议一次只能<strong>确定接收1个分组</strong><ul>
+<li>所以GBN协议<strong>只能顺序接收</strong>，只有当收到最低序号的分组（代表顺序正确），才发送ACK给发送方</li>
 </ul>
 </li>
 </ul>
-</li>
-<li>循环首次适应算法<ul>
-<li>目的：为了解决首次适应算法每次查找可能会经过很多小分区的问题</li>
-<li>思路：从上次找到的空闲分区的下一个分区开始寻找</li>
-<li>设置一个<strong>起始检索指针</strong>，指向下一次开始检索的位置</li>
+<p>😴分割线—————————————————————————————————–</p>
+<p>那么以上就是正常情况下GBN协议两窗口的互动，在开始讨论异常情况前，我们要先清楚，对于GBN，什么是异常情况？答案即为<strong>乱序</strong>以及<strong>丢失</strong>。在上面说到，GBN只能顺序接收，所以先收到乱序的分组，我们要有解决方法。而丢失就更不用说了。下面给出异常情况下GBN协议两窗口的互动情况：</p>
+<img src="https://s1.vika.cn/space/2022/10/15/7e45bf1318d0482b9e3e8a9411e1034d" style="zoom: 80%;" />	
+
+<ul>
+<li>收到乱序分组时，因为没有落入接收窗口的范围内，接收方只能丢弃。</li>
+<li>重复发老分组的ACK给发送方后，发送方发<strong>后沿不移动</strong>，所以从上层新来的分组不能进入发送缓冲区。</li>
+<li>GBN<strong>只有一个计时器</strong>，这点是和rdt不同的，定时器的工作机制为<ul>
+<li>如果收到一个ACK，此时<strong>还有已发送但未确认的分组</strong>，则<strong>定时器重新启动</strong>。	</li>
+<li>如果收到一个ACK后，<strong>没有已发送但未确认的分组了</strong>，则<strong>停止该计时器</strong>。</li>
 </ul>
 </li>
-<li>最佳适应算法<ul>
-<li>空闲分区按<strong>分区大小递增</strong>的顺序排列，保证分配给进程的一定是<strong>最小且可以满足</strong>的。</li>
-<li>优点：避免大材小用，大的分组可以保留下来给大作业</li>
-<li>缺点：留下很多小的外碎片</li>
+<li>当触发超时重传后，发送方将重传所有<strong>已发送但未被确认的分组</strong>，这就是所谓的回退N步。</li>
+</ul>
+<p>这样的工作机制保证了该定时器可以当做<strong>最早发送但未被确认的分组的定时器</strong></p>
+<p>关于GBN异常情况我们这里举一个栗子🌰：</p>
+<p>发送方发送0,1,2,3,4,5给接收方，我们假设分组2会丢失，由于接收方只能顺序接收，所以流程为：</p>
+<ul>
+<li>收到0，回复ACK0，后沿向右移动</li>
+<li>收到1，回复ACK1，后沿向右移动</li>
+<li>未收到2,2在中途丢失</li>
+<li>收到3，因为2没到来，所以接收方只能<strong>丢弃3并继续回复ACK1</strong>，此时发送发收到ACK且<strong>仍有已发送但未确定的分组</strong>（2），于是定时器启动。此时后沿不动</li>
+<li>收到4，回复ACK1</li>
+<li>收到5，回复ACK1</li>
+<li>某一时刻，<strong>定时器timeout</strong>，发送方重新发送2,3,4,5</li>
+</ul>
+<p>​	<img src="https://s1.vika.cn/space/2022/10/15/95d121e55aa94829bf96fa66e2924135" style="zoom:67%;" />	</p>
+<p>最后我们再来通过GBN协议中发送方和接收方的FSM来梳理一下GBN协议</p>
+<p><strong>发送方</strong></p>
+<img src="https://s1.vika.cn/space/2022/10/15/88a019622a95462ea352bad21c576afb" style="zoom:67%;" />	
+
+<ul>
+<li>发送窗口初始值为0（nextseqnum - base）</li>
+<li>收到上层rdt_send()调用后，判断是否在可发送范围内<ul>
+<li>在可发送范围内：发送，并启动定时器，前沿向右滑动</li>
+<li>在可发送范围外：没法发送（发送缓冲区用完）</li>
 </ul>
 </li>
-<li>最坏适应算法<ul>
-<li>思路：为了解决最佳适应算法留下很多难以利用的小碎片的问题，在每次分配时优先使用<strong>最大的空闲区</strong>，这样分配后剩余的空间就不会太小，方便后续使用。</li>
-<li>空闲分区按<strong>大小递减</strong>的顺序排列</li>
-<li>缺点：会导致大空间被很快的用完，之后再来大作业就没地方放了。</li>
+<li>timeout超时：重新启动定时器，重传所有已发送但未确认的分组</li>
+<li>收到确认：后沿向右滑动</li>
 </ul>
-</li>
+<h3 id="选择重传（SR）协议"><a href="#选择重传（SR）协议" class="headerlink" title="选择重传（SR）协议"></a>选择重传（SR）协议</h3><p>SR协议和GBN协议相同，都使用了流水线技术，使sw&gt;1，SR和GBN的不同点在于，SR协议的RW&gt;1，即SR协议可以接收确定多个分组。和发送窗口一样，SR协议也有接收窗口。</p>
+<p>在正常情况下，SR协议的两窗口互动和GBN协议的相同，在之前我们也提到过，这两种的不同点在于处理异常情况的方式不同。因为SR的rw&gt;1，可以确认接收多个分组，也就是说，<strong>如果收到乱序分组，不必抛弃，可以把它缓存起来</strong>。下面给出异常情况下SR协议两窗口互动：</p>
+<img src="https://s1.vika.cn/space/2022/10/16/5b5e557ba7f04c9d8648a64da3f2de65" style="zoom:80%;" />	
+
+<p>除了接收窗口和GBN不同之外，SR协议为<strong>每个发送的分组都设置了一个定时器</strong>，不同于GBN协议只有一个定时器。这样在触发超时重传时，只需发送超时的那个分组即可。</p>
+<p>这里拿GBN协议中举的栗子🌰继续看一下：</p>
+<p>发送方发送0,1,2,3,4,5给接收方，我们假设分组2会丢失，流程为：</p>
+<ul>
+<li>收到分组0，发送ACK0，后沿滑动</li>
+<li>收到分组1，发送ACK1，后沿滑动</li>
+<li>分组2在发送过程中丢失</li>
+<li>收到分组3，<strong>发现是乱序，缓存起来，发送ACK3，后沿不滑动</strong></li>
+<li>收到分组4，发现是乱序，缓存起来，发送ACK4</li>
+<li>收到分组5，，发现是乱序，缓存起来，发送ACK5</li>
+<li>直到某个时刻，<strong>分组2的定时器timeout，重传分组2</strong></li>
 </ul>
-<p>总体来看：（这一点是我想写的一点）</p>
-<p>我们最先设计了首次适应算法，这种算法的缺陷是每次都要从头查找，都需要检索一遍低地址的小分区。我们为了解决这个问题设计了循环首次适应算法，从上次分配的空闲分区的下一个分区开始查找。即循环首次适应不会查找已分配分区之前的分区。那如果来了一个更小的分区，这个分区恰好在之前的小分组可以满足，此时我们希望直接用上面的小分区，这时我们希望算法是首次适应算法。实际上，<strong>首次适应算法也隐含了一点最佳适应算法的优点。</strong></p>
-<p>而此时我们如果继续使用循环首次适应的算法，那么这个小分区就会占用下面的分区，可能会导致高地址部分的大分区被使用，导致如果来了一个大分组，导致其没有大分区可用，所以，<strong>循环首次适应算法也隐含了一点最大适应算法的缺点。</strong></p>
-<p>四种算法中，<strong>首次适应算法的效果反而更好</strong>。</p>
+<p>​	<img src="https://s1.vika.cn/space/2022/10/16/b701d68e881442daa686cb81064090b4" style="zoom:80%;" /></p>
+<h3 id="对比GBN和SR"><a href="#对比GBN和SR" class="headerlink" title="对比GBN和SR"></a>对比GBN和SR</h3><table>
+<thead>
+<tr>
+<th></th>
+<th>GBN</th>
+<th>SR</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>优点</td>
+<td>简单，所需资源小（接收方一个缓存单元）</td>
+<td>出错时，只需重传1个，代价小</td>
+</tr>
+<tr>
+<td>缺点</td>
+<td>一旦出错，回退N步代价大</td>
+<td>复杂，所需 资源多（接收方多个缓存单元）</td>
+</tr>
+</tbody></table>
+<p>不难发现，GBN 和 SR 的优点和缺点是互相对应的，所以我们可以构想出它们的适用场景</p>
+<ul>
+<li>出错率低时，适合GBN </li>
+<li>链路容量大（延迟大，带宽大）时，适合SR，因为一旦出错GBN代价很大。</li>
+</ul>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>那么以上，就是计算机网络——可靠传输原理 的内容，敲了大概一整天的时间，6000字，目前也是我写过字数最多的博客了。在这之后就要进入TCP的学习了，到时候如果感觉想写东西的话也许会写一篇tcp的长文。</p>
 
       
     </div>
@@ -1770,9 +509,6 @@
 
 
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
 
 
 
@@ -1829,6 +565,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="John Doe"
+      src="/source%5Cimages%5Cavatar.jpg">
   <p class="site-author-name" itemprop="name">John Doe</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -1837,7 +575,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">1</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1851,8 +589,26 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mumushu1" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mumushu1" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:cuihao_sdufe@163.com" title="E-Mail → mailto:cuihao_sdufe@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
 
 
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://mumushu1.github.io/" title="https:&#x2F;&#x2F;mumushu1.github.io&#x2F;" rel="noopener" target="_blank">Title</a>
+        </li>
+    </ul>
+  </div>
 
       </div>
 
@@ -1882,17 +638,56 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">NaNm</span>
+    <span title="站点总字数">7k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">NaN:aN</span>
+    <span title="站点阅读时长">6 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
 
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/01/2023 10:00:00"); //此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒.";
+    }
+setInterval("createtime()",250);
+</script>
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
@@ -1926,6 +721,10 @@
   
 
 
+
+
+  
+<script src="/js/local-search.js"></script>
 
 
 
