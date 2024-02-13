@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>串的模式匹配之KMP算法 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="写不动啦这一篇，复习再去看视频吧！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="串的模式匹配之KMP算法">
+<meta property="og:url" content="http://example.com/2022/10/17/%E4%B8%B2%E7%9A%84%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E4%B9%8BKMP%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="写不动啦这一篇，复习再去看视频吧！">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/17/045ca862465049ed92f891ef8eefc5fc">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/17/d3c5badc12b94274b5530badb3afe799">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/17/5a9d185365984107945d23a61fadcc5e">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/17/908ffd94550c4dd1ac0c977415735e56">
+<meta property="article:published_time" content="2022-10-17T12:57:00.000Z">
+<meta property="article:modified_time" content="2022-10-19T13:28:25.004Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.vika.cn/space/2022/10/17/045ca862465049ed92f891ef8eefc5fc">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-串的模式匹配之KMP算法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/10/17/%E4%B8%B2%E7%9A%84%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E4%B9%8BKMP%E7%AE%97%E6%B3%95/" class="article-date">
+  <time class="dt-published" datetime="2022-10-17T12:57:00.000Z" itemprop="datePublished">2022-10-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      串的模式匹配之KMP算法
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="串的模式匹配之KMP算法"><a href="#串的模式匹配之KMP算法" class="headerlink" title="串的模式匹配之KMP算法"></a>串的模式匹配之KMP算法</h1><h2 id="朴素模式匹配算法的问题"><a href="#朴素模式匹配算法的问题" class="headerlink" title="朴素模式匹配算法的问题"></a>朴素模式匹配算法的问题</h2><p>在之前我们介绍过串的朴素模式匹配算法，基本思路就是用主串中的每一个子串和模式串匹配，若匹配失败，都是模式串后移一位再重新开始比较，将模式串序号j置为1。我们假设主串的长度为m，模式串的长度为n，那么在最坏的情况下，主串中每个子串都和模式串进行了匹配，时间复杂度就为O(mn)。</p>
+<p>为了方便理解，这里举一个栗子🌰，假设在主串a b a b c a b c a c b a b中匹配模式串a b c a c，朴素模式匹配算法的步骤如下</p>
+<img src="https://s1.vika.cn/space/2022/10/17/045ca862465049ed92f891ef8eefc5fc" style="zoom: 80%;" />	
+
+<ul>
+<li>从i&#x3D;1，j&#x3D;1开始匹配，当i&#x3D;3，j&#x3D;3时匹配失败，于是j置为1，i回溯，再从i&#x3D;2开始匹配</li>
+<li>i&#x3D;2，j&#x3D;1时发现第一个字符就不匹配，于是j置为1，再从i&#x3D;3开始匹配</li>
+<li>i&#x3D;3，j&#x3D;1开始匹配，这次前期很顺利，直到i&#x3D;7，j&#x3D;5时，发现匹配失败。于是j置为1，<strong>i回溯到i&#x3D;4的位置</strong>，再从i&#x3D;4，j&#x3D;1匹配</li>
+</ul>
+<p>好了到这里我们暂停，相信这里已经可以体现出KMP的问题了，从i&#x3D;3开始匹配时，连续4个字符都可以匹配上，直到j&#x3D;5匹配失败，于是i从7回到3，j置为1。</p>
+<p>在暴力匹配中，每次匹配失败都是<strong>模式串后移一位再从头开始比较</strong>，而如果<strong>某个已经匹配相等的字符序列</strong>是<strong>模式串的某个前缀</strong>，这种重复比较就相当于是模式串在不断的自我比较，这也就是其低效率的原因。</p>
+<h2 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h2><h4 id="前缀，后缀，部分匹配值的概念"><a href="#前缀，后缀，部分匹配值的概念" class="headerlink" title="前缀，后缀，部分匹配值的概念"></a>前缀，后缀，部分匹配值的概念</h4><p>在正式讲思路前，我们先了解一下什么是前缀，后缀。</p>
+<ul>
+<li>前缀：除了最后一个字符外，字符串的所有头部子串</li>
+<li>后缀：除了第一个字符外，字符串的所有尾部子串</li>
+<li>部分匹配值：字符串的前缀和后缀的<strong>最长相等前后缀长度</strong></li>
+</ul>
+<p>举个栗子🌰：字符串a b a b a </p>
+<ul>
+<li>a的前缀和后缀都为∅，部分匹配值为0</li>
+<li>ab的前缀为a，后缀为b，最长相等前后缀长度0，所以部分匹配值为0</li>
+<li>aba的前缀为{a,ab}，后缀为{a,ba}，部分匹配值为1</li>
+<li>abab的前缀为{a,ab,aba}，后缀为{b,ab,bab}，部分匹配值为2</li>
+<li>ababa的前缀为{a,ab,aba,abab}，后缀为{a,ba,aba,baba}，部分匹配值为3（aba）</li>
+</ul>
+<p>通过上述方法我们也可以求出一开始例子中模式串abcac的部分匹配值，我们汇总成表格，称为部分匹配值表（PM表）</p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S</td>
+<td>a</td>
+<td>b</td>
+<td>c</td>
+<td>a</td>
+<td>c</td>
+</tr>
+<tr>
+<td>PM</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<h4 id="部分匹配值的作用"><a href="#部分匹配值的作用" class="headerlink" title="部分匹配值的作用"></a>部分匹配值的作用</h4><p>刚刚提到，低效率的原因是某个已匹配相等的字符是某个模式串的前缀，这样再按部就班的比较相当于一直是模式串的自我比较。那我们这样想：如果<strong>已匹配相等的前缀序列中有某个后缀正好是模式串的前缀</strong>，那么我们就可以将模式串直接移动到这个后缀的位置。这就是KMP算法的主要思路。</p>
+<p>那么如何来实现这个思路呢？这就要用到刚刚求出的部分匹配值了。我们先给出公式，再做解释<br>$$<br>移动位数&#x3D;已匹配字符数-对应的部分匹配值<br>$$<br>拿刚刚的例子继续说，假如我们从i&#x3D;1,j&#x3D;1开始匹配：</p>
+<p><img src="https://s1.vika.cn/space/2022/10/17/d3c5badc12b94274b5530badb3afe799">	</p>
+<p>当i&#x3D;3，j&#x3D;3时匹配失败，此时已匹配的字符数为2，而字符2对应的部分匹配值是0，所以移动位数&#x3D;2-0&#x3D;2，子串向后移动两位</p>
+<p><img src="https://s1.vika.cn/space/2022/10/17/5a9d185365984107945d23a61fadcc5e">	</p>
+<p>当i&#x3D;7，j&#x3D;5时匹配失败，此时已匹配字符数为4，其对应的部分匹配值为1，所以可以算出移动位数&#x3D;4-1&#x3D;3，子串向后移动三位</p>
+<p><img src="https://s1.vika.cn/space/2022/10/17/908ffd94550c4dd1ac0c977415735e56">	</p>
+<h4 id="公式的原理"><a href="#公式的原理" class="headerlink" title="公式的原理"></a>公式的原理</h4><p>移动位数 &#x3D; 已匹配字符数 - 对应的部分匹配值</p>
+<h4 id="算法改进"><a href="#算法改进" class="headerlink" title="算法改进"></a>算法改进</h4><p>之前算法是：每当匹配失败，就去看它<strong>前一个字符的部分匹配值</strong>，我们如果将PM表整体右移一位，这样哪个元素匹配失败，就直接看它自己的部分匹配值即可。拿刚刚字符串abcac来说，右移一位后PM表变为：</p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S</td>
+<td>a</td>
+<td>b</td>
+<td>c</td>
+<td>a</td>
+<td>c</td>
+</tr>
+<tr>
+<td>next</td>
+<td>-1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<ul>
+<li>若<strong>第一个元素匹配失败</strong>，则直接右移一位，不需要计算移动位数</li>
+<li>在右移的过程中最后一个元素的部分匹配值溢出，但原先最后一个元素的部分匹配值是给下一个元素使用的，但最后一个元素没有下一个元素了，所以可以舍去。</li>
+</ul>
+<p>所以公式可以改写为：<br>$$<br>移动位数 &#x3D; 已匹配字符数 - 自己的部分匹配值<br>$$<br>则发送匹配失败时，j的变化为：<strong>j &#x3D; j - Move &#x3D; j - ( (j-1) - next[j] ) + 1 &#x3D; next[j] + 1</strong></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>KMP的算法实现起来非常简短，以至于我第一次看见时觉得很不可思议，如此简短的代码就可以实现这么庞大的功能。但当我仔细去看这个代码时，真的是看不懂，但好在b站上有一个很详细的视频，跟着一步步走也算是搞明白了。下面我们先贴出代码，在做解释：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//KMP</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">getnext</span><span class="params">(SString T,<span class="type">int</span> next[])</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">index_KMP</span><span class="params">(SString S,SString T)</span>&#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">1</span>,j = <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> next[T.length+<span class="number">1</span>];</span><br><span class="line">    getnext(T,next);</span><br><span class="line">    <span class="keyword">while</span> (i&lt;=S.length &amp;&amp; j&lt;=T.length)&#123;</span><br><span class="line">        <span class="keyword">if</span>(j==<span class="number">0</span> || S.ch[i]==T.ch[j])&#123;</span><br><span class="line">            i++;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            j = next[j];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(j&gt;T.length)</span><br><span class="line">        <span class="keyword">return</span> i - T.length;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//求next数组</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">getnext</span><span class="params">(SString T,<span class="type">int</span> next[])</span>&#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">1</span>, j = <span class="number">0</span>;</span><br><span class="line">    next[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (i&lt;T.length)&#123;</span><br><span class="line">        <span class="keyword">if</span>(j==<span class="number">0</span> || T.ch[i]==T.ch[j])&#123;</span><br><span class="line">            i++;</span><br><span class="line">            j++;</span><br><span class="line">            next[i] = j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            j = next[j];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以后复习去看这个视频吧，脑袋实在成浆糊了，写不动了。。。<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV16X4y137qw/?spm_id_from=333.337.search-card.all.click&vd_source=ef7dc76f807d26d86d33be41cf55ea77">https://www.bilibili.com/video/BV16X4y137qw/?spm_id_from=333.337.search-card.all.click&amp;vd_source=ef7dc76f807d26d86d33be41cf55ea77</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/10/17/%E4%B8%B2%E7%9A%84%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E4%B9%8BKMP%E7%AE%97%E6%B3%95/" data-id="clsk44q70001p60f88l316htg" data-title="串的模式匹配之KMP算法" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/10/24/OS%E2%80%94%E2%80%94%E5%86%85%E5%AD%98%E6%89%A9%E5%85%85%E6%8A%80%E6%9C%AF/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          OS——内存扩充技术
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/10/16/%E8%AE%A1%E7%BD%91%E2%80%94%E2%80%94%E5%8F%AF%E9%9D%A0%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E5%8E%9F%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">计网——可靠数据传输原理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Go/">Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%AD%E7%BA%A7/">六级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%80%83%E7%A0%94/">考研</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%BD%91/">计网</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/">语言学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-MySql/" rel="tag">C++,MySql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/" rel="tag">Go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OS/" rel="tag">OS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R/" rel="tag">R</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo-butterfly/" rel="tag">hexo,butterfly</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%AD%E7%BA%A7/" rel="tag">六级</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" rel="tag">年终总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%80%83%E7%A0%94/" rel="tag">考研</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%BD%91/" rel="tag">计网</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 17.5px;">C++</a> <a href="/tags/C-MySql/" style="font-size: 10px;">C++,MySql</a> <a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/OS/" style="font-size: 17.5px;">OS</a> <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/hexo-butterfly/" style="font-size: 10px;">hexo,butterfly</a> <a href="/tags/%E5%85%AD%E7%BA%A7/" style="font-size: 10px;">六级</a> <a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" style="font-size: 10px;">年终总结</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 10px;">数学</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 20px;">数据结构</a> <a href="/tags/%E8%80%83%E7%A0%94/" style="font-size: 10px;">考研</a> <a href="/tags/%E8%AE%A1%E7%BD%91/" style="font-size: 12.5px;">计网</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/02/13/Hexo%20+%20Butterfly%20%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">Hexo + Butterfly 搭建博客</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/C++%E6%9F%A5%E7%BC%BA%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/">C++语法查缺学习(1)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E9%87%8D%E7%82%B9/">信息管理重点</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/">线性代数的本质</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%887%EF%BC%89%E6%A0%88%E7%9A%84%E5%BA%94%E7%94%A8%E2%80%94%E2%80%94%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/">数据结构（7）栈的应用——括号匹配问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

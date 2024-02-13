@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>C++语法查缺学习（3） | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="指针专场">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++语法查缺学习（3）">
+<meta property="og:url" content="http://example.com/2022/09/09/C++%E6%9F%A5%E7%BC%BA%E5%AD%A6%E4%B9%A0%EF%BC%883%EF%BC%89/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="指针专场">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-09-09T03:19:00.000Z">
+<meta property="article:modified_time" content="2022-09-09T04:53:37.451Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-C++查缺学习（3）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/09/09/C++%E6%9F%A5%E7%BC%BA%E5%AD%A6%E4%B9%A0%EF%BC%883%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2022-09-09T03:19:00.000Z" itemprop="datePublished">2022-09-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/">语言学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      C++语法查缺学习（3）
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="C-语法查缺学习（3）"><a href="#C-语法查缺学习（3）" class="headerlink" title="C++语法查缺学习（3）"></a>C++语法查缺学习（3）</h2><p>一直感觉自己对指针这一章节有很大漏洞，今天就从头到尾的梳理一遍，不放过任何一个点。</p>
+<h4 id="什么是指针"><a href="#什么是指针" class="headerlink" title="什么是指针?"></a>什么是指针?</h4><p>指针就是一个<strong>变量</strong>，和其他变量一样，你在使用之前，需要对它进行声明&#x2F;定义。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *p;</span><br><span class="line"><span class="type">double</span> *q;</span><br><span class="line"><span class="type">char</span> *r;</span><br></pre></td></tr></table></figure>
+
+<p>既然指针是变量，那么它的值是什么呢？答案是<strong>另一个变量的地址</strong>。所以在定义完指针后，我们需要把<strong>另一个变量的地址赋值给指针</strong>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span>* p;</span><br><span class="line">	<span class="type">int</span> a = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">	p = &amp;a;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; *p &lt;&lt; endl;<span class="comment">//最终输出10</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="C-NULL指针"><a href="#C-NULL指针" class="headerlink" title="C++ NULL指针"></a>C++ NULL指针</h4><p>我们上面说到，指针的值是另一个变量的地址，那么如果<strong>没有确切的值赋给指针</strong>，该怎么办？？解决方法就是<strong>为指针赋一个NULL值</strong>，被赋予NULL值的指针就被叫做<strong>空指针</strong>。NULL指针是一个定义在标准库了<strong>值为0的常量</strong>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="type">int</span>* p = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; p &lt;&lt; endl;<span class="comment">//注意这里是p不是*p</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，大多操作系统都<strong>不允许访问地址为0的内存</strong>。但地址为0的内存有着重要意义，它表明<strong>该指针指向一个不可访问的内存位置</strong>，但如果指针是NULL，我们一般会说<strong>假定这个指针不指向任何东西</strong></p>
+<h4 id="指针的运算"><a href="#指针的运算" class="headerlink" title="指针的运算"></a>指针的运算</h4><ul>
+<li><p>算术运算</p>
+<ul>
+<li>因为指针的值是一个<strong>用数值表示的地址</strong>，假设我们有指针p，指向地址1000，那么p++后，指针指向1004，p–后，指针指向0996。</li>
+</ul>
+</li>
+<li><p>指针的比较</p>
+<ul>
+<li>可以用关系运算符&lt; &#x3D; &gt;来比较两个指针，<strong>前提是两个指针指向两个相关的变量</strong>，比如一个数组的两个元素。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> a[<span class="number">5</span>] = &#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> &#125;;</span><br><span class="line">	<span class="type">int</span>* p;</span><br><span class="line">	p = &amp;a[<span class="number">0</span>];</span><br><span class="line">	<span class="type">int</span>* q;</span><br><span class="line">	q = &amp;a[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; *p &lt;&lt; endl;<span class="comment">//1</span></span><br><span class="line">	cout &lt;&lt; *q &lt;&lt; endl;<span class="comment">//3</span></span><br><span class="line"></span><br><span class="line">	*p++;</span><br><span class="line">	*q++;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; *p &lt;&lt; endl;<span class="comment">//2</span></span><br><span class="line">	cout &lt;&lt; *q &lt;&lt; endl;<span class="comment">//4</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (p; p &lt;= &amp;a[<span class="number">5</span>]; p++) &#123;</span><br><span class="line">		cout &lt;&lt; *p &lt;&lt; endl;<span class="comment">//如果p的地址&lt;=a[5]的地址，就输出*p</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="指针和数组"><a href="#指针和数组" class="headerlink" title="指针和数组"></a>指针和数组</h4><p>一个指向<strong>数组首地址</strong>的指针，可以通过<strong>指针的算术运算</strong>来访问数组（本质就是一个指针指向一个数组首地址）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAX = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> a[MAX] = &#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> &#125;;</span><br><span class="line"></span><br><span class="line">	<span class="type">int</span>* p;</span><br><span class="line"></span><br><span class="line">	p=a;<span class="comment">//默认p指向数组a的首地址</span></span><br><span class="line">	    <span class="comment">//也可以写成*p=a[0];</span></span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; *p &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; *(p + <span class="number">1</span>) &lt;&lt; endl;<span class="comment">//指向a[2];</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="指针数组-：-可以定义用来存储指针的数组。"><a href="#指针数组-：-可以定义用来存储指针的数组。" class="headerlink" title="指针数组 ： 可以定义用来存储指针的数组。"></a>指针数组 ： 可以定义用来存储指针的数组。</h4><p>在上面已经学会了用一个指针指向数组首地址，然后根据指针运算最终可以访问到全部数组。那么有没有一种方法，不需要指针运算，就可以使用指针访问数组捏？那就是<strong>指针数组</strong>，定义一个数组，里面存放若干指针，<strong>使用一个for循环，使每一个指针都指向一个数组内的元素</strong>，就ok了。<strong>本质是让数组内的每个指针指向需要指向的数组内的元素，并不是指针数组指向另一个数组</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAX = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> i;</span><br><span class="line">	<span class="type">int</span> a[MAX] = &#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> &#125;;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;a[&quot;</span> &lt;&lt; i &lt;&lt; <span class="string">&quot;]的值是&quot;</span> &lt;&lt; endl;</span><br><span class="line">		cout &lt;&lt; a[i] &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="type">int</span>* p[MAX];<span class="comment">//指针数组，数组里面有5个指针</span></span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">		p[i] = &amp;a[i];<span class="comment">//给每个指针赋予数组元素的地址</span></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;p[&quot;</span> &lt;&lt; i &lt;&lt; <span class="string">&quot;]的值是&quot;</span> &lt;&lt; endl;</span><br><span class="line">		cout &lt;&lt; *p[i] &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="传递数组给函数"><a href="#传递数组给函数" class="headerlink" title="传递数组给函数"></a>传递数组给函数</h4><p>C++传数组给一个函数，数组类型会自动转换成指针类型，<strong>因而实际传的是地址</strong></p>
+<p>假设我们要传一个一维数组到函数里，共有三种方法</p>
+<ul>
+<li>法1：形式参数是指针</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">max</span> <span class="params">(<span class="type">int</span> *p)</span></span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>法二：形式参数是一个<strong>已经定义大小的数组</strong></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">min</span> <span class="params">(<span class="type">int</span> a[<span class="number">10</span>])</span></span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>法三：形式参数是一个 <strong>未定义大小的数组</strong></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">max</span> <span class="params">(<span class="type">int</span> a[])</span></span></span><br></pre></td></tr></table></figure>
+
+<p>实例</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAX = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">sum</span><span class="params">(<span class="type">int</span>* ptr)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> i = <span class="number">0</span>, sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (i; i &lt; MAX; i++) &#123;</span><br><span class="line">		sum = sum + *(ptr + i);</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; sum &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> a[MAX] = &#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">4</span> &#125;;</span><br><span class="line">	<span class="type">int</span>* p;</span><br><span class="line">	p = a;</span><br><span class="line">	<span class="built_in">sum</span>(p);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//法二</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">sum</span><span class="params">(<span class="type">int</span> a[MAX])</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> i = <span class="number">0</span>, sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (i; i &lt; MAX; i++) &#123;</span><br><span class="line">		sum = sum + a[i];</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; sum &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//法三</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">sum</span><span class="params">(<span class="type">int</span> a[])</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> i = <span class="number">0</span>, sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (i; i &lt; MAX; i++) &#123;</span><br><span class="line">		sum = sum + a[i];</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; sum &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="从函数返回数组"><a href="#从函数返回数组" class="headerlink" title="从函数返回数组"></a>从函数返回数组</h4><p>C++是不允许直接返回一整个数组作为函数的返回值的，所以我们<strong>用一个指针指向这个数组，返回这个指针即可</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> * <span class="title">sum</span> <span class="params">( )</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实例</p>
+<p>注意：<strong>C++ 不支持在函数外返回局部变量的地址，除非定义局部变量为 static 变量。</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdlib&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAX = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span>* <span class="title">getrandom</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">static</span> <span class="type">int</span> a[<span class="number">10</span>];<span class="comment">//C++ 不支持在函数外返回局部变量的地址，除非定义局部变量为 static 变量。</span></span><br><span class="line">	</span><br><span class="line">	<span class="built_in">srand</span>((<span class="type">unsigned</span>)<span class="built_in">time</span>(<span class="literal">NULL</span>));</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">		a[i] = <span class="built_in">rand</span>();</span><br><span class="line">		cout &lt;&lt; a[i] &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span>* p;</span><br><span class="line">	p = <span class="built_in">getrandom</span>();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">		cout &lt;&lt; *(p + i) &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="传递指针给函数"><a href="#传递指针给函数" class="headerlink" title="传递指针给函数"></a>传递指针给函数</h4><p>形参写上指针类型，直接传就行。如果指针指向的是一个数组，就相当于传一个数组给函数，即<strong>传递数组给函数</strong>的法一</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">max</span> <span class="params">(<span class="type">int</span> *p)</span></span>&#123;</span><br></pre></td></tr></table></figure>
+
+<h4 id="从函数中返回指针"><a href="#从函数中返回指针" class="headerlink" title="从函数中返回指针"></a>从函数中返回指针</h4><p>即<strong>从函数中返回数组的方法</strong>。<strong>C++ 不支持在函数外返回局部变量的地址，除非定义局部变量为 static变量。</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> *p <span class="title">max</span> <span class="params">( )</span></span>&#123;</span><br></pre></td></tr></table></figure>
+
+<h4 id="指向指针的指针"><a href="#指向指针的指针" class="headerlink" title="指向指针的指针"></a>指向指针的指针</h4><p>指针的指针就是将自身的地址存到另一个指针里面。</p>
+<p>![image](\img\C++篇\屏幕截图 2022-09-09 111547.jpg)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> a = <span class="number">100</span>;</span><br><span class="line">	<span class="type">int</span>* q;</span><br><span class="line">	<span class="type">int</span>** p;</span><br><span class="line"></span><br><span class="line">	q = &amp;a;</span><br><span class="line"></span><br><span class="line">	p = &amp;q;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; **p &lt;&lt; endl;<span class="comment">//100</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/09/C++%E6%9F%A5%E7%BC%BA%E5%AD%A6%E4%B9%A0%EF%BC%883%EF%BC%89/" data-id="clsk44q6g000460f8eyf9emn7" data-title="C++语法查缺学习（3）" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/09/12/C++%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%881%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          C++面向对象（1）——类&amp;对象
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/09/08/C++%E6%9F%A5%E7%BC%BA%E5%AD%A6%E4%B9%A0%EF%BC%882%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">C++语法查缺学习(2)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Go/">Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%AD%E7%BA%A7/">六级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%80%83%E7%A0%94/">考研</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%BD%91/">计网</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/">语言学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-MySql/" rel="tag">C++,MySql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/" rel="tag">Go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OS/" rel="tag">OS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R/" rel="tag">R</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo-butterfly/" rel="tag">hexo,butterfly</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%AD%E7%BA%A7/" rel="tag">六级</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" rel="tag">年终总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%80%83%E7%A0%94/" rel="tag">考研</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%BD%91/" rel="tag">计网</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 17.5px;">C++</a> <a href="/tags/C-MySql/" style="font-size: 10px;">C++,MySql</a> <a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/OS/" style="font-size: 17.5px;">OS</a> <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/hexo-butterfly/" style="font-size: 10px;">hexo,butterfly</a> <a href="/tags/%E5%85%AD%E7%BA%A7/" style="font-size: 10px;">六级</a> <a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" style="font-size: 10px;">年终总结</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 10px;">数学</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 20px;">数据结构</a> <a href="/tags/%E8%80%83%E7%A0%94/" style="font-size: 10px;">考研</a> <a href="/tags/%E8%AE%A1%E7%BD%91/" style="font-size: 12.5px;">计网</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/02/13/Hexo%20+%20Butterfly%20%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">Hexo + Butterfly 搭建博客</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/C++%E6%9F%A5%E7%BC%BA%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/">C++语法查缺学习(1)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E9%87%8D%E7%82%B9/">信息管理重点</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/">线性代数的本质</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%887%EF%BC%89%E6%A0%88%E7%9A%84%E5%BA%94%E7%94%A8%E2%80%94%E2%80%94%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/">数据结构（7）栈的应用——括号匹配问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>数据结构（2）线性表的顺序存储 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="数据结构（2）线性表的顺序存储数据结构这门课，自从大二没学好之后一直想找机会学，之前也学过一段时间，但也只进行到了栈和队列，这学期在过完C++后，又拿出来学这门重要且难学的课，又一次打开学过几次的线性表的顺序存储，但这一次的学习发现了很多漏洞，也学会了一些新的东西。所以这篇文章不会从头到尾长篇大论的讲述整个线性表的顺序存储是怎么个事，仅仅是把自己遇到的问题以及新学到的内容记录下来，加深一下自己的印">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构（2）线性表的顺序存储">
+<meta property="og:url" content="http://example.com/2022/09/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%882%EF%BC%89%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="数据结构（2）线性表的顺序存储数据结构这门课，自从大二没学好之后一直想找机会学，之前也学过一段时间，但也只进行到了栈和队列，这学期在过完C++后，又拿出来学这门重要且难学的课，又一次打开学过几次的线性表的顺序存储，但这一次的学习发现了很多漏洞，也学会了一些新的东西。所以这篇文章不会从头到尾长篇大论的讲述整个线性表的顺序存储是怎么个事，仅仅是把自己遇到的问题以及新学到的内容记录下来，加深一下自己的印">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/09/19/0f240609daed4813b0df2888cb8a26f8">
+<meta property="article:published_time" content="2022-09-19T11:33:00.000Z">
+<meta property="article:modified_time" content="2022-09-19T12:25:49.608Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.vika.cn/space/2022/09/19/0f240609daed4813b0df2888cb8a26f8">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-数据结构（2）线性表的顺序存储" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/09/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%882%EF%BC%89%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8/" class="article-date">
+  <time class="dt-published" datetime="2022-09-19T11:33:00.000Z" itemprop="datePublished">2022-09-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      数据结构（2）线性表的顺序存储
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="数据结构（2）线性表的顺序存储"><a href="#数据结构（2）线性表的顺序存储" class="headerlink" title="数据结构（2）线性表的顺序存储"></a>数据结构（2）线性表的顺序存储</h2><p>数据结构这门课，自从大二没学好之后一直想找机会学，之前也学过一段时间，但也只进行到了栈和队列，这学期在过完C++后，又拿出来学这门重要且难学的课，又一次打开学过几次的线性表的顺序存储，但这一次的学习发现了很多漏洞，也学会了一些新的东西。所以这篇文章不会从头到尾长篇大论的讲述整个线性表的顺序存储是怎么个事，仅仅是把自己遇到的问题以及新学到的内容记录下来，加深一下自己的印象。</p>
+<h4 id="p、-p与-p"><a href="#p、-p与-p" class="headerlink" title="p、*p与&amp;p"></a>p、*p与&amp;p</h4><p>平平无奇的指针，我的问题是，为什么函数的形参设置为指针类型后，调用时传的参数是对这个变量取地址。举个栗子🌰：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义时：</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">Insert</span><span class="params">(SqList *L,<span class="type">int</span> i,<span class="type">int</span> e)</span>&#123;</span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//调用时：</span></span><br><span class="line">Insert(&amp;L,i,e);</span><br></pre></td></tr></table></figure>
+
+<p>这种用法之前一直当做常识去用了，直到昨天我才去想，为什么要这么做？我翻了很久之前学指针时的笔记，才找到答案：</p>
+<p><img src="https://s1.vika.cn/space/2022/09/19/0f240609daed4813b0df2888cb8a26f8"></p>
+<p>也就是说，我们传进去<strong>参数的地址</strong>，再通过函数内的*** 加 地址<strong>来</strong>改变变量的值**</p>
+<h4 id="引用"><a href="#引用" class="headerlink" title="&amp;引用"></a>&amp;引用</h4><p>关于这个符号之前在学习的时候也疑惑过，只不过当时模棱两可就过去了。疑惑点在于，为什么在定义一系列函数时，可以定义为诸如这样的形式 ：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Insert</span><span class="params">(SqList &amp;L)</span>&#123;</span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">InitList</span><span class="params">(SqList &amp;L)</span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>更让我疑问的是，有些书上使用的是上面的格式，有些书使用的又是这样的：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Insert</span><span class="params">(SqList *L)</span>&#123;</span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">InitList</span><span class="params">(SqList *L)</span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在我之前的认知里，*号就是取指，&amp;就是取地址，所以怎么想也想不明白，于是就是Google了一下才找到答案：</p>
+<p>&amp;的一个用法是我们熟悉的取地址，另一个用法则是<strong>引用</strong>，在作为形参使用时，和指针的作用是相同的。</p>
+<h4 id="插入操作的-1是怎么来的？"><a href="#插入操作的-1是怎么来的？" class="headerlink" title="插入操作的-1是怎么来的？"></a>插入操作的-1是怎么来的？</h4><p>在插入操作中，插进一个元素，则这个元素以及后面的所有元素都向后移一位，理解起来很好理解，但看到有些代码是这样写的：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (i &lt;= L-&gt;length) &#123;<span class="comment">//等于可取，因为等于相当于在最后一个元素的位置插，需要把最后一个元素往后移一位</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = L-&gt;length<span class="number">-1</span>; j &gt;= i<span class="number">-1</span>; j--) &#123;<span class="comment">//注意要-1，因为data[L-&gt;length-1]是最后一个元素</span></span><br><span class="line">        L-&gt;data[j + <span class="number">1</span>] = L-&gt;data[j];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我就很疑惑为什么循环要从i-1循环到length-1，但其实核心就在于**第i位对应的是data[i-1]**，上面的函数也完全可以写为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(i&lt;=L-&gt;length) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = L-&gt;length; j &gt;= i; j--) &#123;</span><br><span class="line">        L-&gt;data[j] = L-&gt;data[j<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="动态分配内存建表以及扩充容量"><a href="#动态分配内存建表以及扩充容量" class="headerlink" title="动态分配内存建表以及扩充容量"></a>动态分配内存建表以及扩充容量</h4><p>这个问题也是很早就有了，在暑假时学数据结构看了两本参考书，一本是学校的教材，一本是市面上颇为有名的《大话数据结构》，其中教材中给出的建表就是动态分配内存建表，而大话数据结构中给的代码则是静态分配内存建表。所幸在这几天的学习中，也了解了他们的 区别及用法。</p>
+<p>最后 ，也以两种方式的线性表顺序存储的代码收尾。</p>
+<ul>
+<li>静态实现</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> OK 1</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ERROR 0</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MaxSize 5</span></span><br><span class="line"><span class="comment">//建表（静态）</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> data[MaxSize];</span><br><span class="line">    <span class="type">int</span> length;</span><br><span class="line">&#125;SqList;</span><br><span class="line"><span class="comment">//初始化</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">InitList</span><span class="params">(SqList *L)</span>&#123;</span><br><span class="line">    L-&gt;length = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//按值查找</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">GetList</span><span class="params">(SqList L,<span class="type">int</span> i,<span class="type">int</span> *e)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(i&lt;<span class="number">1</span> || i&gt;L.length || L.length==<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    *e = L.data[i<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//按位查找</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">LocateList</span><span class="params">(SqList L,<span class="type">int</span> e)</span>&#123;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="keyword">if</span>(L.length==<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;L.length;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(L.data[i<span class="number">-1</span>]==e)&#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;这个值在第%d位\n&quot;</span>,i);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//插入</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">Insert</span><span class="params">(SqList *L,<span class="type">int</span> i,<span class="type">int</span> e)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(i&lt;<span class="number">1</span> || i&gt;L-&gt;length+<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(L-&gt;length==L-&gt;MaxSize)&#123;</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(i&lt;=L-&gt;length) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = L-&gt;length; j &gt;= i; j--) &#123;</span><br><span class="line">            L-&gt;data[j] = L-&gt;data[j<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    L-&gt;data[i<span class="number">-1</span>]=e;</span><br><span class="line">    L-&gt;length++;</span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//删除</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">Delete</span><span class="params">(SqList *L,<span class="type">int</span> i,<span class="type">int</span> *e)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(L-&gt;length == <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(i&lt;<span class="number">1</span> || i&gt;L-&gt;length)&#123;</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(i&lt;L-&gt;length)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=i;j&lt;=L-&gt;length;j++)&#123;</span><br><span class="line">            L-&gt;data[j<span class="number">-1</span>]=L-&gt;data[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    *e=L-&gt;data[i<span class="number">-1</span>];</span><br><span class="line">    L-&gt;length--;</span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">Print</span><span class="params">(SqList L)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(L.length==<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=L.length;i++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\t&quot;</span>,L.data[i<span class="number">-1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;L.h&quot;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    SqList L;</span><br><span class="line">    <span class="type">int</span> e;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">3</span>]=&#123;<span class="number">12</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">    InitList(&amp;L);</span><br><span class="line">    Print(L);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=<span class="number">3</span>;i++)&#123;</span><br><span class="line">        Insert(&amp;L,i,a[i<span class="number">-1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    Print(L);</span><br><span class="line">    GetList(L,<span class="number">2</span>,&amp;e);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;查到的值e为%d\n&quot;</span>,e);</span><br><span class="line">    LocateList(L,<span class="number">3</span>);</span><br><span class="line">    Insert(&amp;L,<span class="number">4</span>,<span class="number">9</span>);</span><br><span class="line">    Print(L);</span><br><span class="line">    Insert(&amp;L,<span class="number">5</span>,<span class="number">19</span>);</span><br><span class="line">    Print(L);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>动态实现</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*（线性表）顺序表的实现--动态分配*/</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> OK 1</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ERROR 0</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> InitSize 5</span></span><br><span class="line"><span class="comment">//建表</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> *data;<span class="comment">//指向动态分配的数组的指针（指向数组第一个元素）</span></span><br><span class="line">    <span class="type">int</span> MaxSize;<span class="comment">//最大容量</span></span><br><span class="line">    <span class="type">int</span> length;<span class="comment">//当前表长</span></span><br><span class="line">&#125;SqList;</span><br><span class="line"><span class="comment">//初始化</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">InitList</span><span class="params">(SqList *L)</span>&#123;</span><br><span class="line">    L-&gt;data = (<span class="type">int</span>*) <span class="built_in">malloc</span>(InitSize*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    L-&gt;MaxSize = InitSize;</span><br><span class="line">    L-&gt;length = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//扩大容量</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">Increase</span><span class="params">(SqList *L,<span class="type">int</span> len)</span>&#123;<span class="comment">//len是要扩大多少</span></span><br><span class="line">    <span class="type">int</span> *p;</span><br><span class="line">    p=L-&gt;data;</span><br><span class="line">    L-&gt;data = (<span class="type">int</span> *) <span class="built_in">malloc</span>((InitSize+len)*<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=L-&gt;length;i++)&#123;</span><br><span class="line">        p[i<span class="number">-1</span>]=L-&gt;data[i<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    L-&gt;MaxSize = InitSize + len;</span><br><span class="line">    <span class="built_in">free</span>(p);</span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出当前最大容量</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">GetSize</span><span class="params">(SqList L)</span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;当前最大容量为:%d\n&quot;</span>,L.MaxSize);</span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//按位查找,第i个元素是啥</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">GetList</span><span class="params">(SqList L,<span class="type">int</span> i,<span class="type">int</span> *e)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(i&lt;<span class="number">1</span> || i&gt;L.length)&#123;</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    *e = L.data[i<span class="number">-1</span>];<span class="comment">//思考为啥是*e</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;第%d位是%d\n&quot;</span>,i,*e);</span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//按值查找</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">LocateList</span><span class="params">(SqList L,<span class="type">int</span> e)</span>&#123;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=L.length;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(e == L.data[i<span class="number">-1</span>])&#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//插入</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">Insert</span><span class="params">(SqList *L,<span class="type">int</span> i,<span class="type">int</span> e)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(i&lt;<span class="number">1</span> || i&gt;L-&gt;length+<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(L-&gt;length==L-&gt;MaxSize)&#123;</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(i&lt;=L-&gt;length) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = L-&gt;length; j &gt;= i; j--) &#123;</span><br><span class="line">            L-&gt;data[j] = L-&gt;data[j<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    L-&gt;data[i<span class="number">-1</span>]=e;</span><br><span class="line">    L-&gt;length++;</span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//删除</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">Delete</span><span class="params">(SqList *L,<span class="type">int</span> i,<span class="type">int</span> *e)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(i&lt;<span class="number">1</span> || i&gt;L-&gt;length)&#123;</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(L-&gt;length==<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(i&lt;L-&gt;length)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=i;j&lt;=L-&gt;length;j++)&#123;</span><br><span class="line">            L-&gt;data[j<span class="number">-1</span>]=L-&gt;data[j];</span><br><span class="line">        &#125;</span><br><span class="line">        *e = L-&gt;data[i<span class="number">-1</span>];</span><br><span class="line">        L-&gt;length--;</span><br><span class="line">        <span class="keyword">return</span> OK;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">Print</span><span class="params">(SqList L)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(L.length==<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=L.length;i++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\t&quot;</span>,L.data[i<span class="number">-1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;L.h&quot;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    SqList L;</span><br><span class="line">    <span class="type">int</span> e;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">3</span>]=&#123;<span class="number">12</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">    InitList(&amp;L);</span><br><span class="line">    Print(L);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=<span class="number">3</span>;i++)&#123;</span><br><span class="line">        Insert(&amp;L,i,a[i<span class="number">-1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    Print(L);</span><br><span class="line">    GetList(L,<span class="number">2</span>,&amp;e);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;查到的值e为%d\n&quot;</span>,e);</span><br><span class="line">    LocateList(L,<span class="number">3</span>);</span><br><span class="line">    Insert(&amp;L,<span class="number">4</span>,<span class="number">9</span>);</span><br><span class="line">    Print(L);</span><br><span class="line">    Insert(&amp;L,<span class="number">5</span>,<span class="number">19</span>);</span><br><span class="line">    Print(L);</span><br><span class="line">    GetSize(L);</span><br><span class="line">    Increase(&amp;L,<span class="number">5</span>);</span><br><span class="line">    GetSize(L);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>几个问题（over）</p>
+<ul>
+<li><p><del>为什么函数参数是*指针类型，调用的时候要用&amp;取地址</del><em><em>结论：调用函数时传变量的地址，在被调用函数通过</em>+地址来改变主调函数中的变量的值</em>*</p>
+</li>
+<li><p><del>*e 、&amp;e 、e 的关系？</del></p>
+</li>
+<li><p><del>函数内部能否调用之前定义的函数</del> 嵌套</p>
+</li>
+<li><p><del>插入操作的循环为什么要-1？</del></p>
+</li>
+<li><p><del>为什么删除操作的循环就不用-1？</del></p>
+</li>
+<li><p><del>基于动态建表又该怎么写？</del></p>
+</li>
+<li><p><del>基于动态建表怎么扩容 ？又怎么应用到插入操作里？</del></p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%882%EF%BC%89%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8/" data-id="clsk44q78002i60f8dcozc9oe" data-title="数据结构（2）线性表的顺序存储" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/09/21/C++%E6%9F%A5%E7%BC%BA%E5%AD%A6%E4%B9%A0%EF%BC%884%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          C++查缺学习（4）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/09/19/R%E8%AF%AD%E8%A8%80%E8%AF%BB%E5%8F%96txt%EF%BC%8Ccsv%E5%92%8Cxlsx%E6%96%87%E4%BB%B6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">R语言读取txt，csv和xlsx文件</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Go/">Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%AD%E7%BA%A7/">六级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%80%83%E7%A0%94/">考研</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%BD%91/">计网</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/">语言学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-MySql/" rel="tag">C++,MySql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/" rel="tag">Go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OS/" rel="tag">OS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R/" rel="tag">R</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo-butterfly/" rel="tag">hexo,butterfly</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%AD%E7%BA%A7/" rel="tag">六级</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" rel="tag">年终总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%80%83%E7%A0%94/" rel="tag">考研</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%BD%91/" rel="tag">计网</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 17.5px;">C++</a> <a href="/tags/C-MySql/" style="font-size: 10px;">C++,MySql</a> <a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/OS/" style="font-size: 17.5px;">OS</a> <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/hexo-butterfly/" style="font-size: 10px;">hexo,butterfly</a> <a href="/tags/%E5%85%AD%E7%BA%A7/" style="font-size: 10px;">六级</a> <a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" style="font-size: 10px;">年终总结</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 10px;">数学</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 20px;">数据结构</a> <a href="/tags/%E8%80%83%E7%A0%94/" style="font-size: 10px;">考研</a> <a href="/tags/%E8%AE%A1%E7%BD%91/" style="font-size: 12.5px;">计网</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/02/13/Hexo%20+%20Butterfly%20%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">Hexo + Butterfly 搭建博客</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/C++%E6%9F%A5%E7%BC%BA%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/">C++语法查缺学习(1)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E9%87%8D%E7%82%B9/">信息管理重点</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/">线性代数的本质</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%887%EF%BC%89%E6%A0%88%E7%9A%84%E5%BA%94%E7%94%A8%E2%80%94%E2%80%94%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/">数据结构（7）栈的应用——括号匹配问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

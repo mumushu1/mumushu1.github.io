@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>OS——信号量机制详解 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="OS——信号量机制详解什么是信号量信号量有三部分组成：称为信号量（semaphore）的特殊变量、P操作的原语以及V操作的原语。那么，什么是原语呢？ 原语书里的定义是：完成某种功能且不被分割、不被中断执行的操作序列，这里翻译一下，就是只能一气呵成，不能被中断 基本原理为每个临界区设置一个信号量，作用就是在多个进程之间转发互斥信息。当一个进程需要使用临界资源时，对信号量执行P操作，了解临界资源的空闲">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OS——信号量机制详解">
+<meta property="og:url" content="http://example.com/2022/09/30/OS%E2%80%94%E2%80%94%E4%BF%A1%E5%8F%B7%E9%87%8F%E6%9C%BA%E5%88%B6%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="OS——信号量机制详解什么是信号量信号量有三部分组成：称为信号量（semaphore）的特殊变量、P操作的原语以及V操作的原语。那么，什么是原语呢？ 原语书里的定义是：完成某种功能且不被分割、不被中断执行的操作序列，这里翻译一下，就是只能一气呵成，不能被中断 基本原理为每个临界区设置一个信号量，作用就是在多个进程之间转发互斥信息。当一个进程需要使用临界资源时，对信号量执行P操作，了解临界资源的空闲">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/09/29/2ec1fc355d914999846e8af3ff1b8bbb">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/09/30/43d753926c1241faa6e4eccf94cafcf5">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/09/30/ee15494161e14568bc6dfd26f78968cd">
+<meta property="article:published_time" content="2022-09-30T01:22:00.000Z">
+<meta property="article:modified_time" content="2022-10-20T03:00:39.416Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="OS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.vika.cn/space/2022/09/29/2ec1fc355d914999846e8af3ff1b8bbb">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-OS——信号量机制详解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/09/30/OS%E2%80%94%E2%80%94%E4%BF%A1%E5%8F%B7%E9%87%8F%E6%9C%BA%E5%88%B6%E8%AF%A6%E8%A7%A3/" class="article-date">
+  <time class="dt-published" datetime="2022-09-30T01:22:00.000Z" itemprop="datePublished">2022-09-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      OS——信号量机制详解
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="OS——信号量机制详解"><a href="#OS——信号量机制详解" class="headerlink" title="OS——信号量机制详解"></a>OS——信号量机制详解</h1><h2 id="什么是信号量"><a href="#什么是信号量" class="headerlink" title="什么是信号量"></a>什么是信号量</h2><p>信号量有三部分组成：称为信号量（semaphore）的特殊变量、P操作的原语以及V操作的原语。那么，什么是原语呢？</p>
+<h3 id="原语"><a href="#原语" class="headerlink" title="原语"></a>原语</h3><p>书里的定义是：完成某种功能且不被分割、不被中断执行的<strong>操作序列</strong>，这里翻译一下，就是<strong>只能一气呵成，不能被中断</strong></p>
+<h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2><p>为每个临界区设置一个信号量，作用就是<strong>在多个进程之间转发互斥信息</strong>。当一个进程需要使用临界资源时，对信号量执行P操作，了解临界资源的空闲情况。用完资源后，执行V操作，释放资源</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//进程p0：</span><br><span class="line">......</span><br><span class="line">wait(s);//进入区，申请资源</span><br><span class="line">使用资源//临界区，访问资源</span><br><span class="line">signal(s);//退出区，释放资源</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+<h3 id="信号量分类"><a href="#信号量分类" class="headerlink" title="信号量分类"></a>信号量分类</h3><p>这里讨论整型信号量和记录型信号量</p>
+<h2 id="整型信号量"><a href="#整型信号量" class="headerlink" title="整型信号量"></a>整型信号量</h2><p>我们刚刚提到，信号量是一个变量，那么整型信号量就是用一个<strong>整数型的变量</strong>作为信号量，表示系统中某种资源的数量。</p>
+<h3 id="可以执行的操作"><a href="#可以执行的操作" class="headerlink" title="可以执行的操作"></a>可以执行的操作</h3><ul>
+<li>初始化：初始化信号量的初值，应为<strong>非负数</strong></li>
+<li>P操作</li>
+<li>V操作</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">smaphore S;</span><br><span class="line">wait(S):</span><br><span class="line">		while S&lt;=0  do no-op//如果资源数不够，就一直等待，直到S&gt;0</span><br><span class="line">		S = S-1;//资源数够了，就占用一个资源</span><br><span class="line">		</span><br><span class="line">signal(S):</span><br><span class="line">	S = S+1;//使用完资源后，在退出区释放资源</span><br></pre></td></tr></table></figure>
+
+<h3 id="缺陷"><a href="#缺陷" class="headerlink" title="缺陷"></a>缺陷</h3><p>在上面的P操作中我们可以看到，当S&lt;&#x3D;0时会一直等待，直到S&gt;0才会停止<strong>在这期间是一直占用CPU的</strong>。而我们又知道，互斥准则之四：当一个进程不能进入临界区时要立马阻塞自己，让出CPU使用权，我们称之为让权等待。那么我们可以看到，整型信号量的P操作机制<strong>并未遵循让权等待的准则</strong>，有些进程可能会一直处于<strong>忙等</strong>。那么该如何解决这个问题呢？就该引出第二种信号量机制了——记录型信号量。</p>
+<h2 id="记录型信号量"><a href="#记录型信号量" class="headerlink" title="记录型信号量"></a>记录型信号量</h2><p>那么，什么是记录型信号量呢？我们还是从组成的角度来看：在记录型信号量机制中，我们用<strong>整型变量count</strong>代表<strong>资源数目</strong>，一个<strong>进程链表指针queue链接所有的等待进程</strong>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    <span class="type">int</span> count;</span><br><span class="line">    queueType *<span class="built_in">queue</span>;<span class="comment">//类型即为等待进程的类型</span></span><br><span class="line">&#125;smaphore;</span><br></pre></td></tr></table></figure>
+
+<p>count：值为正时，表示某种资源的数量，值为负时，表示该类资源已经被分配完毕，这里举一个栗子🌰：</p>
+<p>​	当count &#x3D; 3 时，表示临界资源还有3个</p>
+<p>​	当count &#x3D; -3 时，表明有3个进程在<strong>阻塞队列中排队</strong></p>
+<h3 id="Wait-S-操作"><a href="#Wait-S-操作" class="headerlink" title="Wait(S)操作"></a>Wait(S)操作</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">smaphore S;</span><br><span class="line"><span class="type">void</span> <span class="title function_">wait</span><span class="params">(S)</span>&#123;</span><br><span class="line">    S.count --;<span class="comment">//使用临界资源，临界资源数量-1</span></span><br><span class="line">    <span class="keyword">if</span>(S.count&lt;<span class="number">0</span>)&#123;<span class="comment">//说明-1之前已经没有资源了，那就得阻塞自己了</span></span><br><span class="line">        block(S.<span class="built_in">queue</span>);<span class="comment">//使用block()原语阻塞自己链接到S.queue阻塞队列</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Signal-S-操作"><a href="#Signal-S-操作" class="headerlink" title="Signal(S)操作"></a>Signal(S)操作</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">signal</span><span class="params">(S)</span>&#123;</span><br><span class="line">    S.count ++;</span><br><span class="line">    <span class="keyword">if</span>(S.count&lt;=<span class="number">0</span>)&#123;<span class="comment">//释放一个资源后资源数还&lt;=0，说明有进程在排队</span></span><br><span class="line">        wakeup(S.<span class="built_in">queue</span>);<span class="comment">//把它从阻塞队列移到就绪队列</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="关于block与wake原语"><a href="#关于block与wake原语" class="headerlink" title="关于block与wake原语"></a>关于block与wake原语</h3><p>刚刚听了完学校里的os课，对这个地方产生了些许疑问，疑问点在于：假设P1，P2，P3三个进程互斥访问资源S，S初值为0，假设执行顺序为P1，P2，P3。P1先执行，使用资源S，P2和P3在执行时都会自己block自己，S变为-2，那么问题来了：P1在执行后S&#x3D;-1，于是执行wake原语，唤醒P2，那么此时P2是<strong>直接调用临界资源运行，还是再执行一遍wait呢</strong>？如果再执行一遍wait，S–后仍&lt;0，P2仍然不能获得资源，百思不得其解之后跑去问老师了，结果如下：</p>
+<p>看一下Wait操作的过程，P2是<strong>先申请了之后</strong>，发现没有资源，于是阻塞自己，不再占用CPU。回到P1，P1执行后，S++后发现&lt;&#x3D;0，于是调用wake唤醒P2，<strong>给其CPU，使其进入就绪态</strong>。等到P2从就绪转为运行时，<strong>直接进入临界区代码</strong>，因为P2之前已经申请过了（第二章学过进程的信号量可以保护现场）。</p>
+<p>所以说真的有很多看似合理的地方会有值得挖掘的点，我在第一遍学wake的时候，觉得唤醒一个被阻塞的进程去调用临界资源，是一个很自然很合理的事情，直到第二遍听课的时候才发现问题。</p>
+<h3 id="举栗时间🌰"><a href="#举栗时间🌰" class="headerlink" title="举栗时间🌰"></a>举栗时间🌰</h3><p>假设有四个进程p1~p4，他们都要使用打印机，也就是说打印机就是这四个进程的临界资源，我们假设有两台打印机。</p>
+<p>现在P1申请资源：进行P操作后count &#x3D; 1。</p>
+<p>之后P2申请资源：进行P操作后count &#x3D; 0。</p>
+<p>P3也想申请资源：进行P操作后发现<strong>S.count &lt; 0</strong>，也就是说此时没有资源可以给它用，那么P3此时立即执行**block()**原语把自己阻塞</p>
+<p>p4也想申请资源：发现和p3一样，马上也把自己阻塞了。</p>
+<p>p1用完资源：经过一段时间P1用完打印机了，执行V操作，count &#x3D; -2 + 1 &#x3D; -1，发现count值&lt;&#x3D;0，知道此时有进程正在排队，于是执行<strong>wakeup</strong>原语把队头的进程唤醒，也就是等了半天的P3大哥，P3大哥被唤醒后执行P操作，把资源拿来用。</p>
+<p>p2用完资源：同样一段时间后，p2用完了，执行和p1同样的操作唤醒p4，把资源给它。</p>
+<img src="https://s1.vika.cn/space/2022/09/29/2ec1fc355d914999846e8af3ff1b8bbb" style="zoom: 50%;" />	
+
+<h2 id="信号量的使用"><a href="#信号量的使用" class="headerlink" title="信号量的使用"></a>信号量的使用</h2><h3 id="信号量实现互斥"><a href="#信号量实现互斥" class="headerlink" title="信号量实现互斥"></a>信号量实现互斥</h3><p>设n个进程共享一个信号量mutex，<strong>初值为1</strong>，把临界区置于P操作和V操作之间，即可实现进程互斥的进入临界区。原理很简单，一个进程执行P操作使用临界资源，如果此时没有资源可以使用就阻塞自己，直到有资源可以用。用完资源后执行V操作，同时检查此时资源数量，若&lt;&#x3D;0，说明有人在排队，就把它从阻塞队列中唤醒。具体代码如下:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> p1&#123;</span><br><span class="line">    smaphore mutex = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">do</span>&#123;</span><br><span class="line">        wait(mutex);</span><br><span class="line">        临界区;</span><br><span class="line">        signal(mutex);</span><br><span class="line">    &#125;<span class="keyword">while</span>(<span class="literal">true</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="信号量实现同步"><a href="#信号量实现同步" class="headerlink" title="信号量实现同步"></a>信号量实现同步</h3><p>那么首先回顾一下，什么是进程同步。我们知道：两个并发执行的进程具有异步性，因此两者的执行顺序是不确定的。但若进程2的操作必须基于进程1完成后才能执行，我们就必须确保要先执行完进程2再去执行进程1。这就是进程同步：<strong>让本来异步并发的进程互相配合，有序推进</strong>。</p>
+<p>那么了解完进程同步是什么后，我们该如何实现它呢？很简单，概括为3步：</p>
+<ul>
+<li>初始化公共信号量S &#x3D; 0</li>
+<li>在“前操作”执行完成后执行V操作</li>
+<li>在“后操作”执行前执行P操作</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">smaphore S = <span class="number">0</span>;</span><br><span class="line"><span class="comment">//p1</span></span><br><span class="line"><span class="type">void</span> p1&#123;</span><br><span class="line">    ....</span><br><span class="line">    signal(S);<span class="comment">//在“前操作”执行完成后执行V操作</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> p2&#123;</span><br><span class="line">    wait(S);<span class="comment">//在“后操作”执行前执行P操作</span></span><br><span class="line">    ....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们不妨分两种可能的情况来检验一下这样实现是否合理：</p>
+<ol>
+<li>若进程1先执行，执行完后执行V操作，S++后S变为1。然后进程2执行，执行P操作，发现有可用资源可以用，S–变为0，进程2不会执行block阻塞自己。</li>
+<li>若进程2先执行，执行之前先执行P操作，S–后为 -1，发现此时S&lt;&#x3D;0，也就是没有可用资源，便立即执行block阻塞自己。轮到进程1执行完后，执行P操作，S++变为0，表示目前有人在阻塞队列，因此V操作中会执行wakeup，唤醒进程p1，进程p1就继续执行。</li>
+</ol>
+<h3 id="信号量实现前驱"><a href="#信号量实现前驱" class="headerlink" title="信号量实现前驱"></a>信号量实现前驱</h3><p>什么是前驱关系呢？这里还是直接举栗子🌰：</p>
+<p>​	假设有6个进程P1~P6，执行顺序的关系如图所示：执行P1后才能执行P2，P5，执行完P2后才能执行P3和P4。</p>
+<img src="https://s1.vika.cn/space/2022/09/30/43d753926c1241faa6e4eccf94cafcf5" style="zoom:67%;" />	
+
+<p>那么知道什么是前驱关系后，该如何实现它呢？我们的解决方案是<strong>为每一对前驱关系都设置一个同步变量，初值都为0</strong>。</p>
+<img src="https://s1.vika.cn/space/2022/09/30/ee15494161e14568bc6dfd26f78968cd" style="zoom:67%;" />	
+
+<p>然后**在每一个前操作执行后执行V操作，同步变量++，在每个后操作执行前执行P操作，同步变量–**。</p>
+<p>过程即为：</p>
+<ul>
+<li>P1执行后执行V操作，a &#x3D; 1。</li>
+<li>P2执行前，先执行P操作，a– &#x3D; 0，即有可用的资源，于是P2使用资源，p2执行后执行V操作，使c++ ，c变为1，供p3使用</li>
+</ul>
+<p>按如上方法依次执行，便可以实现前驱操作。可以发现，前驱关系其实是一种<strong>特殊的同步关系</strong>。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/30/OS%E2%80%94%E2%80%94%E4%BF%A1%E5%8F%B7%E9%87%8F%E6%9C%BA%E5%88%B6%E8%AF%A6%E8%A7%A3/" data-id="clsk44q6q000p60f87duw27dk" data-title="OS——信号量机制详解" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OS/" rel="tag">OS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/10/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%888%EF%BC%89%E6%A0%88%E7%9A%84%E5%BA%94%E7%94%A8%E2%80%94%E2%80%94%E6%B1%82%E5%80%BC%E8%A1%A8%E8%BE%BE%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          数据结构（8）栈的应用——求值表达式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/09/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%886%EF%BC%89%E9%A1%BA%E5%BA%8F%E9%98%9F%E5%88%97&%E9%93%BE%E9%98%9F%E5%88%97/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">数据结构（6）顺序队列&amp;链队列</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Go/">Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%AD%E7%BA%A7/">六级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%80%83%E7%A0%94/">考研</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%BD%91/">计网</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/">语言学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-MySql/" rel="tag">C++,MySql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/" rel="tag">Go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OS/" rel="tag">OS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R/" rel="tag">R</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo-butterfly/" rel="tag">hexo,butterfly</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%AD%E7%BA%A7/" rel="tag">六级</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" rel="tag">年终总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%80%83%E7%A0%94/" rel="tag">考研</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%BD%91/" rel="tag">计网</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 17.5px;">C++</a> <a href="/tags/C-MySql/" style="font-size: 10px;">C++,MySql</a> <a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/OS/" style="font-size: 17.5px;">OS</a> <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/hexo-butterfly/" style="font-size: 10px;">hexo,butterfly</a> <a href="/tags/%E5%85%AD%E7%BA%A7/" style="font-size: 10px;">六级</a> <a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" style="font-size: 10px;">年终总结</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 10px;">数学</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 20px;">数据结构</a> <a href="/tags/%E8%80%83%E7%A0%94/" style="font-size: 10px;">考研</a> <a href="/tags/%E8%AE%A1%E7%BD%91/" style="font-size: 12.5px;">计网</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/02/13/Hexo%20+%20Butterfly%20%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">Hexo + Butterfly 搭建博客</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/C++%E6%9F%A5%E7%BC%BA%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/">C++语法查缺学习(1)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E9%87%8D%E7%82%B9/">信息管理重点</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/">线性代数的本质</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%887%EF%BC%89%E6%A0%88%E7%9A%84%E5%BA%94%E7%94%A8%E2%80%94%E2%80%94%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/">数据结构（7）栈的应用——括号匹配问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

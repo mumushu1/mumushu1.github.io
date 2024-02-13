@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>路由器交换机的命令行模式以及相关命令 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="今天第一次上计网的实验课，讲了一些交换机，路由器的一些命令行模式，因为在ppt里面很杂，这里整理列出来供以后参考。（使用的软件是思科模拟器）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="路由器交换机的命令行模式以及相关命令">
+<meta property="og:url" content="http://example.com/2024/02/13/%E8%B7%AF%E7%94%B1%E5%99%A8%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="今天第一次上计网的实验课，讲了一些交换机，路由器的一些命令行模式，因为在ppt里面很杂，这里整理列出来供以后参考。（使用的软件是思科模拟器）">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-02-13T08:39:56.262Z">
+<meta property="article:modified_time" content="2022-10-19T13:43:57.947Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="计网">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-路由器交换机的命令行模式以及相关命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/13/%E8%B7%AF%E7%94%B1%E5%99%A8%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time class="dt-published" datetime="2024-02-13T08:39:56.262Z" itemprop="datePublished">2024-02-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%BD%91/">计网</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      路由器交换机的命令行模式以及相关命令
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="路由器交换机的命令行模式"><a href="#路由器交换机的命令行模式" class="headerlink" title="路由器交换机的命令行模式"></a>路由器交换机的命令行模式</h2><h4 id="用户模式"><a href="#用户模式" class="headerlink" title="用户模式"></a>用户模式</h4><ul>
+<li>启动后，输入<strong>en</strong>（enable）就可以进入交换机<strong>特权模式</strong></li>
+</ul>
+<h4 id="特权模式"><a href="#特权模式" class="headerlink" title="特权模式"></a>特权模式</h4><ul>
+<li>进入特权模式的命令提示符是：<strong>switch#</strong></li>
+<li>在特权模式输入<strong>conf t</strong>（configure terminal）就可以进入交换机的<strong>全局配置模式</strong></li>
+</ul>
+<h4 id="全局配置模式"><a href="#全局配置模式" class="headerlink" title="全局配置模式"></a>全局配置模式</h4><ul>
+<li>进入全局配置模式的提示符是：<strong>Switch(config)#</strong></li>
+<li>在全局配置模式输入<strong>int f0&#x2F;1</strong>（interface F0&#x2F;1）就可以进入交换机的<strong>接口模式。</strong><ul>
+<li>根据接口不同，可能是Fa0&#x2F;1或E0&#x2F;0等<strong>不同接口</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="接口模式"><a href="#接口模式" class="headerlink" title="接口模式"></a>接口模式</h4><ul>
+<li>进入接口模式的命令提示符是<strong>Switch(config-if)#</strong></li>
+<li>在三层交换机的Vlan间路由配置时，需要<strong>对Vlan配置Vlan的网关地址</strong>，也就是对Vlan配IP地址，作为Vlan内其他计算机的网关。<ul>
+<li>配置方式：在<strong>全局配置模式</strong>下输入<strong>interface Vlan 100</strong></li>
+<li>命令提示符是**Switch(config-if)#**，和接口模式相同</li>
+</ul>
+</li>
+</ul>
+<h4 id="Vlan模式"><a href="#Vlan模式" class="headerlink" title="Vlan模式"></a>Vlan模式</h4><ul>
+<li><p>进入Vlan模式的命令提示符是<strong>Switch(vlan)#</strong></p>
+</li>
+<li><p>交换机上会保存一个Vlan.dat的文件，内含关于Vlan的配置</p>
+</li>
+<li><p>Vlan模式就是进入Vlan数据库模式配置Vlan</p>
+</li>
+<li><p>进入方式：在特权模式下使用命令<strong>vlan database</strong>就可以进入vlan模式</p>
+</li>
+</ul>
+<h4 id="接口范围模式"><a href="#接口范围模式" class="headerlink" title="接口范围模式"></a>接口范围模式</h4><ul>
+<li>命令提示符是<strong>Switch(config-if-range)#</strong></li>
+</ul>
+<h4 id="线路配置模式"><a href="#线路配置模式" class="headerlink" title="线路配置模式"></a>线路配置模式</h4><ul>
+<li>命令提示符：<strong>Switch（config—line）#</strong></li>
+<li>进入方式：在<strong>全局配置模式</strong>下输入<strong>line console 0</strong>就可以进入<strong>线路配置模式</strong></li>
+<li>使用情景：需要对控制台访问，远程登录的会话进行配置</li>
+</ul>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><ul>
+<li>如果已经进入某一模式，想要退回上一模式，输入<strong>exit</strong>即可</li>
+<li>无论在哪种模式，输入<strong>end</strong>都能回到特权模式，快捷键：Ctrl+Z</li>
+<li>某种命令只有在<strong>相应的工作模式下</strong>才能生效</li>
+</ul>
+<h2 id="路由器交换机的基本配置命令"><a href="#路由器交换机的基本配置命令" class="headerlink" title="路由器交换机的基本配置命令"></a>路由器交换机的基本配置命令</h2><h4 id="配置交换机名称"><a href="#配置交换机名称" class="headerlink" title="配置交换机名称"></a>配置交换机名称</h4><ul>
+<li>在<strong>全局配置模式</strong>下输入<strong>ho</strong>（hostname）即可</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ho sw1</span><br></pre></td></tr></table></figure>
+
+<h4 id="显示版本信息"><a href="#显示版本信息" class="headerlink" title="显示版本信息"></a>显示版本信息</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show version</span><br></pre></td></tr></table></figure>
+
+<h4 id="显示配置信息"><a href="#显示配置信息" class="headerlink" title="显示配置信息"></a>显示配置信息</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show running-config     sh run </span><br></pre></td></tr></table></figure>
+
+<h4 id="保存配置"><a href="#保存配置" class="headerlink" title="保存配置"></a>保存配置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy running-config startup-config  简写为copy run star</span><br></pre></td></tr></table></figure>
+
+<p>或者直接写为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wr 	即write</span><br></pre></td></tr></table></figure>
+
+<h4 id="显示已保存信息"><a href="#显示已保存信息" class="headerlink" title="显示已保存信息"></a>显示已保存信息</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Show Startup-config  简写为:sh star</span><br></pre></td></tr></table></figure>
+
+<h4 id="删除已保存信息"><a href="#删除已保存信息" class="headerlink" title="删除已保存信息"></a>删除已保存信息</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Erase Nvram	等价于：delete nvram:startup-config</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/13/%E8%B7%AF%E7%94%B1%E5%99%A8%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" data-id="clsk44q7p004660f87bst8uaa" data-title="路由器交换机的命令行模式以及相关命令" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%BD%91/" rel="tag">计网</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/02/13/%E6%8E%92%E5%BA%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          DS内排总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/02/13/%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B9%9F%E6%9E%81%E6%9C%89%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%80%E5%90%8E%E4%B8%80%E7%AF%87%E7%9A%842022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">第一篇也极有可能是最后一篇的2022年终总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Go/">Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%AD%E7%BA%A7/">六级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%80%83%E7%A0%94/">考研</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%BD%91/">计网</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/">语言学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-MySql/" rel="tag">C++,MySql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/" rel="tag">Go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OS/" rel="tag">OS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R/" rel="tag">R</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo-butterfly/" rel="tag">hexo,butterfly</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%AD%E7%BA%A7/" rel="tag">六级</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" rel="tag">年终总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%80%83%E7%A0%94/" rel="tag">考研</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%BD%91/" rel="tag">计网</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 17.5px;">C++</a> <a href="/tags/C-MySql/" style="font-size: 10px;">C++,MySql</a> <a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/OS/" style="font-size: 17.5px;">OS</a> <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/hexo-butterfly/" style="font-size: 10px;">hexo,butterfly</a> <a href="/tags/%E5%85%AD%E7%BA%A7/" style="font-size: 10px;">六级</a> <a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" style="font-size: 10px;">年终总结</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 10px;">数学</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 20px;">数据结构</a> <a href="/tags/%E8%80%83%E7%A0%94/" style="font-size: 10px;">考研</a> <a href="/tags/%E8%AE%A1%E7%BD%91/" style="font-size: 12.5px;">计网</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/02/13/Hexo%20+%20Butterfly%20%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">Hexo + Butterfly 搭建博客</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/C++%E6%9F%A5%E7%BC%BA%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/">C++语法查缺学习(1)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E9%87%8D%E7%82%B9/">信息管理重点</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/">线性代数的本质</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%887%EF%BC%89%E6%A0%88%E7%9A%84%E5%BA%94%E7%94%A8%E2%80%94%E2%80%94%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/">数据结构（7）栈的应用——括号匹配问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

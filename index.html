@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Hexo + Butterfly 搭建博客" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/13/Hexo%20+%20Butterfly%20%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" class="article-date">
+  <time class="dt-published" datetime="2024-02-13T08:39:56.320Z" itemprop="datePublished">2024-02-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/13/Hexo%20+%20Butterfly%20%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">Hexo + Butterfly 搭建博客</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Hexo-Butterfly-搭建博客"><a href="#Hexo-Butterfly-搭建博客" class="headerlink" title="Hexo + Butterfly 搭建博客"></a>Hexo + Butterfly 搭建博客</h1><p>最近刚忙完字节青训的一些事情，暑假还剩大概一周的时间，闲来无事突然想着搭建一个个人博客，就跟着b站的视频以及GitHub的教程一步步搭了起来。其中博客框架选择Hexo，这是目前较为主流的博客框架之一，选择它一是因为它的布局相对美观，二是因为这个框架已经较为成熟，在搭建过程中遇到的大多数问题都可以Google到解决方案。博客的主题我选用的是Butterfly，这个的选择是全凭个人审美了，大家可以去GitHub上直接搜索 hexo themes选择喜欢的主题。那么话不多说，开始今天Hexo + Butterfly 搭建博客的教程。</p>
+<p>##Hexo的安装</p>
+<h4 id="Node-js的安装"><a href="#Node-js的安装" class="headerlink" title="Node.js的安装"></a>Node.js的安装</h4><ol>
+<li>下载地址：<a target="_blank" rel="noopener" href="https://node.js.org/%EF%BC%8C%E4%B8%8B%E8%BD%BD%E5%AE%8C%E5%AE%89%E8%A3%85%E5%8D%B3%E5%8F%AF%EF%BC%88%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E6%97%A0%E8%84%91%E7%82%B9%E4%B8%8B%E4%B8%80%E6%AD%A5%EF%BC%89">https://node.js.org/，下载完安装即可（安装过程无脑点下一步）</a></li>
+<li>打开命令行工具sudo进入root用户<ul>
+<li>node -v查看node的版本</li>
+<li>npm -v查看包管理器的版本</li>
+</ul>
+</li>
+</ol>
+<p>安装完node.js后就可以进行hexo的安装了</p>
+<h4 id="hexo的安装"><a href="#hexo的安装" class="headerlink" title="hexo的安装"></a>hexo的安装</h4><ul>
+<li>安装hexo要借助npm来安装，由于国内镜像源速度很慢，所以先利用npm安装cnpm来提高安装速度</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=<span class="string">&quot;http://registry.npm.taobao.org&quot;</span></span><br><span class="line"></span><br><span class="line">cnmp -v 查看版本</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>cnpm安装hexo</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br><span class="line"></span><br><span class="line">hexo -v 查看版本</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>建立你的blog文件夹，我这里是建在D盘。以后你博客的所有内容都将在这个文件夹中设置、</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> D:\blog</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>cd进blog文件夹中，初始化博客</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">sudo hexo init</span><br><span class="line"><span class="built_in">ls</span> -l 查看安装后生成的文件</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>启动博客，可以看到已经成功启动，并且为你自动生成了第一篇博客：Hello World</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>新建一篇文章</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo n <span class="string">&quot;第一篇blog&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>几个常用命令</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo c	清理</span><br><span class="line">hexo g 	生成</span><br><span class="line">hexo s	启动</span><br></pre></td></tr></table></figure>
+
+<h2 id="将博客部署到GitHub上"><a href="#将博客部署到GitHub上" class="headerlink" title="将博客部署到GitHub上"></a>将博客部署到GitHub上</h2><ul>
+<li>新建一个仓库，命名为**”你的GitHub用户名”.github.io**,例如我的用户名为mumushu1，这里命名如下：</li>
+</ul>
+<p><img src="/%5Cimg%5Cimage-20220904082320570.png" alt="image-20220904082320570"></p>
+<ul>
+<li>安装hexo-deployer-git 插件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>返回blog文件夹，使用vim修改_config.yml文件。翻到页尾会发现刚刚安装的deployer，下面对这一项进行配置。（repo和branch需要自己添加）<ul>
+<li>type：git</li>
+<li>repo：刚刚你建的GitHub仓库的地址</li>
+<li>branch：master</li>
+</ul>
+</li>
+</ul>
+<p><img src="/%5Cimg%5Cimage-20220904083018602.png" alt="image-20220904083018602">	</p>
+<ul>
+<li>使用命令部署到远端，系统会弹出界面让你输入GitHub的账号和密码</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>如果这里有报错的话则在hexo d之前敲上</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.email <span class="string">&quot;xxx&quot;</span></span><br><span class="line">git config --global user.name <span class="string">&quot;xxx&quot;</span>     //xxx是你GitHub的邮箱和用户名</span><br></pre></td></tr></table></figure>
+
+<p>返回GitHub仓库即可查看里面多了一些东西，即是生成blog的内容</p>
+<ul>
+<li>复制你的仓库名到浏览器访问，即可进入你的博客</li>
+</ul>
+<p><img src="/%5Cimg%5Cimage-20220904083522805.png" alt="image-20220904083522805"></p>
+<p>当然我这里是使用主题装饰好的，正常刚打开封面是一个Hexo的图片，和你当时hexo s后打开的界面相同。 至此，一个简单的hexo框架就搭建好了，并且利用GitHub部署到了远端。下面的内容就是博客的装修部分，我选用了butterfly主题，下面也会展开讲一下如何使用这个主题来装饰你的博客。</p>
+<h2 id="Butterfly主题装饰博客"><a href="#Butterfly主题装饰博客" class="headerlink" title="Butterfly主题装饰博客"></a>Butterfly主题装饰博客</h2><h4 id="butterfly安装"><a href="#butterfly安装" class="headerlink" title="butterfly安装"></a>butterfly安装</h4><ul>
+<li>在GitHub上直接搜索<a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">hexo-theme-butterfly</a>，在readme文件里找到这里，进入butterfly的说明文档</li>
+</ul>
+<p><img src="/%5Cimg%5Cimage-20220904090534875.png" alt="image-20220904090534875">	</p>
+<ul>
+<li><p>在【快速开始】中可以找到安装教程</p>
+<ul>
+<li>git安装，直接在blog文件夹中git clone即可</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改_config文件，把主题（theme）改为butterfly&#x3D;&#x3D;（从这里开始建议用vscode打开blog文件夹进行编辑）&#x3D;&#x3D;，直接Ctrl F查找theme修改即可<img src="/%5Cimg%5Cimage-20220904091232277.png" alt="image-20220904091232277"></p>
+</li>
+<li><p>安装pug以及stylus的渲染器</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-renderer-pug hexo-renderer-stylus --save</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>创建主题的配置文件（减少升级主题后带来的不便）</p>
+<ul>
+<li><p>在hexo的根目录建立一个文件，命名为&#x3D;&#x3D;_config.butterfly.yml&#x3D;&#x3D;，并把目录的&#x3D;&#x3D;_config.yml&#x3D;&#x3D;文件内容复制到里面去</p>
+</li>
+<li><p><img src="/%5Cimg%5Cimage-20220904091840581.png" alt="image-20220904091840581">	</p>
+</li>
+<li><p>注意</p>
+<ul>
+<li><p><strong>复制的是theme文件夹的_config.yml，不是hexo的config.yml</strong></p>
+</li>
+<li><p><strong>不要把主题的_config.yml删掉</strong></p>
+</li>
+<li><p><strong>以后只要在_config.butterfly.yml配置即可</strong></p>
+</li>
+<li><p><strong>如果使用了 _config.butterfly.yml， 配置主题的 _config.yml 将不会有效果。</strong></p>
+</li>
+<li><p><strong>Hexo会自动合并主题中的config.yml和 config.butterfly.yml里的配置，如果存在同名配置，会使用_config.butterfly.yml的配置，其优先度较高。</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>至此，butterfly的安装以及配置已经完毕，接下来的内容就是如何使用butterfly主题修饰你的博客，使你的博客丰满起来。</p>
+<h4 id="修改-创建博客的基本信息"><a href="#修改-创建博客的基本信息" class="headerlink" title="修改&amp;创建博客的基本信息"></a>修改&amp;创建博客的基本信息</h4><ul>
+<li>网站资料（标题，副标题，邮箱等资料），修改<strong>博客根目录的_config.yml</strong></li>
+</ul>
+<p><img src="/%5Cimg%5Cimage-20220904092944082.png" alt="image-20220904092944082"></p>
+<ul>
+<li>创建标签页<ul>
+<li>前往博客跟目录</li>
+<li>使用命令行工具输入 hexo new page tags</li>
+<li>输入后可以找到 source&#x2F;tags&#x2F;index.md 这个文件，进行修改即可，主要设置是前三项，top_img为置顶图，设置方法在后续会讲</li>
+</ul>
+</li>
+</ul>
+<p>​		<img src="/%5Cimg%5Cimage-20220904093207663.png" alt="image-20220904093207663">		</p>
+<ul>
+<li><p>使用同样的方法创建分类页和友情链接，详情见官方文档</p>
+</li>
+<li><p>404页面（访问出错的网站跳到404页面），在_config butterfly.yml中更改</p>
+</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># A simple 404 page</span></span><br><span class="line"><span class="attr">error_404:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">subtitle:</span> <span class="string">&quot;页面没有找到&quot;</span></span><br><span class="line">  <span class="attr">background:</span> </span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="基本工具-排版-图像设置"><a href="#基本工具-排版-图像设置" class="headerlink" title="基本工具&amp;&amp;排版&amp;&amp;图像设置"></a>基本工具&amp;&amp;排版&amp;&amp;图像设置</h4><ul>
+<li><p>语言</p>
+<ul>
+<li><p>修改hexo根目录的_config.yml</p>
+</li>
+<li><p>默认语言是en，支持三种语言</p>
+<p>default(en)<br>zh-CN (简体中文)<br>zh-TW (繁体中文)</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/%5Cimg%5Cimage-20220904093934361.png" alt="image-20220904093934361"></p>
+<ul>
+<li>导航菜单<ul>
+<li>修改主题配置文件</li>
+</ul>
+</li>
+</ul>
+<p><img src="/%5Cimg%5Cimage-20220904094102432.png" alt="image-20220904094102432"></p>
+<ul>
+<li><p>代码（都是在主题配置文件中修改）</p>
+<ul>
+<li>代码高亮</li>
+</ul>
+<p>其中有多种高亮颜色可以选择，可以去官网查看自己选取</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">highlight_theme:</span> <span class="string">light</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>代码复制</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">highlight_copy:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>代码框展开&#x2F;关闭<ul>
+<li>true：全部代码框不展开，需手动点击按钮展开</li>
+<li>false：代码框展开，有展开按钮</li>
+<li>none：不显示展开按钮</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">highlight_shrink:</span> <span class="literal">true</span> <span class="comment">#代码框不展开，需点击 &#x27;&gt;&#x27; 打开</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>代码换行</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">code_word_wrap:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>代码高度限制(配置代码框的最大高度，超出部分会隐藏，并显示展开按钮)</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">highlight_height_limit:50</span> <span class="comment"># unit: px</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>社交图标</p>
+<ul>
+<li>在主题配置文件中找到 social settings 修改即可</li>
+<li>书写格式：<strong>图标名：url || 描述性文字</strong></li>
+<li>图标和图标名都可以在这里找到<a target="_blank" rel="noopener" href="https://fontawesome.com/icons?from=io">https://fontawesome.com/icons?from=io</a></li>
+<li><img src="/%5Cimg%5Cimage-20220904095611759.png" alt="image-20220904095611759"></li>
+</ul>
+</li>
+<li><p>顶部图</p>
+<ul>
+<li>不需要顶部图可以直接配置</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">disable_top_img:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><table>
+<thead>
+<tr>
+<th>index_img</th>
+<th>主页的顶部图</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>archive_img</td>
+<td>归档页面的顶部图</td>
+</tr>
+<tr>
+<td>tag_img</td>
+<td>标签子页面的顶部图</td>
+</tr>
+<tr>
+<td>category_img</td>
+<td>分类子页面的顶部图</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>如果想要更改分类&#x2F;标签等自建页面的顶部图，需要到对应的md文档中修改，这里演示更改标签页面的顶部图</p>
+</li>
+<li><p><img src="/%5Cimg%5Cimage-20220904100758069.png" alt="image-20220904100758069"></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>​					直接使用top_img添加图片地址链接即可</p>
+<ul>
+<li><p>文章封面</p>
+<ul>
+<li>在文章的md文档中添加&#x3D;&#x3D;cover&#x3D;&#x3D;，并填上图片地址</li>
+<li>如果不配置cover，可以设置显示默认的cover</li>
+<li>如果不想在首页显示cover，可以设置false</li>
+<li><img src="/%5Cimg%5Cimage-20220904101039698.png" alt="image-20220904101039698"></li>
+</ul>
+</li>
+<li><p>头像</p>
+<ul>
+<li>修改主题配置文件</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">avatar:</span></span><br><span class="line">  <span class="attr">img:</span> <span class="string">/img/avatar.png</span></span><br><span class="line">  <span class="attr">effect:</span> <span class="literal">true</span> <span class="comment"># 头像会一直转圈</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>以上演示了一些最基本的配置，还有一些在文章中没有涉及到，但根据官网的文档以及借鉴上述的方法可以很轻松的配置完一些基本的设置。由于本人也是小白，最近也在学习一些更高级的设置，学会的话有机会也更在博客中。</p>
+<p><strong>参考内容：</strong></p>
+<p>butterfly官方文档：<a target="_blank" rel="noopener" href="https://butterfly.js.org/">https://butterfly.js.org/</a></p>
+<p>哔哩哔哩up主CodeSheep的视频【手把手教你从0开始搭建自己的个人博客 |无坑版视频教程| hexo】：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Yb411a7ty?spm_id_from=333.1007.top_right_bar_window_history.content.click&vd_source=ef7dc76f807d26d86d33be41cf55ea77">https://www.bilibili.com/video/BV1Yb411a7ty?spm_id_from=333.1007.top_right_bar_window_history.content.click&amp;vd_source=ef7dc76f807d26d86d33be41cf55ea77</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/13/Hexo%20+%20Butterfly%20%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" data-id="clsk44q6r000s60f8a6ryctbv" data-title="Hexo + Butterfly 搭建博客" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo-butterfly/" rel="tag">hexo,butterfly</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-C++查缺学习（1）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/13/C++%E6%9F%A5%E7%BC%BA%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2024-02-13T08:39:56.299Z" itemprop="datePublished">2024-02-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/">语言学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/13/C++%E6%9F%A5%E7%BC%BA%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/">C++语法查缺学习(1)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="C-语法查缺学习-1"><a href="#C-语法查缺学习-1" class="headerlink" title="C++语法查缺学习(1)"></a>C++语法查缺学习(1)</h1><p>在大二的时候学过一段时间C++的语法，但当时学的很模棱两可，再加上现在已经忘得差不多了，所以最近再跟着菜鸟教程过一遍，每篇博客的开始我都会列出这章的所讲内容，因为之前有C语言的基础再加上好多语法已经过完一遍了，所以博客内容只记录了我忘记的或没学过的，根本目的是自用，如果能帮助到您万分荣幸。</p>
+<p>###序章</p>
+<ul>
+<li>对象：具有&#x3D;&#x3D;状态&#x3D;&#x3D;和&#x3D;&#x3D;行为&#x3D;&#x3D;。例：狗的状态：颜色，品种…..，行为：吃，跑….。对象是类的&#x3D;&#x3D;实例&#x3D;&#x3D;</li>
+<li>类：描述对象的行为或状态的&#x3D;&#x3D;模板&#x2F;蓝图&#x3D;&#x3D;</li>
+<li>方法：一个方法表示一种&#x3D;&#x3D;行为&#x3D;&#x3D;，一个类可以包含多个方法。可以在方法里写入逻辑，操作数据以及执行所有的动作</li>
+<li>即时变量：&#x3D;&#x3D;每个对象&#x3D;&#x3D;独特的即时变量，对象的&#x3D;&#x3D;状态&#x3D;&#x3D;是由这些即时变量的值创建的</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;haaha&quot;</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于上面的代码：</p>
+<ul>
+<li>C++ 语言定义了一些头文件，这些头文件包含了程序中必需的或有用的信息。上面这段程序中，包含了头文件 **<iostream>**。</li>
+<li>using namespace std：告诉编译器使用std<strong>命名空间</strong></li>
+</ul>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><ul>
+<li>typedef声明：使用typedef为<strong>一个已有的类型取一个新的名字</strong></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> haha;<span class="comment">//haha是int的另一个名字</span></span><br><span class="line"></span><br><span class="line">haha a;<span class="comment">//创建一个int型变量a</span></span><br></pre></td></tr></table></figure>
+
+<p>枚举类型</p>
+<ul>
+<li>之前学习的时候没有接触过，大概意思就是自己定义一个数据类型。服务对象：一个变量有几种可能的值。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> 自定义的数据类型&#123;</span><br><span class="line">    枚举<span class="number">1</span>，</span><br><span class="line">    枚举<span class="number">2</span>，</span><br><span class="line">    枚举<span class="number">3</span></span><br><span class="line">&#125;枚举变量名;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Color</span>&#123;</span><br><span class="line">    red,</span><br><span class="line">    green,</span><br><span class="line">    blue</span><br><span class="line">&#125;c;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>如果像上面这样枚举的值没给出初始化，就默认从0开始，依次加一，即red&#x3D;0；green&#x3D;1；blue&#x3D;2</p>
+</li>
+<li><p>如果把上面的green&#x3D;6，则red&#x3D;1，green&#x3D;6，blue&#x3D;7；</p>
+</li>
+</ul>
+<h3 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h3><ul>
+<li>作用：就是使用多个文件的时候，我只在其中一个文件里定义了这个变量，那么变量声明就让编译器知道你这个变量是定义过的，在编译器不需要知道变量完整细节就可以进一步编译。</li>
+<li>声明方法：用extern声明</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//.h文件</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> a=<span class="number">10</span>, b=<span class="number">20</span>, c=<span class="number">30</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//源文件</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&quot;l.h&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="type">int</span> a, b;<span class="comment">//声明变量</span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">int</span> c;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; c+a &lt;&lt; endl;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出结果为40.</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="左值和右值"><a href="#左值和右值" class="headerlink" title="左值和右值"></a>左值和右值</h3><ul>
+<li>左值就是指向&#x3D;&#x3D;内存位置的表达式&#x3D;&#x3D;，可以出现在赋值号的<strong>左边或右边</strong></li>
+<li>右值就是&#x3D;&#x3D;存储在内存中某些地址的数值&#x3D;&#x3D;，右值只能出现在赋值号的<strong>右边</strong></li>
+</ul>
+<h3 id="常量之定义常量"><a href="#常量之定义常量" class="headerlink" title="常量之定义常量"></a>常量之定义常量</h3><p>在c++中，有两种定义常量的方式</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//#define 预处理器</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> a 100</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//const 关键字</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> a = <span class="number">6</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="修饰符类型"><a href="#修饰符类型" class="headerlink" title="修饰符类型"></a>修饰符类型</h3><p>修饰符就是在int，char，double这些数据类型前面加一些东西，加什么东西呢？下面列出<strong>数据类型修饰符</strong></p>
+<ul>
+<li>signed（有符号）</li>
+<li>unsigned（无符号）</li>
+<li>long</li>
+<li>short</li>
+</ul>
+<p>那这些数据类型修饰符有没有什么使用限制呢？</p>
+<ul>
+<li>int型：可以使用全部的数据修饰符</li>
+<li>char型：只能 使用signed和unsigned</li>
+<li>double型：只能使用long型</li>
+</ul>
+<p><strong>signed和unsigned也可以作为long或short的修饰符</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">signed</span> <span class="type">long</span> <span class="type">int</span> a;</span><br><span class="line"><span class="type">unsigned</span> <span class="type">short</span> <span class="type">int</span> b;</span><br></pre></td></tr></table></figure>
+
+<h3 id="类型限定符"><a href="#类型限定符" class="headerlink" title="类型限定符"></a>类型限定符</h3><table>
+<thead>
+<tr>
+<th>const</th>
+<th>const类型的对象在程序执行期间&#x3D;&#x3D;不能被改变&#x3D;&#x3D;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>volatile</td>
+<td>告诉编译器不需要优化volatile类型的变量，直接从内存中读取变量。</td>
+</tr>
+<tr>
+<td>restrict</td>
+<td>restrict修饰的<strong>指针</strong>是&#x3D;&#x3D;唯一一种访问它指向的对象的方式&#x3D;&#x3D;</td>
+</tr>
+</tbody></table>
+<h3 id="存储类"><a href="#存储类" class="headerlink" title="存储类"></a>存储类</h3><p>存储类的作用：定义<strong>变量或函数</strong>的<strong>范围和生命周期</strong>，这些<strong>说明符</strong>放在所修饰类型之前，C++程序的可用存储类一共就六个</p>
+<p>auto存储类（从 C++ 17 开始，auto 关键字不再是 C++ 存储类说明符）</p>
+<ul>
+<li><p>auoto声明变量时根据<strong>变量初始化表达式</strong>自动判断变量类型</p>
+</li>
+<li><p>声明函数时函数返回值的占位符</p>
+</li>
+<li><p>auto定义局部变量，离开作用域会被自动释放。</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> a =<span class="number">1.2</span>;</span><br><span class="line"><span class="keyword">auto</span> s = (<span class="string">&quot;hello&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>register存储类</p>
+<ul>
+<li><p>功能：定义存储在<strong>寄存器中</strong>而不是<strong>RAM</strong>中的局部变量</p>
+</li>
+<li><p>变量的最大尺寸即寄存器的大小</p>
+</li>
+<li><p>寄存器：用于需要快速访问的变量，eg：计数器。</p>
+</li>
+<li><p>注意：使用register并不意味着变量将被存储在寄存器中，只是意味着<strong>可能</strong>存储在寄存器中，这取决于硬件条件</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">register</span> <span class="type">int</span> m;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>static存储类</p>
+<ul>
+<li><p>编译器在程序的生命周期内<strong>保持局部变量的存在</strong>，不需要<strong>每次进入作用域后进行创建和销毁</strong></p>
+</li>
+<li><p>即：用static修饰局部变量可以在<strong>函数调用之间保持局部变量的值</strong></p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">int</span> count =<span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<p>extern存储类</p>
+<ul>
+<li>功能：提供<strong>一个全局变量的引用</strong>，全局变量对所有的程序文件都是可见的</li>
+</ul>
+<p>mutable</p>
+<p>thread_local（C++11）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/13/C++%E6%9F%A5%E7%BC%BA%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/" data-id="clsk44q62000060f8cvdmae2i" data-title="C++语法查缺学习(1)" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-信息管理重点" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/13/%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E9%87%8D%E7%82%B9/" class="article-date">
+  <time class="dt-published" datetime="2024-02-13T08:39:56.295Z" itemprop="datePublished">2024-02-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/13/%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E9%87%8D%E7%82%B9/">信息管理重点</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>对信息管理和信息资源的管理的理解是整本书的重点</p>
+<p>第一章</p>
+<ul>
+<li><p>1.1管理的概念 定义</p>
+</li>
+<li><p>管理五要素</p>
+</li>
+<li><p>管理科学两种解释</p>
+</li>
+<li><p>管理科学流派（只是提了一嘴 不是重点）</p>
+</li>
+<li><p>1.2管理思想演变（重点）△</p>
+</li>
+<li><p>管理的基本职能</p>
+</li>
+<li><p>1.3怎么提出的信息管理课题</p>
+</li>
+<li><p>信息在管理中的地位和作用</p>
+</li>
+<li><p>信息管理的定义△（信息资源管理这一块必考）</p>
+</li>
+<li><p>OR MIS IRM的区别</p>
+</li>
+<li><p>对IRM的理解</p>
+</li>
+<li><p>信息管理和信息资源管理的区别（概括起来）</p>
+</li>
+</ul>
+<hr>
+<p>第二章 1 2 4节是重点</p>
+<ul>
+<li>什么是信息（五个角度：香农，维纳，管理界 忠义信的定义，企业管理界的定义 ，霍顿）课本12-14，注意企业管理的分层</li>
+<li>数据和信息的关系</li>
+<li>信息的特征（很重点）</li>
+<li>信息加工的模式（一次，二次，三次信息）</li>
+<li>信息科学理论（三论）每个论的代表人物及其思想</li>
+<li>2.3：信息方法：课本的那个示意图</li>
+<li>信息生命周期的含义</li>
+<li>2.4信息资源的引入（课本23）为什么信息能称为资源？</li>
+<li>霍顿等四个人的角度对信息资源的定义（理解性，不用背的意思？）</li>
+<li>狭义和广义对信息资源的定义</li>
+<li>信息资源的三要素<ul>
+<li>她最后说2.4.2全看</li>
+</ul>
+</li>
+<li>2.4.6信息化也看一下，要知道</li>
+</ul>
+<hr>
+<p>第三章：3.1全部 3.2（除了3.2.3）3.3（除了3.3.3）3.4（前三节）</p>
+<ul>
+<li>信息资源管理的定义（三个角度），起源和发展了解即可</li>
+<li>信息资源管理的层次，手段</li>
+<li>信息资源管理和管理信息系统的区别，关系</li>
+<li>3.2对信息管理的理解（广义狭义）</li>
+<li>信息资源管理和信息管理的联系</li>
+<li>信息管理的定义</li>
+<li>信息管理的发展历程（三个时期）<ul>
+<li>每个时期的象征（手工 电子 信息资源）36-37</li>
+</ul>
+</li>
+<li>现代信息管理发展阶段</li>
+<li>3.3知道图3-3和图3-4</li>
+<li>3.4信息管理学实用体系框架</li>
+<li>信息资源管理的三要素</li>
+<li>信息资源管理的过程</li>
+<li>信息技术：定义<ul>
+<li>通信技术（2C 3C）48页</li>
+<li>信息处理技术的三个阶段（重点是数据库阶段）</li>
+<li>通信技术的核心：计算机网络相关知识点</li>
+<li>什么是信息告诉公路</li>
+</ul>
+</li>
+<li>信息系统建设的过程（重点△）<ul>
+<li>什么是信息系统</li>
+<li>信息系统的发展过程</li>
+</ul>
+</li>
+<li>3.4.4  3.5不用看</li>
+</ul>
+<hr>
+<p>第四章（前三节是重点）</p>
+<ul>
+<li>4.1信息源区分的原则</li>
+<li>信息采集的核心，原则</li>
+<li>信息组织：正序的方法：分类</li>
+<li>信息组织的基本要求</li>
+<li>信息流是什么，根据流动方向的分类</li>
+<li>4.2信息管理的两个层次（71页）</li>
+<li>4.3信息宿是什么，什么是信息需求，什么是信息行为，从需求到行为的过程</li>
+<li>信息行为的分类</li>
+<li>信息用户的行为的分类</li>
+<li>信息需求的分类</li>
+<li>信息使用方法的分类</li>
+<li>4.4不用看</li>
+</ul>
+<hr>
+<p>第五章 5.4不用看，其他都看</p>
+<ul>
+<li>信息管理的两个方法</li>
+<li>战略数据规划：过程（第一步第二步第三步）</li>
+</ul>
+<hr>
+<p>第六章</p>
+<ul>
+<li>企业战略、战略管理的概念（好多个定义）</li>
+<li>什么是信息战略：含义</li>
+<li>战略信息管理和信息战略的 区别 | 联系</li>
+<li>五个阶段看一下</li>
+<li>6.2霍国庆博士的思想要掌握（集成）</li>
+<li>战略的信息技术规划，战略的信息资源规划<ul>
+<li>什么是~，步骤（前者考点）</li>
+<li>管理过程和四个阶段（后者考点）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>第七章 重点前三节</p>
+<ul>
+<li>信息管理机构及其职能，功能</li>
+<li>7.2需要什么样的机构才能形成信息主管部门</li>
+<li>7.3 CIO职责</li>
+</ul>
+<hr>
+<p>第八章 每一节都需要看</p>
+<ul>
+<li>什么是信息需求  分层问题（企业底层 中层 高层）</li>
+<li>信息服务定义 目的 分类</li>
+<li>8.2信息收集的过程 方式 原则 分类</li>
+<li>信息加工的内容（顺序）</li>
+<li>信息加工的分类</li>
+<li>8.2.6不用看</li>
+<li>8.3没听懂她在说啥<ul>
+<li>信息维护，检索不用看</li>
+</ul>
+</li>
+<li>计算机检索的四种形式</li>
+<li>互联网检索（重点△）<ul>
+<li>万维网是怎么工作的 一定要看</li>
+</ul>
+</li>
+<li>8.4.2是8.4重点 <ul>
+<li>计网由哪四个部分构成</li>
+<li>网络拓扑是什么，结构有哪些类型</li>
+</ul>
+</li>
+<li>网络安全功能</li>
+<li>8.4.5 8.4.6不看了</li>
+</ul>
+<hr>
+<p>第九章</p>
+<ul>
+<li><p>信息系统的三个行为部件</p>
+</li>
+<li><p>诺兰模型</p>
+</li>
+<li><p>管理信息系统的概念和<strong>要素</strong></p>
+</li>
+<li><p>管理信息系统的技术平台有哪三个代表性的技术</p>
+<ul>
+<li>CS</li>
+<li>内联网</li>
+<li>外联网</li>
+</ul>
+</li>
+<li><p>9.1.3不看</p>
+</li>
+<li><p>9.2管理信息系统横向和纵向有哪些子系统</p>
+</li>
+<li><p>9.3 159页9-1那个表，6个步骤</p>
+</li>
+<li><p>9.4整个都要看 </p>
+</li>
+<li><p>9.5不看</p>
+</li>
+</ul>
+<p>学习通作业延到考试</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/13/%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E9%87%8D%E7%82%B9/" data-id="clsk44q74002560f81g3f14v0" data-title="信息管理重点" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-线性代数的本质" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/13/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/" class="article-date">
+  <time class="dt-published" datetime="2024-02-13T08:39:56.293Z" itemprop="datePublished">2024-02-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/13/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/">线性代数的本质</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="01向量是什么"><a href="#01向量是什么" class="headerlink" title="01向量是什么"></a>01向量是什么</h3><img src="https://s1.vika.cn/space/2023/04/21/2e044ed75e6643eeacce7d99d85e1814" style="zoom: 33%;" />	
+
+<h3 id="02线性组合、张成的空间与基"><a href="#02线性组合、张成的空间与基" class="headerlink" title="02线性组合、张成的空间与基"></a>02线性组合、张成的空间与基</h3><img src="https://s1.vika.cn/space/2023/04/21/a637de7cc5d2450f8d4deadadd0f1133" style="zoom: 33%;" />	
+
+<h4 id="两个向量张成的空间"><a href="#两个向量张成的空间" class="headerlink" title="两个向量张成的空间"></a>两个向量张成的空间</h4><p>所有可以表示为给定向量线性组合的向量的集合，被称为给定向量张成的空间。</p>
+<img src="https://s1.vika.cn/space/2023/04/21/b7ffa2d4ea62425bbf59e6efd5822fc9" style="zoom: 33%;" />	
+
+<ul>
+<li>对于大部分的二维向量，其张成的空间是所有二维向量的集合</li>
+<li>当其共线时，其张成的空间就是一条直线</li>
+<li>当其都是零向量时，张成的空间就是一点</li>
+</ul>
+<h4 id="三个向量张成的空间"><a href="#三个向量张成的空间" class="headerlink" title="三个向量张成的空间"></a>三个向量张成的空间</h4><p>选择三个标量，对三个向量分别进行缩放，然后将结果相加，这三个向量所有可能的线性组合构成他们所张成的空间，</p>
+<ul>
+<li>若第三个向量恰好落在前两个向量张成的平面上，它们张成的空间并不改变，还是会被困在这个平面中</li>
+<li>反之，第三个向量若并不落在前两个向量张成的平面上，我们就能得到所有的三维向量</li>
+</ul>
+<h4 id="线性相关"><a href="#线性相关" class="headerlink" title="线性相关"></a>线性相关</h4><p>下面我们再来品一下这句话：”若第三个向量恰好落在前两个向量张成的平面上，它们张成的空间并不改变，还是会被困在这个平面中”。以及在二维空间中两个向量恰好共线的情况。<strong>即一组向量中至少有一个是多余的，没有对张成空间做出任何贡献。你有多个向量，并且可以移除其中一个而不减小张成的空间</strong>，当这种情况发生时，我们称这组向量是线性相关的。</p>
+<ul>
+<li>另一种表述是，至少一个向量，可以表示为其它向量的线性组合。（<strong>因为这个向量已经落在其它向量张成的空间中了</strong>）</li>
+</ul>
+<h4 id="线性无关"><a href="#线性无关" class="headerlink" title="线性无关"></a>线性无关</h4><p>与上面想反，如果所有向量都给张成的空间增添了新的维度，它们就被称之为是线性无关的。</p>
+<h4 id="书上的定义"><a href="#书上的定义" class="headerlink" title="书上的定义"></a>书上的定义</h4><img src="https://s1.vika.cn/space/2023/04/21/38b4dbe0b7a34d6b9ba08a308937edf0" style="zoom: 50%;" />	
+
+<p>即其中任何一个向量都不能被其余向量线性表示。</p>
+<h3 id="03矩阵与线性变换"><a href="#03矩阵与线性变换" class="headerlink" title="03矩阵与线性变换"></a>03矩阵与线性变换</h3><p>线性变换是操纵空间的一种手段，它保持网格线平行且等距分布，并且原点保持不动。这种变换只需要几个数字就可以描述清楚。这些数字就是变换后<strong>基向量的坐标</strong>，以这些坐标为列构成的矩阵为我们提供了一种描述线性变换的语言。</p>
+<p>而矩阵向量乘法就是计算线性变换作用于给定向量的一种途径。</p>
+<p>矩阵只是一个记号，它含有描述一个线性变换的信息</p>
+<img src="https://s1.vika.cn/space/2023/04/21/dcec7a1995704c1580f2caa96c0bfbc1" style="zoom:33%;" />	
+
+<p>下图：矩阵第一列[a,c]看做是变换后的第一个基向量，第二列[b,d]看做是变换后的第二个基向量，我们让这个变换作用于向量[x,y]，结果如下。甚至可以将其定义为矩阵向量乘法。</p>
+<img src="https://s1.vika.cn/space/2023/04/21/a534d30e97eb43d3accb156ea27f5273" style="zoom: 33%;" />	
+
+<p>这意味着只需记录两个基向量（两个向量的情况下）变换后的位置，你就能计算出一个坐标为(x,y)的向量变换后的坐标。即x乘变换后第一个基向量的坐标+y乘变换后第二个基向量的坐标。</p>
+<h3 id="04矩阵乘法与线性变换复合的联系"><a href="#04矩阵乘法与线性变换复合的联系" class="headerlink" title="04矩阵乘法与线性变换复合的联系"></a>04矩阵乘法与线性变换复合的联系</h3><img src="https://s1.vika.cn/space/2023/04/21/9d13f45ad6114bb9b7bf9d7afff1b1ba" style="zoom:33%;" />	
+
+<p>上图表示对基向量先进行旋转变换，再进行剪切变换（变换的顺序是从右往左）。矩阵乘法实际上就是对基向量的两次变换。</p>
+<h3 id="06逆矩阵、列空间、秩与零空间"><a href="#06逆矩阵、列空间、秩与零空间" class="headerlink" title="06逆矩阵、列空间、秩与零空间"></a>06逆矩阵、列空间、秩与零空间</h3><p>A逆是满足以下性质的唯一变换：首先应用A代表的变换，再应用A逆代表的变换，你会回到原始状态。</p>
+<h5 id="秩：代表变换后空间的维数"><a href="#秩：代表变换后空间的维数" class="headerlink" title="秩：代表变换后空间的维数"></a>秩：代表变换后空间的维数</h5><ul>
+<li>当变换的结果是一条直线时，也就是说结果是一维的，我们称这个变换的秩为 1</li>
+<li>当变换后的向量落在某个二维平面上，我们称这个变换的秩为2</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/13/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/" data-id="clsk44q7l003g60f8566lbdy0" data-title="线性代数的本质" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-数据结构（7）栈的应用——括号匹配问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%887%EF%BC%89%E6%A0%88%E7%9A%84%E5%BA%94%E7%94%A8%E2%80%94%E2%80%94%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2024-02-13T08:39:56.284Z" itemprop="datePublished">2024-02-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%887%EF%BC%89%E6%A0%88%E7%9A%84%E5%BA%94%E7%94%A8%E2%80%94%E2%80%94%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/">数据结构（7）栈的应用——括号匹配问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="栈的应用——括号匹配问题"><a href="#栈的应用——括号匹配问题" class="headerlink" title="栈的应用——括号匹配问题"></a>栈的应用——括号匹配问题</h2><h4 id="什么是括号匹配问题"><a href="#什么是括号匹配问题" class="headerlink" title="什么是括号匹配问题"></a>什么是括号匹配问题</h4><p>顾名思义就是把括号组起来，左小括号对右小括号，左中括号对右中括号，左大括号对右大括号，最理想的情况下是匹配成功，即例如以下的括号排列：</p>
+<p>( 	{	[	]	}	)</p>
+<h4 id="和栈的关系"><a href="#和栈的关系" class="headerlink" title="和栈的关系"></a>和栈的关系</h4><p>了解什么是括号匹配之后，再来聊聊它和栈的关系。我们知道栈的特性是<strong>后进先出</strong>，那如果我们这样：把已知的<strong>左括号压入栈中</strong>，每有一个右括号，就和栈顶元素匹配，如果匹配成功就pop出栈顶元素，这样就把括号匹配问题变为了熟悉的入栈，出栈操作。当然，这只是一个大体思路，具体操作时会有很多临界条件，这里整理出一张流程图：</p>
+<p><img src="https://s1.vika.cn/space/2022/09/30/80aa5f56b05b4a0d8cdb7c711e37cc0e"></p>
+<p>具体代码实现不算难，但是昨天一直运行出问题，我把每个临界条件都打印输出出来也没找到问题，今早一看原来是入栈函数的临界条件写成了if(S,top &#x3D; MaxSize-1)….，少了一个等号。</p>
+<p>这里直接贴代码了：</p>
+<ul>
+<li>栈的相关操作</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> OK 1</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ERROR 0</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MaxSize 10</span></span><br><span class="line"><span class="comment">//建栈</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">char</span> data[MaxSize];</span><br><span class="line">    <span class="type">int</span> top;</span><br><span class="line">&#125;SqStack;</span><br><span class="line"><span class="comment">//初始化</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">InitStack</span><span class="params">(SqStack &amp;S)</span>&#123;</span><br><span class="line">    S.top = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//入栈</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">Push</span><span class="params">(SqStack &amp;S,<span class="type">char</span> c)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(S.top == MaxSize<span class="number">-1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> ERROR;<span class="comment">//栈满</span></span><br><span class="line">    &#125;</span><br><span class="line">    S.top = S.top + <span class="number">1</span>;</span><br><span class="line">    S.data[S.top] = c;</span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//出栈</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">Pop</span><span class="params">(SqStack &amp;S,<span class="type">char</span> *c)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(S.top == <span class="number">-1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    *c = S.data[S.top];</span><br><span class="line">    S.top = S.top - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">Print</span><span class="params">(SqStack S)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(S.top == <span class="number">-1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(S.top;S.top&gt;<span class="number">-1</span>;S.top--)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c\t&quot;</span>,S.data[S.top]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//栈空</span></span><br><span class="line"><span class="type">bool</span> <span class="title function_">Empty</span><span class="params">(SqStack S)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(S.top == <span class="number">-1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>匹配函数</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> <span class="title function_">pipei</span><span class="params">(<span class="type">char</span> str[],<span class="type">int</span> length)</span>&#123;</span><br><span class="line">    SqStack S;</span><br><span class="line">    InitStack(S);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;length;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(str[i]==<span class="string">&#x27;(&#x27;</span> || str[i]==<span class="string">&#x27;[&#x27;</span> || str[i]==<span class="string">&#x27;&#123;&#x27;</span>)</span><br><span class="line">            Push(S,str[i]);</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(Empty(S))&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;栈空，匹配失败\n&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">char</span> ElemTop;</span><br><span class="line">            Pop(S,&amp;ElemTop);</span><br><span class="line">            <span class="keyword">if</span>(str[i]==<span class="string">&#x27;)&#x27;</span> &amp;&amp; ElemTop!=<span class="string">&#x27;(&#x27;</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;小括号匹配失败\n&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(str[i]==<span class="string">&#x27;]&#x27;</span> &amp;&amp; ElemTop!=<span class="string">&#x27;[&#x27;</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;中括号匹配失败\n&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(str[i]==<span class="string">&#x27;&#125;&#x27;</span> &amp;&amp; ElemTop!=<span class="string">&#x27;&#123;&#x27;</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;大括号匹配失败\n&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(Empty(S)== <span class="literal">true</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;匹配成功！！！\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(Empty(S)== <span class="literal">false</span>)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;匹配失败，栈中还有剩余左括号单身\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>主函数及运行</li>
+</ul>
+<p>	</p>
+<img src="https://s1.vika.cn/space/2022/09/30/f1999f06f8cb438f835f0e08643b75db" style="zoom:67%;" />	
+
+<img src="https://s1.vika.cn/space/2022/09/30/70574117a967477ba6d2e320f343f0d5" style="zoom:67%;" />	
+
+<img src="https://s1.vika.cn/space/2022/09/30/cc26fda033a04e3090bd7a1d591e34f5" style="zoom:67%;" />	
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%887%EF%BC%89%E6%A0%88%E7%9A%84%E5%BA%94%E7%94%A8%E2%80%94%E2%80%94%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/" data-id="clsk44q7e003560f867kh827r" data-title="数据结构（7）栈的应用——括号匹配问题" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-如何复习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/13/%E5%A6%82%E4%BD%95%E5%A4%8D%E4%B9%A0/" class="article-date">
+  <time class="dt-published" datetime="2024-02-13T08:39:56.267Z" itemprop="datePublished">2024-02-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%80%83%E7%A0%94/">考研</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/13/%E5%A6%82%E4%BD%95%E5%A4%8D%E4%B9%A0/">寒假的大概复习时间以及计划</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="如何复习"><a href="#如何复习" class="headerlink" title="如何复习"></a>如何复习</h3><h4 id="英语"><a href="#英语" class="headerlink" title="英语"></a>英语</h4><ul>
+<li><p>单词：最早1月底，最晚2月初能学完一遍，但不是全部结束复习。</p>
+</li>
+<li><p>语法</p>
+<ul>
+<li><p>简单句</p>
+<ul>
+<li>简单句核心大约还需4天</li>
+<li>简单句扩展大约还需4天</li>
+</ul>
+</li>
+<li><p>长难句</p>
+<ul>
+<li>并列句：1天</li>
+<li>复合句<ul>
+<li>名词性从句：3天</li>
+<li>定语从句：2天</li>
+<li>状语从句：2天</li>
+</ul>
+</li>
+<li>特殊句式：3天</li>
+</ul>
+</li>
+<li><p>长难句分析</p>
+<ul>
+<li>第一章<ul>
+<li>断开：4天</li>
+<li>简化：1天</li>
+</ul>
+</li>
+<li>第二章：3天</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>共27天，往后延3天：1个月，也是2月初。</p>
+<p>再谈一点点之后，过完一遍单词后可以买一本闪过，过一遍高频词。</p>
+<h4 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h4><p>看完9    10天</p>
+<p>看完19  18天</p>
+<p>寒假结束前大概率搞不完，因为还没有找到舒服的节奏，以及每天的时间分配也暂定，所以先一放。</p>
+<p>这还只是看课，没算做题以及复习的时间。</p>
+<img src="https://s1.vika.cn/space/2023/01/09/317b3e6cf84548b2954245a796b5787c" style="zoom:50%;" />	
+
+
+
+<img src="https://s1.vika.cn/space/2023/01/09/be9e0b0ec6e6489f8768b0cdcf2c16b3" style="zoom:50%;" />	
+
+<img src="https://s1.vika.cn/space/2023/01/09/d8127b2fbe874008a88a76eeb8224814" style="zoom:50%;" />	
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/13/%E5%A6%82%E4%BD%95%E5%A4%8D%E4%B9%A0/" data-id="clsk44q75002960f8aoawd2n1" data-title="寒假的大概复习时间以及计划" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%80%83%E7%A0%94/" rel="tag">考研</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-排序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/13/%E6%8E%92%E5%BA%8F/" class="article-date">
+  <time class="dt-published" datetime="2024-02-13T08:39:56.264Z" itemprop="datePublished">2024-02-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/13/%E6%8E%92%E5%BA%8F/">DS内排总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>复习排序这一章时，感觉内容很多很杂乱，加上代码听得半懂不懂，于是就来总结一下。前几天状态不在线，回家休息了两天，空了三天节奏。4.14写完这篇继续赶进度了，争取今天写完内部排序的习题，学完外排，结束DS了。</p>
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><h4 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h4><ul>
+<li><p>基本思路（个人理解 ）：从第一个元素开始扫描，如果第i个元素比它前面的元素小，就把i前面所有比i大的元素依次向后移一位，将i插到前面留出的空位。</p>
+</li>
+<li><p>基本思路（略官方）：每次将⼀个待排序的记录按其关键字⼤⼩插⼊到前⾯已排好序的⼦序列中，</p>
+<p>直到全部记录插⼊完成。</p>
+</li>
+<li><p>代码：</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">insert_directly</span><span class="params">(<span class="type">int</span> A[],<span class="type">int</span> n)</span>&#123;</span><br><span class="line">    <span class="type">int</span> i,j,temp;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(A[i]&lt;A[i<span class="number">-1</span>])&#123;</span><br><span class="line">            temp = A[i];</span><br><span class="line">            <span class="keyword">for</span>(j = i<span class="number">-1</span>;j&gt;=<span class="number">0</span> &amp;&amp; A[j]&gt;temp;--j)&#123;</span><br><span class="line">                A[j+<span class="number">1</span>] = A[j];<span class="comment">//所有大于temp(第i个)的都向后移一位（给第i个留位置插入）</span></span><br><span class="line">            &#125;</span><br><span class="line">            A[j+<span class="number">1</span>] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="comment">//(没有用哨兵)</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>空间效率：常数辅助单元，O(1)</p>
+</li>
+<li><p>时间效率</p>
+<ul>
+<li>最好：表中元素为<strong>有序</strong>，则不用移动元素，n个元素比n-1次即可，时间复杂度为O(n)</li>
+<li>最坏：表中元素<strong>逆序</strong>，总的比较次数和移动次数达到最大，总时间复杂度：O(n^2^)</li>
+<li>平均：O(n^2^)</li>
+</ul>
+</li>
+<li><p>稳定性 ：稳定的</p>
+</li>
+</ul>
+<h4 id="折半插入排序"><a href="#折半插入排序" class="headerlink" title="折半插入排序"></a>折半插入排序</h4><ul>
+<li>基本思路：当前处理的元素之前的元素已经是有序的了，所以先⽤折半查找找到应该插⼊的位置，再移动元素</li>
+<li>和直接插入的区别：改进了一点点比较元素的次数</li>
+<li>时间复杂度：整体看依旧是<strong>O(n^2^)</strong></li>
+<li>代码（用哨兵）</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">insert_inhalf</span><span class="params">(<span class="type">int</span> A[],<span class="type">int</span> n)</span>&#123;</span><br><span class="line">    <span class="type">int</span> i,j,low,mid,high;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;n;i++)&#123;</span><br><span class="line">        A[<span class="number">0</span>] = A[i];<span class="comment">//哨兵A[0]保存待插入元素A[i]</span></span><br><span class="line">        low = <span class="number">1</span>;</span><br><span class="line">        high = i<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(low&lt;=high)&#123;</span><br><span class="line">            mid = (low+high)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(A[mid]&gt;A[<span class="number">0</span>])&#123;<span class="comment">//查左子表  注意这里，即使A[mid]和A[0]想相同，也要再查找一次，目的是保证算法的稳定性。直到low&gt;high，才停止循环</span></span><br><span class="line">                high = mid - <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span></span><br><span class="line">                low = mid + <span class="number">1</span>;<span class="comment">//查右子表</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(j=i<span class="number">-1</span>;j&gt;=high+<span class="number">1</span>;--j)&#123;<span class="comment">//将[low,i-1]内的元素全部右移</span></span><br><span class="line">            A[j+<span class="number">1</span>] = A[j];</span><br><span class="line">        &#125;</span><br><span class="line">        A[high+<span class="number">1</span>] = A[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h4><ul>
+<li><p>基本思想：先将待排序表分割成若⼲形如 <em>L</em>[<em>i</em>, <em>i</em> + <em>d</em>, <em>i</em> + 2<em>d</em>,…, <em>i</em> + <em>kd</em>] 的“特殊”⼦表，对各个⼦表</p>
+<p>分别进⾏直接插⼊排序。<strong>缩小增量d</strong>，重复上述过程，直到d&#x3D;1为⽌。eg：A[1],A[5],A[9],A[13]</p>
+<ul>
+<li>先追求表中元素部分有序，再<strong>逐渐逼近</strong>全局有序</li>
+</ul>
+</li>
+<li><p>代码</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">shellsort</span><span class="params">(<span class="type">int</span> A[],<span class="type">int</span> n)</span>&#123;</span><br><span class="line">    <span class="type">int</span> d;<span class="comment">//增量</span></span><br><span class="line">    <span class="type">int</span> i,j;</span><br><span class="line">    <span class="keyword">for</span>(d = n/<span class="number">2</span>; d&gt;=<span class="number">1</span>; d=d/<span class="number">2</span>)&#123;<span class="comment">//增量变化</span></span><br><span class="line">        <span class="keyword">for</span>(i=d+<span class="number">1</span>; i&lt;n; ++i)&#123;<span class="comment">//轮流处理不同子表</span></span><br><span class="line">            <span class="keyword">if</span>(A[i]&lt;A[i-d])&#123;</span><br><span class="line">                A[<span class="number">0</span>] = A[i];<span class="comment">//只是暂存在A[0]，不是哨兵</span></span><br><span class="line">                <span class="keyword">for</span>(j=i-d; j&gt;<span class="number">0</span> &amp;&amp; A[<span class="number">0</span>]&lt;A[j]; j-=d)<span class="comment">//相当于在每个子表进行直接插入排序</span></span><br><span class="line">                    A[j+d] = A[j];</span><br><span class="line">                A[j+d] = A[<span class="number">0</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>空间复杂度：常数个辅助单元：O(1)</li>
+<li>时间复杂度<ul>
+<li>n在某个特定范围：不好推直接记住：<strong>O(n^1.3^)</strong></li>
+<li>最坏：d &#x3D; 1时，相当于直接插入排序：<strong>O(n^2^)</strong></li>
+</ul>
+</li>
+<li>稳定性：相同的关键字可能被划分到不同的子表，可能会改变相对次序，因此<strong>不稳定</strong></li>
+<li>适用性：要求顺序存储（随机访问）</li>
+</ul>
+<h3 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h3><h4 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h4><ul>
+<li>基本思想：从后往前两两比较相邻元素的值，若为逆序（前面的比后面的大），则交换他们，直到序列比较完，我们称为第一趟冒泡。每次冒泡的结果是把<strong>最小的一个</strong>放到第一位。最多<strong>n-1</strong>趟排好n个元素。</li>
+<li>代码</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span> &amp;a,<span class="type">int</span> &amp;b)</span>&#123;</span><br><span class="line">    <span class="type">int</span> t;</span><br><span class="line">    t = a;</span><br><span class="line">    a = b;</span><br><span class="line">    b = t;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">BubbleSort</span><span class="params">(<span class="type">int</span> A[],<span class="type">int</span> n)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n<span class="number">-1</span>;i++)&#123;</span><br><span class="line">        <span class="type">bool</span> flag = <span class="literal">false</span>;<span class="comment">//表示本趟冒泡是否发生交换</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=n<span class="number">-1</span>;j&gt;i;j--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(A[j<span class="number">-1</span>]&gt;A[j])</span><br><span class="line">                swap(A[j<span class="number">-1</span>],A[j]);</span><br><span class="line">            flag = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(flag==<span class="literal">false</span>)<span class="comment">//本趟没有发生交换，说明表已经有序</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>空间复杂度：O(1)</li>
+<li>时间复杂度<ul>
+<li>最好：初始有序：只需比较，不用移动，比较n-1次，<strong>O(n)</strong></li>
+<li>最差：初始逆序，移动n-1次，第i趟要比n-i次<ul>
+<li>交换次数 &#x3D; 比较次数 &#x3D; 1+2+….+n   <strong>O(n^2^)</strong></li>
+<li>移动次数 &#x3D; 3倍的交换次数，根据swap()函数，每次交换需要移动三次元素来交换位置</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>稳定性：稳定</li>
+</ul>
+<h4 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h4><ul>
+<li><p>基本思想：在待排序表L[1…n]中任取⼀个元素pivot作为枢轴（或基准，通常取⾸元素），通过⼀趟排序将待排序表划</p>
+<p>分为独⽴的两部分L[1…k-1]和L[k+1…n]，使得L[1…k-1]中的所有元素⼩于pivot，L[k+1…n]中的所有元素⼤于等于</p>
+<p>pivot，则pivot放在了其最终位置L(k)上，这个过程称为⼀次“划分”。然后分别递归地对两个⼦表重复上述过程，直⾄</p>
+<p>每部分内只有⼀个元素或空为⽌，即所有元素放在了其最终位置上。</p>
+</li>
+<li><p>代码</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Partition</span><span class="params">(<span class="type">int</span> A[],<span class="type">int</span> low,<span class="type">int</span> high)</span>&#123;<span class="comment">//用第一个元素将待排序序列划分为两部分</span></span><br><span class="line">    <span class="type">int</span> pivot = A[low];<span class="comment">//第一个元素作为枢轴</span></span><br><span class="line">    <span class="keyword">while</span>(low&lt;high)&#123;</span><br><span class="line">        <span class="keyword">while</span>(low&lt;high &amp;&amp; A[high]&gt;=pivot)&#123;</span><br><span class="line">            high = high - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        A[low] = A[high];<span class="comment">//比枢轴小的元素前移</span></span><br><span class="line">        <span class="keyword">while</span>(low&lt;high &amp;&amp; A[low]&lt;=pivot)&#123;</span><br><span class="line">            low = low + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        A[high] = A[low];<span class="comment">//比枢轴大的元素后移</span></span><br><span class="line">    &#125;</span><br><span class="line">    A[low] = pivot;</span><br><span class="line">    <span class="keyword">return</span> low;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">QuickSort</span><span class="params">(<span class="type">int</span> A[],<span class="type">int</span> low,<span class="type">int</span> high)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(low&lt;high)&#123;</span><br><span class="line">        <span class="type">int</span> pivotpos = Partition(A,low,high);</span><br><span class="line">        QuickSort(A,low,pivotpos<span class="number">-1</span>);<span class="comment">//划分左子表</span></span><br><span class="line">        QuickSort(A,pivotpos+<span class="number">1</span>,high);<span class="comment">//划分右子表</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>特点：快排过程不产生有序子序列，但每趟排序会将枢轴元素放在最终的位置上</li>
+<li>算法性能：取决于递归层数，若每次划分的越均匀，则递归深度越低，划分的越不均匀，则递归深度越深。<ul>
+<li>空间复杂度：O(递归层数)，可以将整个排序的过程看为n个结点的二叉树，则最小空间复杂度:O(log<del>2</del>n)，最大空间复杂度：O(n)</li>
+<li>时间复杂度：最好时间复杂度：O(nlog<del>2</del>n)，最坏时间复杂度：O(n^2^)，平均时间复杂度：O(nlog<del>2</del>n)</li>
+</ul>
+</li>
+</ul>
+<img src="https://s1.vika.cn/space/2023/04/12/68d1e23893824ee39093a881617b01a7" style="zoom:50%;" />	
+
+<ul>
+<li>稳定性：不稳定，因为high指针是从后往前扫描的，若两个元素值相同，则后一个元素会被优先拿到前面去，相对位置发生变化。</li>
+</ul>
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><h4 id="简单选择排序"><a href="#简单选择排序" class="headerlink" title="简单选择排序"></a>简单选择排序</h4><ul>
+<li>基本思想：设排序表L[1…n]，第i趟排序会从L[i…n]中选择关键字最小的元素和i交换，每趟排序可以确定一个元素的最终位置，经过n-1趟排序可以排好n个元素</li>
+<li>代码</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">SelectSort</span><span class="params">(<span class="type">int</span> A[],<span class="type">int</span> n)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n<span class="number">-1</span>;i++)&#123;</span><br><span class="line">        <span class="type">int</span> min = i;<span class="comment">//记录最小元素位置</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=i+<span class="number">1</span>;j&lt;n;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(A[j]&lt;A[min])</span><br><span class="line">                min = j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(min != i)</span><br><span class="line">            swap(A[i],A[min]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>空间效率：常数个辅助单元：O(1)</li>
+<li>时间效率：无非就是看比较次数和移动次数<ul>
+<li>移动次数：若原表有序，则最好情况下移动0次，最差情况下移动3(n-1)次（每交换一次需要移动三次）</li>
+<li>比较次数：无论原表是否有序，都会比较1+2+3+….+n-1 &#x3D; n(n-1)&#x2F;2次，因此时间复杂度始终是O(n^2^)</li>
+</ul>
+</li>
+<li>稳定性：不稳定</li>
+</ul>
+<h4 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h4><ul>
+<li><p>堆</p>
+<ul>
+<li>若满⾜：L(i)≥L(2i)且L(i)≥L(2i+1) （1 ≤ <em>i</em> ≤<em>n</em>&#x2F;2 ）—— ⼤根堆（⼤顶堆）</li>
+<li>若满⾜：L(i)≤L(2i)且L(i)≤L(2i+1) （1 ≤ <em>i</em> ≤<em>n</em>&#x2F;2 ）—— ⼩根堆（⼩顶堆）<ul>
+<li>结合完全二叉树理解，大根堆就是 跟 比 左右孩子大的，小根堆就是 跟 比左右孩子小的</li>
+<li>与二叉排序数区分，二叉排序树是 左&lt;&#x3D;跟&lt;&#x3D;右</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>基本思路：</p>
+</li>
+<li><p>每⼀趟将堆顶元素加⼊有序⼦序列（与待排序序列中的最后⼀个元素交换），</p>
+</li>
+<li><p>并将待排序元素序列再次调整为⼤根堆（小元素不断“下坠”）</p>
+</li>
+<li><p>代码</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">HeadAdjust</span><span class="params">(<span class="type">int</span> A[],<span class="type">int</span> k,<span class="type">int</span> len)</span>&#123;<span class="comment">//将k为跟的子树调整为大根堆</span></span><br><span class="line">    A[<span class="number">0</span>] = A[k];<span class="comment">//A[0]暂存子树的根节点</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>*k; i&lt;=len; i*=i)&#123;<span class="comment">//沿k较大的子节点向下筛选</span></span><br><span class="line">        <span class="keyword">if</span>(i&lt;len &amp;&amp; A[i]&lt;A[i+<span class="number">1</span>])</span><br><span class="line">            i++;<span class="comment">//取k较大的孩子结点的下标</span></span><br><span class="line">        <span class="keyword">if</span>(A[<span class="number">0</span>]&gt;A[i])</span><br><span class="line">            <span class="keyword">break</span>;<span class="comment">//当前跟结点比孩子大，不用调整</span></span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            A[k] = A[i];<span class="comment">//较大的孩子结点换到父节点</span></span><br><span class="line">            k = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    A[k] = A[<span class="number">0</span>];<span class="comment">//被筛选结点的位置放在最终位置</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">BuildMaxHeap</span><span class="params">(<span class="type">int</span> A[],<span class="type">int</span> len)</span>&#123;<span class="comment">//建立大根堆</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=len/<span class="number">2</span>;i&gt;<span class="number">0</span>;i--)<span class="comment">//从后往前每个分支结点，将其子树调整为大根堆</span></span><br><span class="line">        HeadAdjust(A,i,len);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">HeapSort</span><span class="params">(<span class="type">int</span> A[],<span class="type">int</span> len)</span>&#123;</span><br><span class="line">    BuildMaxHeap(A,len);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=len; i&gt;<span class="number">1</span>; i--)&#123;<span class="comment">//n-1趟的交换和建堆过程</span></span><br><span class="line">        swap(A[i],A[<span class="number">1</span>]);<span class="comment">//堆顶元素和堆底元素互换</span></span><br><span class="line">        HeadAdjust(A,<span class="number">1</span>,i<span class="number">-1</span>);<span class="comment">//剩余待排序元素整理成堆</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>时间复杂度：建堆时间为O(n)，之后有n-1次向下调整操作，每次调整时间复杂度为O(h)，所以最好最差平均都为O(nlog<del>2</del>n)</li>
+<li>空间复杂度：常数个辅助单元：O(1)</li>
+<li>稳定性：不稳定，进行筛选时有可能把后面相同关键字的元素调整到前面</li>
+</ul>
+<h3 id="归并排序和基数排序"><a href="#归并排序和基数排序" class="headerlink" title="归并排序和基数排序"></a>归并排序和基数排序</h3><h4 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h4><ul>
+<li>基本思路：归并：把两个或多个已经有序的序列合并成⼀个</li>
+<li>代码</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *B = (<span class="type">int</span> *) <span class="built_in">malloc</span>(<span class="number">7</span> * <span class="keyword">sizeof</span> (<span class="type">int</span>));</span><br><span class="line"><span class="type">void</span> <span class="title function_">Merge</span><span class="params">(<span class="type">int</span> A[],<span class="type">int</span> low,<span class="type">int</span> mid,<span class="type">int</span> high)</span>&#123;</span><br><span class="line">    <span class="type">int</span> i,j,k;</span><br><span class="line">    <span class="keyword">for</span>(k=low; k&lt;=high; k++)&#123;</span><br><span class="line">        B[k] = A[k];<span class="comment">//A中的所有元素赋值于B</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=low,j=mid+<span class="number">1</span>,k=i; i&lt;=mid&amp;&amp;j&lt;=high; k++)&#123;<span class="comment">//分成两组，i初值为第一组的第一个元素，j初值为第二组的第一个元素，第一组从[1,mid]，第二组[mid+1,high]</span></span><br><span class="line">        <span class="keyword">if</span>(B[i]&lt;=B[j])&#123;</span><br><span class="line">            A[k] = B[i];<span class="comment">//A[k]是排序后的数组</span></span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            A[k] = B[j];</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;=mid)<span class="comment">//说明for循环是因为j&gt;high而结束，第二个表检测完，则后续把第一个表的剩余元素全加进来即可</span></span><br><span class="line">        A[k++] = B[i++];</span><br><span class="line">    <span class="keyword">while</span>(j&lt;=high)</span><br><span class="line">        A[k++] = B[j++];</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">MergeSort</span><span class="params">(<span class="type">int</span> A[],<span class="type">int</span> low,<span class="type">int</span> high)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(low&lt;high)&#123;</span><br><span class="line">        <span class="type">int</span> mid = (low+high)/<span class="number">2</span>;<span class="comment">//从中间划分</span></span><br><span class="line">        MergeSort(A,low,mid);<span class="comment">//递归左半部分 归并排序</span></span><br><span class="line">        MergeSort(A,mid+<span class="number">1</span>,high);<span class="comment">//递归右半部分，归并排序</span></span><br><span class="line">        Merge(A,low,mid,high);<span class="comment">//归并排好序的两部分</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>基于分治的思想</li>
+<li>空间效率：辅助数组B[n]，所以空间复杂度为O(n)</li>
+<li>时间效率：每趟归并O(n)，共需要log<del>2</del>n(向上取整)趟（结合二叉树理解），所以总时间效率O(nlog<del>2</del>n)<ul>
+<li>时间效率和初始序列是否有序无关，最好 最坏 平均 都是O(nlog<del>2</del>n)</li>
+</ul>
+</li>
+<li>稳定性：稳定（可以自己设置Merge()时，扫到两个相等元素，优先选先扫到的）</li>
+</ul>
+<h4 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h4><ul>
+<li>基本思想：基于关键字<strong>每一位</strong>的大小进行排序</li>
+<li>空间效率：需要辅助空间O(r)（r个队列：r个队头指针和r个队尾指针）</li>
+<li>时间效率：需要d趟分配和收集，每趟O(n)，所以总时间：O(d(n+r))</li>
+<li>稳定性：基你太稳</li>
+</ul>
+<h5 id="此时此刻"><a href="#此时此刻" class="headerlink" title="此时此刻"></a>此时此刻</h5><img src="https://s1.vika.cn/space/2023/04/14/8900f53f40f34d24b14209fc126959da" style="zoom: 15%;" />	
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/13/%E6%8E%92%E5%BA%8F/" data-id="clsk44q74002260f8hgasbkrb" data-title="DS内排总结" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-路由器交换机的命令行模式以及相关命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/13/%E8%B7%AF%E7%94%B1%E5%99%A8%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time class="dt-published" datetime="2024-02-13T08:39:56.262Z" itemprop="datePublished">2024-02-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%BD%91/">计网</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/13/%E8%B7%AF%E7%94%B1%E5%99%A8%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/">路由器交换机的命令行模式以及相关命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="路由器交换机的命令行模式"><a href="#路由器交换机的命令行模式" class="headerlink" title="路由器交换机的命令行模式"></a>路由器交换机的命令行模式</h2><h4 id="用户模式"><a href="#用户模式" class="headerlink" title="用户模式"></a>用户模式</h4><ul>
+<li>启动后，输入<strong>en</strong>（enable）就可以进入交换机<strong>特权模式</strong></li>
+</ul>
+<h4 id="特权模式"><a href="#特权模式" class="headerlink" title="特权模式"></a>特权模式</h4><ul>
+<li>进入特权模式的命令提示符是：<strong>switch#</strong></li>
+<li>在特权模式输入<strong>conf t</strong>（configure terminal）就可以进入交换机的<strong>全局配置模式</strong></li>
+</ul>
+<h4 id="全局配置模式"><a href="#全局配置模式" class="headerlink" title="全局配置模式"></a>全局配置模式</h4><ul>
+<li>进入全局配置模式的提示符是：<strong>Switch(config)#</strong></li>
+<li>在全局配置模式输入<strong>int f0&#x2F;1</strong>（interface F0&#x2F;1）就可以进入交换机的<strong>接口模式。</strong><ul>
+<li>根据接口不同，可能是Fa0&#x2F;1或E0&#x2F;0等<strong>不同接口</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="接口模式"><a href="#接口模式" class="headerlink" title="接口模式"></a>接口模式</h4><ul>
+<li>进入接口模式的命令提示符是<strong>Switch(config-if)#</strong></li>
+<li>在三层交换机的Vlan间路由配置时，需要<strong>对Vlan配置Vlan的网关地址</strong>，也就是对Vlan配IP地址，作为Vlan内其他计算机的网关。<ul>
+<li>配置方式：在<strong>全局配置模式</strong>下输入<strong>interface Vlan 100</strong></li>
+<li>命令提示符是**Switch(config-if)#**，和接口模式相同</li>
+</ul>
+</li>
+</ul>
+<h4 id="Vlan模式"><a href="#Vlan模式" class="headerlink" title="Vlan模式"></a>Vlan模式</h4><ul>
+<li><p>进入Vlan模式的命令提示符是<strong>Switch(vlan)#</strong></p>
+</li>
+<li><p>交换机上会保存一个Vlan.dat的文件，内含关于Vlan的配置</p>
+</li>
+<li><p>Vlan模式就是进入Vlan数据库模式配置Vlan</p>
+</li>
+<li><p>进入方式：在特权模式下使用命令<strong>vlan database</strong>就可以进入vlan模式</p>
+</li>
+</ul>
+<h4 id="接口范围模式"><a href="#接口范围模式" class="headerlink" title="接口范围模式"></a>接口范围模式</h4><ul>
+<li>命令提示符是<strong>Switch(config-if-range)#</strong></li>
+</ul>
+<h4 id="线路配置模式"><a href="#线路配置模式" class="headerlink" title="线路配置模式"></a>线路配置模式</h4><ul>
+<li>命令提示符：<strong>Switch（config—line）#</strong></li>
+<li>进入方式：在<strong>全局配置模式</strong>下输入<strong>line console 0</strong>就可以进入<strong>线路配置模式</strong></li>
+<li>使用情景：需要对控制台访问，远程登录的会话进行配置</li>
+</ul>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><ul>
+<li>如果已经进入某一模式，想要退回上一模式，输入<strong>exit</strong>即可</li>
+<li>无论在哪种模式，输入<strong>end</strong>都能回到特权模式，快捷键：Ctrl+Z</li>
+<li>某种命令只有在<strong>相应的工作模式下</strong>才能生效</li>
+</ul>
+<h2 id="路由器交换机的基本配置命令"><a href="#路由器交换机的基本配置命令" class="headerlink" title="路由器交换机的基本配置命令"></a>路由器交换机的基本配置命令</h2><h4 id="配置交换机名称"><a href="#配置交换机名称" class="headerlink" title="配置交换机名称"></a>配置交换机名称</h4><ul>
+<li>在<strong>全局配置模式</strong>下输入<strong>ho</strong>（hostname）即可</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ho sw1</span><br></pre></td></tr></table></figure>
+
+<h4 id="显示版本信息"><a href="#显示版本信息" class="headerlink" title="显示版本信息"></a>显示版本信息</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show version</span><br></pre></td></tr></table></figure>
+
+<h4 id="显示配置信息"><a href="#显示配置信息" class="headerlink" title="显示配置信息"></a>显示配置信息</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show running-config     sh run </span><br></pre></td></tr></table></figure>
+
+<h4 id="保存配置"><a href="#保存配置" class="headerlink" title="保存配置"></a>保存配置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy running-config startup-config  简写为copy run star</span><br></pre></td></tr></table></figure>
+
+<p>或者直接写为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wr 	即write</span><br></pre></td></tr></table></figure>
+
+<h4 id="显示已保存信息"><a href="#显示已保存信息" class="headerlink" title="显示已保存信息"></a>显示已保存信息</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Show Startup-config  简写为:sh star</span><br></pre></td></tr></table></figure>
+
+<h4 id="删除已保存信息"><a href="#删除已保存信息" class="headerlink" title="删除已保存信息"></a>删除已保存信息</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Erase Nvram	等价于：delete nvram:startup-config</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/13/%E8%B7%AF%E7%94%B1%E5%99%A8%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" data-id="clsk44q7p004660f87bst8uaa" data-title="路由器交换机的命令行模式以及相关命令" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%BD%91/" rel="tag">计网</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-第一篇也极有可能是最后一篇的2022年终总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/13/%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B9%9F%E6%9E%81%E6%9C%89%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%80%E5%90%8E%E4%B8%80%E7%AF%87%E7%9A%842022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2024-02-13T08:39:56.257Z" itemprop="datePublished">2024-02-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/13/%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B9%9F%E6%9E%81%E6%9C%89%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%80%E5%90%8E%E4%B8%80%E7%AF%87%E7%9A%842022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">第一篇也极有可能是最后一篇的2022年终总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="第一篇也极有可能是最后一篇的2022年终总结"><a href="#第一篇也极有可能是最后一篇的2022年终总结" class="headerlink" title="第一篇也极有可能是最后一篇的2022年终总结"></a>第一篇也极有可能是最后一篇的2022年终总结</h2><p>又到了一年年底，最近也是刚刚忙完学校里的各种作业，在正式开始寒假之前，来写一写这一年所发生的事。因为之前也没写过什么正儿八经的年终总结，自己也不想去看大佬的年终总结长啥样了，所以就随心发挥了。</p>
+<h3 id="学习篇"><a href="#学习篇" class="headerlink" title="学习篇"></a>学习篇</h3><p>可以说2022年是我真正转变为一个学生身份的一年，在大一刚开学的时候，便整天浑浑噩噩，大一上学期挂了一门C语言，大一下学期挂了一门离散数学。在大二上学期时，当时记得是2021年11月左右，因为12月的四级和期末挨得很近，我意识到不能再继续挂下去了，于是从11月开始突击复习，最后也是艰难的完成了任务。2023年1月3日，我正式告别了2021年的我，背起行李坐上了回家的列车。</p>
+<p><img src="https://s1.vika.cn/space/2022/12/26/e8eac1b9d1bd459bba052b4dfc837c26" style="zoom: 10%;" />	<img src="https://s1.vika.cn/space/2022/12/26/f0e2b15235c842a498b7d2614b222306" style="zoom:10%;" />	</p>
+<p>下面就跟随时间的视角，回忆一下这12个月我的学习与成长。</p>
+<ul>
+<li>1月份：回到家后，简单休息了几天，去了附近的一家自习室，这也是我第一次去自习室。当时的我对未来很迷茫，只知道内心是想要考研的，对自己的就业方向毫不了解，甚至每个岗位的职责我都丝毫不知道。于是在看了一下大二下学期的课表后，发现有一门专选是web前端，因为也不知道自己喜欢什么，于是干脆就从前端试试了。再想到之后要准备考研，而自己大一时高数学的很差，于是就计划寒假把高数上学完。就这样，我轰轰烈烈（偷偷摸摸）的第一次自习计划开始了。在1月底，我基本学完了前端的html和高数的前三章内容，当然，每天的单词也是没落下。</li>
+</ul>
+<p>​	<img src="https://s1.vika.cn/space/2022/12/26/4b645631e6be45fd833576c3ac3ce259" style="zoom: 10%;" />	</p>
+<ul>
+<li>2月份：被朋友发现了我偷偷卷的行为，于是拉他一起去了另一家自习室（因为之前那家人数已经满了）。开始几天效率还好，把高数第四章看完了，每天都背着单词。但越到后来，我俩就越来越不想学，有时候学着学着就跑出去喝奶茶了，有时候自习室里就我们俩人，我们就在那聊天划水，总之也是没学多少东西。在2月底，和朋友们告别之后，我们各自开学了。</li>
+<li>3月-5月份：整个三月到五月，在学习方面大概就是上课，自习。但这个时候的自习时间也并不多，一天能抽出完整的一上午或一下午就不错了，其余时间还是在宿舍休息。这个时间段对我来说时间也并没有安排的很挤。不过当时的课还是蛮多的，特别是有些课上的非常痛苦。诸如算法课这种的，因为之前的C语言一塌糊涂，更别说写算法了。于是在这期间，我在b站自己找课程，将C语言从头到尾重新学了一遍，也是在这期间，看了很多up的视频，算是对计科专业以及以后的工作有了一个初步的认识。</li>
+<li>6月份：又是一个六级+期末两重天的考试月，实际上六级应该是从5月初就开始复习了，这段时间算是很忙了，几乎每天除了上课就是去自习。期间比较有成就感的是自己独立完成了大部分的计组课程设计。6月11日考完六级后，开始了苦逼期末复习。当时济南的天气非常热，大概每天最高温都38，39这样，每天必须起很早去占图书馆的位置，因为我们学校只有图书馆有空调。最后也是忙忙碌碌的过完复习周，考试周。6月25日，放假回家！</li>
+</ul>
+<p><img src="https://s1.vika.cn/space/2022/12/26/e59276543d7d4aa59a1ef2ed046c7430" style="zoom: 50%;" />	<img src="https://s1.vika.cn/space/2022/12/26/2b8f7ca64ee049eb92a68f454d533efa" style="zoom:6%;" /></p>
+<ul>
+<li>7月份：简单休息几天后又来到了熟悉的自习室，我开始思考在这个暑假我应该干些什么。无意中注意到了字节这边的青训营活动，还是本着试试自己喜好的想法，就报名参加了。而这一参加，便贯穿了我的整个暑假。之后就是笔试，入营，整个过程还是很简单的。在这期间也学习了Linux的一些相关知识，以及把数据结构重新学了一点。</li>
+</ul>
+<p><img src="https://s1.vika.cn/space/2022/12/26/1ce0def5b80b4124b42af045a93bfa63">	</p>
+<ul>
+<li>8月份：几乎整个8月都在为青训营忙碌。因为自己担心被分到很摆的小组，在发了几条求队信息都没人要我（大概是因为我真滴太菜了），于是就想着自己组一个。即使这样，最后也只有一个人跟我留了下来，其余人都是分配的。几乎每天都在看录播，因为课程内容真的很硬核，一般看完一节课精力已经全没了。到8月7号开始，我们组内就开始讨论做项目。但因为组内基础实在有限，练语言（Go）我们都是现学的，到最后也只是学习了一个别人的项目（tinysql），然后拿到答辩报告中去答辩。如果只从项目完成的进度来看结果的话，可以说成果几乎为0。但是对我来说，此次青训营还是颇有收获的，首先就是了解使用了一些计科专业几乎必须掌握的技能，诸如git，github，Linux中的vim，docker部署，这些以前感觉很复杂很高级的东西，在这次实践中也是彻彻底底的用到了。其次就是组内还有比我优秀的队友，他向我们分享了他的网站，也算是为我打开了个人blog的大门，于是在青训营结束后，我用了几天时间也搭建并装饰了一下自己的博客。组内还有一位研究生学长，在青训营结束后，我也向他问了很多考研的问题。当然最主要的收获还是可以和字节的一些大牛进行对话，这也是我一直想要坚持到最后的原因之一吧，即使我们的项目是学习的现有的项目， 但我们最终也撰写完了报告，完成了答辩。</li>
+</ul>
+<img src="https://s1.vika.cn/space/2022/12/26/0d2eb7cf7dda401099b8dae442d2794e" style="zoom:50%;" />	
+
+<ul>
+<li>9月份-11月份：我只想用两个字形容这个阶段的学习状态：死学。自开学之后，一天内几乎不存在大片的在宿舍玩的时间。在这期间中午的睡眠质量有时也相当差。每次学不进去我都会仔细思考当前学习方法的不足，然后进行下一步的调整。学习内容基本为：计网，操作系统贯穿始终，前期完成了C++面向对象的学习，数据结构学到了图的部分，后期因为要准备六级暂缓数据结构（没错我六级上次挂了）单词也是一直坚持在背，直到今天。值得一提的是，自己作为组长组起了两个课设的组队，分别是数据库软工的课设和操作系统的课设，当然在这些工作在12月才彻底完成。</li>
+</ul>
+<img src="https://s1.vika.cn/space/2022/12/26/d96263f4b5414995a2edb69263eb3fa3" style="zoom: 25%;" />	
+
+<ul>
+<li>12月份：冲刺六级，赶大作业。这段时间只能说，非常痛苦。隔几天就会因为校区出阳被封在宿舍，在宿舍连一个学习的桌子都就没有。与此同时，教室自习的人也越来越少，12月9号离开教室的时候，只剩两个人还在学习。那几天每天都在担心会不会明天又被封在宿舍，会不会六级出延期的消息（因为我就是想考六级才留校了，不然已经可以返乡了），所幸最后也是顺利的考完了试。回家后简单休息了一下就一直赶作业，数据库软工的课设几乎是自己一个人肝完了，然后接着是OS的课设，时序分析的大作业，专业英语的报告，一直到昨天，才算大概写完。</li>
+</ul>
+<p>这就是这一年中的学习篇，我自己是觉得还是ok的，完成了很多的第一次，明年2023年不出意外的话要准备考研了，我在之前就觉得，2023年将会是在以后的人生中都会印象深刻的一年，希望自己好好努力，绘制精彩的2023！</p>
+<h3 id="良师篇"><a href="#良师篇" class="headerlink" title="良师篇"></a>良师篇</h3><p>这一年真的遇到了好多好多的指路人，我真的很想把他们拿出来夸一夸。他们有的是老师，有的是up主，反正真的真的给我带来了很大帮助。</p>
+<ul>
+<li>湾区书记汤姆</li>
+</ul>
+<img src="https://s1.vika.cn/space/2022/12/26/2b6252c629994292a5521af9e8d97190" style="zoom: 67%;" />	
+
+<p>之前的名字应该是叫汤姆还在写代码，真的是一个神仙级up，我有很多关于计算机从0到1的知识都是看他的视频知道的，从C++校招学习路线入坑他的视频，这个视频我看过不下三次了，每学一段时间都会看一遍检验一下自己学到什么程度了。他的学习路线非常详细，里面也有具体的学习方法以及一些资源。不过不知道因为什么原因以及几个月没更新视频了，只有公众号还在发文章。</p>
+<ul>
+<li>中科大-郑烇老师</li>
+</ul>
+<img src="https://s1.vika.cn/space/2022/12/26/cd316646828346f4a46033c932b113e8" style="zoom:67%;" />	
+
+<p>是一位讲计网的老师，视频内容非常硬核，不是一昧的照本宣科，感觉老师对每一节的知识都有自己的理解，然后再讲给学生。老实说，视频长度很长，而且内容不偏向于应试，而且教材是国内的那本黑皮书，理应是不太适合我这个准备考研的人看的。但是老师讲的真的太好了，忍不住想听完全部。除此之外，郑老师直到现在都坚持在评论区答疑，只要你问他基本都会回答，真的是很棒的一位老师了。</p>
+<p>除此之外还遇到了好多好多人，就不一一列出来啦。</p>
+<h3 id="运动篇"><a href="#运动篇" class="headerlink" title="运动篇"></a>运动篇</h3><p>今年说起运动，也算是开辟新天地了。上半年没怎么动，最多就是在学校里晚上出去跑跑步，但后来因为知道自己是大体重便也不敢跑了。暑假期间去了两个月的健身房，减掉了15斤，开学之后也在济南当地的健身房练了一个月，之后大概是因为自己懒了加上学习任务增加了一些，就没再去。</p>
+<img src="https://s1.vika.cn/space/2022/12/26/95f97a748e1d4a3e92ea6b770e75af41" style="zoom: 10%;" />	
+
+<p>至于今年，还是很想去的。这两天因为没保护好自己，阳了，等到康复一段时间再考虑冲一冲。</p>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>这就是我的2022啦，还是蛮坎坷的。上学期间被封了很久很久，上半学期3-5月基本一直都是网课，6月才解封，但也到考试月了。下半学期是最绝望的，是我真正觉得疫情有在影响我的一个学期，有几天封宿舍不能自习，几乎每天一次核酸，到最后校区一天出很多阳，学校干脆不上报了。考六级前的两天复习的很差很差，在宿舍窝着不敢出去。但还好现在也已经过去啦，还是要向前看的。</p>
+<p>最后贴一张现在的图吧，希望自己可以经历一个精彩的2023！</p>
+<img src="https://s1.vika.cn/space/2022/12/26/f64bfe4b55d84fd787a06aad34b3ac7a" style="zoom:10%;" />	
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/13/%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B9%9F%E6%9E%81%E6%9C%89%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%80%E5%90%8E%E4%B8%80%E7%AF%87%E7%9A%842022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" data-id="clsk44q7k003d60f89yqo691e" data-title="第一篇也极有可能是最后一篇的2022年终总结" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" rel="tag">年终总结</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-OS——基本存储管理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/13/OS%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" class="article-date">
+  <time class="dt-published" datetime="2024-02-13T08:39:56.229Z" itemprop="datePublished">2024-02-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/02/13/OS%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/">OS——基本存储管理(1)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="基本存储管理"><a href="#基本存储管理" class="headerlink" title="基本存储管理"></a>基本存储管理</h2><p>终于也是跨过了处理机管理，来到内存管理的内容了。目前基本存储管理这一章还差分页、分段以及段页三种管理方式没有学，之所以在学之前来写这一篇文章，主要是觉得这一章的内容过于零碎了，不易成逻辑又很容易忘掉，所以写这一篇来串一下已学的内容，在复习的基础上为学接下来的做一些铺垫。</p>
+<h3 id="大致框架"><a href="#大致框架" class="headerlink" title="大致框架"></a>大致框架</h3><img src="https://s1.vika.cn/space/2022/10/22/464eb9737d6346eea282e077b62603b0" style="zoom:67%;" />	
+
+<p>在第一节基本就把存储管理的大致框架说明了，首先是一些基本概念，之后是存储管理的基本功能。基本功能几乎是整个第六章的内容，内存的分配与回收功能是最主要的，已经学的分区以及后面的分页，分段等等都是说这个的。接着是地址重定位，这在第一节已经说清楚了，之后是内存的共享和保护，这里课本上涉及不多，但是在看课时也略微学到一些。最后是内存的扩充，这一章主要介绍了覆盖和交换技术，至于虚拟内存技术要留在下一章讲了。</p>
+<p>那么，大概了解框架后，我们就正式开始。</p>
+<h3 id="存储系统基本概念"><a href="#存储系统基本概念" class="headerlink" title="存储系统基本概念"></a>存储系统基本概念</h3><h4 id="物理地址-逻辑地址"><a href="#物理地址-逻辑地址" class="headerlink" title="物理地址&amp;逻辑地址"></a>物理地址&amp;逻辑地址</h4><ul>
+<li>物理地址：就是数据在内存中实际存放的位置，是一个绝对地址。</li>
+<li>逻辑地址：程序员编的一个相对地址。</li>
+</ul>
+<p>举个例子：一段程序在内存中的存放位置是100-149，这是它的物理地址。那么程序员在编写时，可以将逻辑地址设为0-50。</p>
+<p>那么问题就来了，我们写的时候直接用物理地址写，然后再装入内存不就好了，为什么要再使用一个逻辑地址？原因是在<strong>多道程序环境中</strong>，程序员无法知道程序被装入内存的哪个区域执行。在单道程序环境下，是可以使用物理地址的。</p>
+<h4 id="程序修行学"><a href="#程序修行学" class="headerlink" title="程序修行学"></a>程序修行学</h4><p>这里用一张图说明一个程序从编写到装入内存需要经历的事，我们假设编辑的是一个C程序：</p>
+<p><img src="https://s1.vika.cn/space/2022/10/22/23929ad3cbc94742b074e744b8876fbb"></p>
+<ul>
+<li>经程序员编写后，形成最初的.c文件</li>
+<li>.c文件经过编译，将高级语言翻译为机器语言，形成目标模块.o文件<ul>
+<li>目标模块中的指令使用的地址是<strong>逻辑地址</strong></li>
+</ul>
+</li>
+<li>若干目标模块经过链接，形成装入模块.exe，在<strong>链接</strong>的过程中将目标模块中分散的逻辑地址合并为完整的逻辑地址</li>
+<li>最后装入模块经过地址重定位后转换为物理地址，最后装入内存</li>
+</ul>
+<p>在这个过程中我们需要研究的重点是：</p>
+<ul>
+<li>怎样完成逻辑地址到物理地址的转换——地址重定位</li>
+<li>怎么完成程序的装入</li>
+<li>几种链接方式</li>
+</ul>
+<h4 id="地址重定位"><a href="#地址重定位" class="headerlink" title="地址重定位"></a>地址重定位</h4><p>我们知道逻辑地址是一个相对地址，和其加载到内存中的物理地址是不对应的，所以程序想顺利执行就得把逻辑地址转换成物理地址，这个过程就称之为地址重定位。</p>
+<p>我们根据地址重定位的<strong>时机不同</strong>，分为静态地址重定位与动态地址重定位。</p>
+<h5 id="静态地址重定位"><a href="#静态地址重定位" class="headerlink" title="静态地址重定位"></a>静态地址重定位</h5><p>重定位时机：程序被装入内存的过程中，程序运行前</p>
+<p>物理地址 &#x3D; 装入内存的起始地址 + 逻辑地址</p>
+<p>图解：</p>
+<img src="https://s1.vika.cn/space/2022/10/22/0baa789e44a6484faa8b121af2abc146" style="zoom:50%;" />	
+
+<p>优点：不需要硬件支持（动态需要重定位寄存器）</p>
+<p>缺点：</p>
+<ul>
+<li>程序只能装入内存的一片<strong>连续区域</strong>上，不能离散装</li>
+<li>一旦装进去，就不能移动</li>
+</ul>
+<p>😶‍🌫️分割线——-</p>
+<h5 id="动态地址重定位"><a href="#动态地址重定位" class="headerlink" title="动态地址重定位"></a>动态地址重定位</h5><p>重定位时机：程序运行过程中。即程序在装入内存中<strong>先不地址转换</strong>，等到执行时，再转换。（也就是装入的是逻辑地址）	</p>
+<p>使用<strong>重定位寄存器</strong>存放装入模块存放的<strong>起始位置</strong></p>
+<p>物理地址 &#x3D; 重定位寄存器的值 + 逻辑地址</p>
+<p>优点</p>
+<ul>
+<li>支持程序执行过程在内存中移动，只需修改重定位寄存器的值（起始地址的值）</li>
+<li>支持程序在内存中离散存储，也是修改重定位寄存器的值</li>
+</ul>
+<p>缺点：需要硬件支持。</p>
+<p>现代OS基本采用的是动态地址重定位。</p>
+<h4 id="程序的装入方式"><a href="#程序的装入方式" class="headerlink" title="程序的装入方式"></a>程序的装入方式</h4><p>根据地址重定位的方式不同，其装入内存的方式也不同，我们分为3类，其和地址重定位的方式是一一对应的。</p>
+<h5 id="绝对装入"><a href="#绝对装入" class="headerlink" title="绝对装入"></a>绝对装入</h5><p>装入模块使用物理地址直接装进去，无需地址重定位。</p>
+<p>这是在<strong>单道程序设计</strong>阶段实现的，用户提前知道物理地址，因此无需转换。</p>
+<h5 id="静态重定位装入（可重定位装入）"><a href="#静态重定位装入（可重定位装入）" class="headerlink" title="静态重定位装入（可重定位装入）"></a>静态重定位装入（可重定位装入）</h5><p>即使用静态地址重定位的装入方法，不再赘述。</p>
+<h5 id="动态重定位（动态运行时装入）"><a href="#动态重定位（动态运行时装入）" class="headerlink" title="动态重定位（动态运行时装入）"></a>动态重定位（动态运行时装入）</h5><p>即使用动态地址重定位的装入方式，装入内存的是逻辑地址，直到运行时利用重定位寄存器转换为物理地址。</p>
+<h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><p>看完最核心的两步之后，我们折返回来看看链接。链接的目的形成完整的逻辑地址，我们根据<strong>链接的时机</strong>，也可以分为三种链接方式：</p>
+<ul>
+<li>静态链接：在程序运行前，将若干目标函数以及他们所需要的库函数链接为一个完整的可执行文件（装入模块），之后不再拆开。</li>
+<li>装入时动态链接：将目标模块装入内存时，<strong>边装入边链接</strong></li>
+<li>运行时动态链接：在程序执行过程中，<strong>需要该目标模块时</strong>，才对其链接。<ul>
+<li>有若干模块，需要谁链接谁</li>
+<li>便于修改和更新</li>
+<li>便于实现对目标模块的共享</li>
+</ul>
+</li>
+</ul>
+<h3 id="分区存储管理（内存的分配-回收）"><a href="#分区存储管理（内存的分配-回收）" class="headerlink" title="分区存储管理（内存的分配&amp;回收）"></a>分区存储管理（内存的分配&amp;回收）</h3><p>在上面的地址重定位是内存管理的基本功能之一，现在我们再来讲讲内存管理的另一个基本功能——内存的分配和回收。</p>
+<p>其按照分配的方式可分为连续分配存储管理和非连续分配存储管理。</p>
+<ul>
+<li>连续分配存储管理：为一个程序分配一个连续的空间，其中这一节要说的单一连续分配、固定分区分配、动态分区分配都是连续分配</li>
+<li>非连续分配存储管理：大概就是分配的空间是不连续的，这块的学习还在后面。</li>
+</ul>
+<p>在正式开始之前，我们先明确两个概念——内碎片和外碎片</p>
+<ul>
+<li>内碎片：某进程用不完其分到的分组<ul>
+<li>例：给一个10MB的进程分配了12MB的内存，就有2MB为内碎片</li>
+</ul>
+</li>
+<li>外碎片：内存中某些空闲分区因太小而难以利用<ul>
+<li>例：一个内存经分配后空闲分区先后为：1MB,1MB,2MB,1MB，此时如果来一个5MB的进程，是无法满足的。</li>
+</ul>
+</li>
+</ul>
+<p>在如下的讲解中我们都会分析这种方式是否有内碎片或外碎片。下面就来正式看一下这节要说的三种连续分配方式：</p>
+<h4 id="单一连续分配"><a href="#单一连续分配" class="headerlink" title="单一连续分配"></a>单一连续分配</h4><p>内存被分为<strong>系统区</strong>和<strong>用户区</strong>。</p>
+<ul>
+<li>系统区位于低地址：存放操作系统相关数据</li>
+<li>用户区：存放用户进程相关数据</li>
+</ul>
+<img src="https://s1.vika.cn/space/2022/10/22/346f67f7d0694076a433be295d9201bd" style="zoom:50%;" />	
+
+<p>单一连续分配即<strong>一个进程占一个用户区</strong>，显然这种情况只使用于单道程序环境下。</p>
+<p><strong>有内碎片</strong>：很显然啦，那么大一个用户区就一个进程，存储器利用很低</p>
+<p><strong>无外碎片</strong>：大概是因为全是内碎片？</p>
+<h4 id="固定分区分配"><a href="#固定分区分配" class="headerlink" title="固定分区分配"></a>固定分区分配</h4><p>可能是大佬们觉得单一分配太低效辣，然后多道程序环境一出，就想着一片内存给多个进程，咋办呢？于是就把用户区分区了，每个分区装一个程序，分区一旦划好，不能重分。而且分区大小和数量都是固定的，这也就是叫固定分区的原因了。</p>
+<p>划分方式：根据划定的分区大小是否相等，分为分区大小相等&amp;分区大小不等。</p>
+<h5 id="分区大小相等"><a href="#分区大小相等" class="headerlink" title="分区大小相等"></a>分区大小相等</h5><p>看图</p>
+<img src="https://s1.vika.cn/space/2022/10/22/be385b72ec624f9ea3620bb84a2d7889" style="zoom: 50%;" />	
+
+<p>这种方式就有点缺乏灵活性，比如来一个12MB的大程序，就没有它的容身之地，来一些很小的程序，一个程序占一个分区，就会<strong>产生大量内碎片</strong>。</p>
+<p>但不会产生外碎片，为什么？因为是固定分区，一个分区就一个进程，外碎片大概是要动态分区才会产生。</p>
+<p>虽然这种方式很呆，但不可否认的是，其<strong>适用于一台计算机控制多个相同对象的场合</strong>。</p>
+<h5 id="分区大小不等"><a href="#分区大小不等" class="headerlink" title="分区大小不等"></a>分区大小不等</h5><p>看图</p>
+<img src="https://s1.vika.cn/space/2022/10/22/c4dadd055424474db4fea4b361ef2c3c" style="zoom:50%;" />	
+
+<p>就一定程序上解决了分区大小相等的问题，系统可以根据程序的大小选择适合的分区，<strong>减少了内碎片的数量</strong>（但是也有）。而且较大的分区也有机会找到一个大分区运行。</p>
+<h5 id="分区说明表"><a href="#分区说明表" class="headerlink" title="分区说明表"></a>分区说明表</h5><p>既然一个用户区被划了好几块，就得用一个数据结构管管它——分区说明表。</p>
+<p>功能是来记录每个分区的大小，起始地址和状态等信息。</p>
+<h5 id="固定分区分配的优缺点"><a href="#固定分区分配的优缺点" class="headerlink" title="固定分区分配的优缺点"></a>固定分区分配的优缺点</h5><p>优点</p>
+<ul>
+<li>相对单一分配，无疑是增加了内存利用率</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>分区一开始就确定了，限制了系统并发进程数目。（就很像打仗时就带这么多兵，万一对方比预想的很强就直接gg）</li>
+<li>还是存在很多内碎片，浪费内存空间。</li>
+</ul>
+<h4 id="动态分区存储管理"><a href="#动态分区存储管理" class="headerlink" title="动态分区存储管理"></a>动态分区存储管理</h4><p>分区不是固定划分好的，而是根据进程实际需要动态划分（可以让分区大小正好适合进程需要），果然是大佬们看不下去静态分区有那么多内碎片了。</p>
+<h5 id="采用的数据结构"><a href="#采用的数据结构" class="headerlink" title="采用的数据结构"></a>采用的数据结构</h5><ul>
+<li>分区说明表：和静态的相同，描述内存中分区的情况。</li>
+<li>空闲分区表&#x2F;链：记录每个<strong>空闲分区</strong>的情况，包括起始地址，分区大小等。</li>
+</ul>
+<h5 id="分区的分配-回收"><a href="#分区的分配-回收" class="headerlink" title="分区的分配&amp;回收"></a>分区的分配&amp;回收</h5><p>分配</p>
+<ul>
+<li>来进程-&gt;按照一定算法查空闲分区-&gt;查到就塞进去-&gt;空闲分区被分为两部分：<strong>装入进程的部分以及一个新的空闲分区</strong>-&gt;修改数据结构</li>
+<li>没查到就分配失败</li>
+</ul>
+<p>回收：进程运行完时内存需回收分区，我们需要考虑<strong>回收分区是否与空闲分区相邻</strong></p>
+<ul>
+<li>不相邻：为该回收区建立一个空闲分区表&#x2F;链，添加其首地址与大小</li>
+<li>相邻：回收分区与相邻的空闲分区合并为一个大的空闲分区，并根据情况不同修改其<strong>大小与首地址</strong></li>
+</ul>
+<h5 id="动态分区分配算法"><a href="#动态分区分配算法" class="headerlink" title="动态分区分配算法"></a>动态分区分配算法</h5><ul>
+<li>首次适应算法<ul>
+<li>空闲分区以地址由低到高排列</li>
+<li>来一个进程就从头开始找，找到第一个就用，然后修改空闲分区表&#x2F;链</li>
+<li>缺点<ul>
+<li>低地址部分不断被划分，出现了很多难以利用的小分区</li>
+<li>每次都从低地址开始找，然后每次都会遍历一遍上一条出现的很小的分区，就会增加寻找的开销</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>循环首次适应算法<ul>
+<li>目的：为了解决首次适应算法每次查找可能会经过很多小分区的问题</li>
+<li>思路：从上次找到的空闲分区的下一个分区开始寻找</li>
+<li>设置一个<strong>起始检索指针</strong>，指向下一次开始检索的位置</li>
+</ul>
+</li>
+<li>最佳适应算法<ul>
+<li>空闲分区按<strong>分区大小递增</strong>的顺序排列，保证分配给进程的一定是<strong>最小且可以满足</strong>的。</li>
+<li>优点：避免大材小用，大的分组可以保留下来给大作业</li>
+<li>缺点：留下很多小的外碎片</li>
+</ul>
+</li>
+<li>最坏适应算法<ul>
+<li>思路：为了解决最佳适应算法留下很多难以利用的小碎片的问题，在每次分配时优先使用<strong>最大的空闲区</strong>，这样分配后剩余的空间就不会太小，方便后续使用。</li>
+<li>空闲分区按<strong>大小递减</strong>的顺序排列</li>
+<li>缺点：会导致大空间被很快的用完，之后再来大作业就没地方放了。</li>
+</ul>
+</li>
+</ul>
+<p>总体来看：（这一点是我想写的一点）</p>
+<p>我们最先设计了首次适应算法，这种算法的缺陷是每次都要从头查找，都需要检索一遍低地址的小分区。我们为了解决这个问题设计了循环首次适应算法，从上次分配的空闲分区的下一个分区开始查找。即循环首次适应不会查找已分配分区之前的分区。那如果来了一个更小的分区，这个分区恰好在之前的小分组可以满足，此时我们希望直接用上面的小分区，这时我们希望算法是首次适应算法。实际上，<strong>首次适应算法也隐含了一点最佳适应算法的优点。</strong></p>
+<p>而此时我们如果继续使用循环首次适应的算法，那么这个小分区就会占用下面的分区，可能会导致高地址部分的大分区被使用，导致如果来了一个大分组，导致其没有大分区可用，所以，<strong>循环首次适应算法也隐含了一点最大适应算法的缺点。</strong></p>
+<p>四种算法中，<strong>首次适应算法的效果反而更好</strong>。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/13/OS%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" data-id="clsk44q6u001360f8fxq14l27" data-title="OS——基本存储管理(1)" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OS/" rel="tag">OS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Go/">Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%AD%E7%BA%A7/">六级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%80%83%E7%A0%94/">考研</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%BD%91/">计网</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/">语言学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-MySql/" rel="tag">C++,MySql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/" rel="tag">Go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OS/" rel="tag">OS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R/" rel="tag">R</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo-butterfly/" rel="tag">hexo,butterfly</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%AD%E7%BA%A7/" rel="tag">六级</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" rel="tag">年终总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%80%83%E7%A0%94/" rel="tag">考研</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%BD%91/" rel="tag">计网</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 17.5px;">C++</a> <a href="/tags/C-MySql/" style="font-size: 10px;">C++,MySql</a> <a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/OS/" style="font-size: 17.5px;">OS</a> <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/hexo-butterfly/" style="font-size: 10px;">hexo,butterfly</a> <a href="/tags/%E5%85%AD%E7%BA%A7/" style="font-size: 10px;">六级</a> <a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" style="font-size: 10px;">年终总结</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 10px;">数学</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 20px;">数据结构</a> <a href="/tags/%E8%80%83%E7%A0%94/" style="font-size: 10px;">考研</a> <a href="/tags/%E8%AE%A1%E7%BD%91/" style="font-size: 12.5px;">计网</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/02/13/Hexo%20+%20Butterfly%20%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">Hexo + Butterfly 搭建博客</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/C++%E6%9F%A5%E7%BC%BA%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/">C++语法查缺学习(1)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E9%87%8D%E7%82%B9/">信息管理重点</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/">线性代数的本质</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%887%EF%BC%89%E6%A0%88%E7%9A%84%E5%BA%94%E7%94%A8%E2%80%94%E2%80%94%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/">数据结构（7）栈的应用——括号匹配问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

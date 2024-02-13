@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Go——基础（2） | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="更多类型：struct、slice和映射">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go——基础（2）">
+<meta property="og:url" content="http://example.com/2023/01/10/Go%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="更多类型：struct、slice和映射">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-01-10T12:10:00.000Z">
+<meta property="article:modified_time" content="2023-01-10T12:40:02.694Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Go">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Go基础（2）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/01/10/Go%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2023-01-10T12:10:00.000Z" itemprop="datePublished">2023-01-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Go/">Go</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Go——基础（2）
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="更多类型：struct、slice和映射"><a href="#更多类型：struct、slice和映射" class="headerlink" title="更多类型：struct、slice和映射"></a>更多类型：struct、slice和映射</h1><h2 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h2><ul>
+<li>指针保存了值的内存的地址</li>
+<li>*T是指向T的指针，零值为&#x3D;&#x3D;nil&#x3D;&#x3D;</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p *<span class="type">int</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x3D;&#x3D;&amp;操作符&#x3D;&#x3D;会生成一个指向其操作数的指针</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">i:=<span class="number">2</span></span><br><span class="line">p=&amp;i</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>&#x3D;&#x3D;*操作符&#x3D;&#x3D;表示指针指向的底层值</li>
+<li>与C不同，Go没有指针运算</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    i,j:=<span class="number">12</span>,<span class="number">31</span></span><br><span class="line">    p:=&amp;i<span class="comment">//p是指向i的指针</span></span><br><span class="line">    fmt.Println(*p)</span><br><span class="line">    *p=<span class="number">21</span><span class="comment">//通过指针改变i的值</span></span><br><span class="line">    </span><br><span class="line">    p=&amp;j<span class="comment">//p指向j,因为在前面p已经声明过了，所以不用:=</span></span><br><span class="line">    *p=*p/<span class="number">2</span><span class="comment">//通过指针对j进行除法运算</span></span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><p>一个结构体就是一组字段</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> jiegou <span class="keyword">struct</span>&#123;</span><br><span class="line">    X <span class="type">int</span> </span><br><span class="line">    Y <span class="type">int</span> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    fmt.Println(jiegou&#123;<span class="number">1</span>,<span class="number">2</span>&#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出结果为&#123;1,2&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="结构体字段"><a href="#结构体字段" class="headerlink" title="结构体字段"></a>结构体字段</h4><p>结构体字段使用<strong>点号</strong>来访问</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Vertex <span class="keyword">struct</span> &#123;</span><br><span class="line">    x <span class="type">int</span></span><br><span class="line">    y <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    v:=Vertex&#123;<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">    v.x=<span class="number">3</span></span><br><span class="line">    fmt.Println(v.x)</span><br><span class="line">&#125;<span class="comment">//输出：3</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="结构体指针"><a href="#结构体指针" class="headerlink" title="结构体指针"></a>结构体指针</h4><ul>
+<li>结构体字段可以用结构体指针来访问</li>
+<li>如果我们有一个指向结构体的指针p，通过（*p）.x就可以访问字段x，直接写成&#x3D;&#x3D;p.x&#x3D;&#x3D;也可以</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Vertex <span class="keyword">struct</span> &#123;</span><br><span class="line">    x <span class="type">int</span></span><br><span class="line">    y <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    v:=Vertex&#123;<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">    p:=&amp;v</span><br><span class="line">    p.x=<span class="number">3</span></span><br><span class="line">    fmt.Println(v)<span class="comment">//结果为（3，2）</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="结构体文法"><a href="#结构体文法" class="headerlink" title="结构体文法"></a>结构体文法</h4><p>结构体文法通过&#x3D;&#x3D;直接列出字段的值&#x3D;&#x3D;来新分配一个结构体</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Vertex <span class="keyword">struct</span> &#123;</span><br><span class="line">    x <span class="type">int</span></span><br><span class="line">    y <span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    v1=Vertex&#123;<span class="number">1</span>,<span class="number">2</span>&#125;</span><br><span class="line">    v2=Vertex&#123;x:<span class="number">1</span>&#125;<span class="comment">//默认y:0</span></span><br><span class="line">    v3=Vertex&#123;&#125;<span class="comment">//默认x:0,y:0</span></span><br><span class="line">    p=&amp;Vertex&#123;<span class="number">1</span>,<span class="number">2</span>&#125;<span class="comment">//p是指向&#123;1,2&#125;的结构体指针</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>[n]T表示n个T类型的数组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var a[10]int </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> main ()&#123;</span><br><span class="line">    <span class="keyword">var</span> a[<span class="number">2</span>]<span class="type">string</span></span><br><span class="line">    a[<span class="number">0</span>]=<span class="string">&quot;hello&quot;</span></span><br><span class="line">    a[<span class="number">1</span>]=<span class="string">&quot;world&quot;</span></span><br><span class="line">    </span><br><span class="line">    b:=[<span class="number">6</span>]<span class="type">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h2><ul>
+<li>每个数组的大小都是固定的，而切片为数组提供&#x3D;&#x3D;动态大小的、灵活的视角&#x3D;&#x3D;，在实践中，切片比数组更常用。</li>
+<li>类型[ ]T表示一个元素类型为T的切片</li>
+<li>切片通过两个下标来定，一个<strong>上界</strong>一个<strong>下界</strong>，二者用<strong>冒号</strong>分离  &#x3D;&#x3D;a[low : high]&#x3D;&#x3D;</li>
+<li>它会选择一个半开区间，<strong>包括第一个元素，但排除最后一个元素</strong></li>
+<li>例：包含下标从1到3的切片</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a[<span class="number">1</span>:<span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    b:=[<span class="number">6</span>]<span class="type">int</span> &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> s[]<span class="type">int</span> = b[<span class="number">1</span>:<span class="number">4</span>]<span class="comment">//切片s包含b1-b3</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="切片就像数组的引用"><a href="#切片就像数组的引用" class="headerlink" title="切片就像数组的引用"></a>切片就像数组的引用</h4><ul>
+<li>切片不存储数据，只是描述了<strong>底层数组的一段</strong></li>
+<li>更改切片的元素会修改其底层数组对应的元素</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    names:=[<span class="number">4</span>]<span class="type">string</span> &#123;</span><br><span class="line">        <span class="string">&quot;LiHua&quot;</span></span><br><span class="line">        <span class="string">&quot;Mike&quot;</span></span><br><span class="line">        <span class="string">&quot;Tom&quot;</span></span><br><span class="line">        <span class="string">&quot;ha&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    a:=names[<span class="number">0</span>:<span class="number">2</span>]</span><br><span class="line">    a[<span class="number">0</span>]=<span class="string">&quot;Jack&quot;</span></span><br><span class="line">    fmt.Pritln(names)<span class="comment">//names[0]就改为了jack</span></span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="切片文法"><a href="#切片文法" class="headerlink" title="切片文法"></a>切片文法</h4><ul>
+<li>切片文法类似于没有长度的数组文法</li>
+<li>数组文法</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">3</span>]<span class="type">bool</span>&#123;<span class="literal">true</span>,<span class="literal">false</span>,<span class="literal">true</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>切片文法</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[]<span class="type">bool</span>&#123;<span class="literal">true</span>,<span class="literal">false</span>,<span class="literal">true</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    q:=[]<span class="type">int</span> &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">5</span>&#125;</span><br><span class="line">    p:=[]<span class="type">bool</span>&#123;<span class="literal">true</span>,<span class="literal">false</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="切片的默认行为"><a href="#切片的默认行为" class="headerlink" title="切片的默认行为"></a>切片的默认行为</h4><ul>
+<li>在进行切片时，可以利用默认行为<strong>忽略上下界</strong>，切片的<strong>下界默认值为0，上界则是该切片的长度</strong></li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a[<span class="number">10</span>]<span class="type">int</span> </span><br><span class="line">a[<span class="number">0</span>:<span class="number">10</span>]</span><br><span class="line">a[:<span class="number">10</span>]</span><br><span class="line">a[<span class="number">0</span>:]</span><br><span class="line">a[:]是等价的</span><br></pre></td></tr></table></figure>
+
+<h4 id="切片的长度和容量"><a href="#切片的长度和容量" class="headerlink" title="切片的长度和容量"></a>切片的长度和容量</h4><ul>
+<li>切片的长度：包含的元素个数</li>
+<li>切片的容量：从第一个元素开始数，底层数组元素末尾的个数</li>
+<li>用len(s)获取长度，cap(s)获取容量</li>
+<li>可以通过<strong>重新</strong>切片扩展一个切片，给它提供足够容量</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    s:=[]<span class="type">int</span> &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;</span><br><span class="line">    </span><br><span class="line">    s=s[:<span class="number">0</span>]<span class="comment">//使其长度为0</span></span><br><span class="line">    s=s[<span class="number">0</span>:<span class="number">4</span>]<span class="comment">//重新切片扩展切片</span></span><br><span class="line">    s=s[<span class="number">2</span>:]<span class="comment">//舍弃前两个值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="nil切片"><a href="#nil切片" class="headerlink" title="nil切片"></a>nil切片</h4><ul>
+<li>切片的零值是<strong>nil</strong></li>
+<li>含义：切片的长度和容量都为0，且没有底层数组</li>
+</ul>
+<h4 id="用make创建切片"><a href="#用make创建切片" class="headerlink" title="用make创建切片"></a>用make创建切片</h4><ul>
+<li>切片可以用内建函数<strong>make</strong>创建，这也是创建<strong>动态数组</strong>的方式</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a:=<span class="built_in">make</span>([]<span class="type">int</span>,<span class="number">2</span>,<span class="number">2</span>)<span class="comment">//切片a的长度为2，容量为2</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    a:=<span class="built_in">make</span>([]<span class="type">int</span> <span class="number">5</span>)</span><br><span class="line">    printslice(<span class="string">&quot;a&quot;</span>,a)b</span><br><span class="line">    </span><br><span class="line">    b:=<span class="built_in">make</span>([]<span class="type">int</span>,<span class="number">0</span>,<span class="number">5</span>)</span><br><span class="line">    printslice(<span class="string">&quot;b&quot;</span>,b)</span><br><span class="line">    </span><br><span class="line">    c:=b[<span class="number">0</span>:<span class="number">2</span>]</span><br><span class="line">    printslice(<span class="string">&quot;c&quot;</span>,c)</span><br><span class="line">    </span><br><span class="line">    d:=c[<span class="number">2</span>:<span class="number">5</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="切片的切片"><a href="#切片的切片" class="headerlink" title="切片的切片"></a>切片的切片</h4><p>切片可以包含任何类型，包括切片</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    a:=[][]<span class="type">string</span>&#123;</span><br><span class="line">		[]<span class="type">string</span>&#123;<span class="string">&quot;_&quot;</span>, <span class="string">&quot;_&quot;</span>, <span class="string">&quot;_&quot;</span>&#125;,</span><br><span class="line">		[]<span class="type">string</span>&#123;<span class="string">&quot;_&quot;</span>, <span class="string">&quot;_&quot;</span>, <span class="string">&quot;_&quot;</span>&#125;,</span><br><span class="line">		[]<span class="type">string</span>&#123;<span class="string">&quot;_&quot;</span>, <span class="string">&quot;_&quot;</span>, <span class="string">&quot;_&quot;</span>&#125;,</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="向切片追加元素"><a href="#向切片追加元素" class="headerlink" title="向切片追加元素"></a>向切片追加元素</h4><p>使用内建函数append函数为切片追加新的元素</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> s[]<span class="type">int</span></span><br><span class="line">    </span><br><span class="line">    s=<span class="built_in">append</span>(s,<span class="number">0</span>)<span class="comment">//添加一个空切片</span></span><br><span class="line"></span><br><span class="line">    s=<span class="built_in">append</span>(s,<span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line">    s=<span class="built_in">append</span>(s,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)<span class="comment">//可以一次性添加多个元素</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Range"><a href="#Range" class="headerlink" title="Range"></a>Range</h4><p>for循环的range形式可以<strong>遍历切片或映射</strong></p>
+<p>当用for循环遍历切片时，每次迭代都会返回<strong>两个值</strong>，第一个为<strong>当前元素下标</strong>，第二个为<strong>该下标所对应元素的一份副本</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pow[]&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> i;v=<span class="keyword">range</span> pow&#123;</span><br><span class="line">        fmt.Println(<span class="string">&quot;%d,%d&quot;</span>,i,v)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以将下标或值赋予_来忽略它</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i, _ := <span class="keyword">range</span> pow<span class="comment">//只返回下标</span></span><br><span class="line"><span class="keyword">for</span> _, value := <span class="keyword">range</span> pow<span class="comment">//只返回值</span></span><br></pre></td></tr></table></figure>
+
+<p>如果只需要索引，忽略第二个变量即可</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i := <span class="keyword">range</span> pow</span><br></pre></td></tr></table></figure>
+
+<h2 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h2><ul>
+<li>映射将键映射到值</li>
+<li>映射的零值为nil，nil映射没有键，也不会添加键</li>
+<li>make函数会<strong>返回给定类型的映射</strong>，并将其初始化备用</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Vertex <span class="keyword">struct</span>&#123;</span><br><span class="line">	Lat,Long <span class="type">float64</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> m <span class="keyword">map</span>[<span class="type">string</span>] Vertex</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    m=<span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]Vertex)</span><br><span class="line">    m[<span class="string">&quot;Bell Labs&quot;</span>]=Vertex&#123;</span><br><span class="line">       	<span class="number">40.2</span>,<span class="number">-32</span> </span><br><span class="line">    &#125;</span><br><span class="line">    fmt.Println(m[<span class="string">&quot;Bell Labs&quot;</span>])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="映射的文法"><a href="#映射的文法" class="headerlink" title="映射的文法"></a>映射的文法</h4><ul>
+<li>映射的文法和结构体类似，但<strong>必须有键名</strong></li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> m <span class="keyword">map</span>[<span class="type">string</span>]Vertex&#123;</span><br><span class="line">    <span class="string">&quot;Bell Labs&quot;</span>:Vertex&#123;</span><br><span class="line">        <span class="number">2</span>,<span class="number">3</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="string">&quot;Google&quot;</span>:Vertex&#123;</span><br><span class="line">        <span class="number">2</span>,<span class="number">4</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>若顶级类型只是一个类型名，在文法元素中可以省略</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> m = <span class="keyword">map</span>[<span class="type">string</span>]Vertex&#123;</span><br><span class="line">	<span class="string">&quot;Bell Labs&quot;</span>: &#123;<span class="number">40.68433</span>, <span class="number">-74.39967</span>&#125;,</span><br><span class="line">	<span class="string">&quot;Google&quot;</span>:    &#123;<span class="number">37.42202</span>, <span class="number">-122.08408</span>&#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改映射"><a href="#修改映射" class="headerlink" title="修改映射"></a>修改映射</h4><ul>
+<li>在m中插入或修改元素</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m[key]=elem</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取元素</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">elem=m[key]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>删除元素</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">delete</span>(m,key)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>检测某个键是否存在：通过双赋值，若key在m中，ok为true，否则为false。若key不在m，则elem是该映射元素类型的零值</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">elem,ok=<span class="keyword">map</span>[key]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    m:=<span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]<span class="type">int</span>)</span><br><span class="line">    </span><br><span class="line">    m[<span class="string">&quot;answer&quot;</span>]=<span class="number">19</span></span><br><span class="line"> 	m[<span class="string">&quot;answer&quot;</span>]=<span class="number">121</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">delete</span>(m,<span class="string">&quot;answer&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    v,ok:=m[<span class="string">&quot;answer&quot;</span>]</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="函数值"><a href="#函数值" class="headerlink" title="函数值"></a>函数值</h2><ul>
+<li>函数也是值，可以像其他值一样<strong>传递</strong></li>
+<li>函数值可以作为函数的<strong>参数或返回值</strong></li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">compute</span> <span class="params">(fn <span class="keyword">func</span>(<span class="type">float64</span>,<span class="type">float64</span>)</span></span><span class="type">float64</span>)<span class="type">float64</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (fn(<span class="number">3</span>,<span class="number">4</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="函数的闭包"><a href="#函数的闭包" class="headerlink" title="函数的闭包"></a>函数的闭包</h4><ul>
+<li><p>闭包：能够读取<strong>其他函数内部变量</strong>的函数</p>
+</li>
+<li><p>Go函数可以是一个闭包。闭包是一个<strong>函数值</strong>，它引用了函数体之外的变量，该函数可以访问并赋予其引用变量的值，即该函数被这些变量绑定在一起。</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/01/10/Go%E5%9F%BA%E7%A1%80%EF%BC%882%EF%BC%89/" data-id="clsk44q6s000v60f84m4hgwzx" data-title="Go——基础（2）" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Go/" rel="tag">Go</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/01/10/Go%E2%80%94%E2%80%94%E6%96%B9%E6%B3%95%E5%92%8C%E6%8E%A5%E5%8F%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Go——方法和接口
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/01/10/Go%E5%9F%BA%E7%A1%80%EF%BC%881%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Go——基础（1）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Go/">Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%AD%E7%BA%A7/">六级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%80%83%E7%A0%94/">考研</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%BD%91/">计网</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/">语言学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-MySql/" rel="tag">C++,MySql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/" rel="tag">Go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OS/" rel="tag">OS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R/" rel="tag">R</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo-butterfly/" rel="tag">hexo,butterfly</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%AD%E7%BA%A7/" rel="tag">六级</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" rel="tag">年终总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%80%83%E7%A0%94/" rel="tag">考研</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%BD%91/" rel="tag">计网</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 17.5px;">C++</a> <a href="/tags/C-MySql/" style="font-size: 10px;">C++,MySql</a> <a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/OS/" style="font-size: 17.5px;">OS</a> <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/hexo-butterfly/" style="font-size: 10px;">hexo,butterfly</a> <a href="/tags/%E5%85%AD%E7%BA%A7/" style="font-size: 10px;">六级</a> <a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" style="font-size: 10px;">年终总结</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 10px;">数学</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 20px;">数据结构</a> <a href="/tags/%E8%80%83%E7%A0%94/" style="font-size: 10px;">考研</a> <a href="/tags/%E8%AE%A1%E7%BD%91/" style="font-size: 12.5px;">计网</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/02/13/Hexo%20+%20Butterfly%20%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">Hexo + Butterfly 搭建博客</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/C++%E6%9F%A5%E7%BC%BA%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/">C++语法查缺学习(1)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E9%87%8D%E7%82%B9/">信息管理重点</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/">线性代数的本质</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%887%EF%BC%89%E6%A0%88%E7%9A%84%E5%BA%94%E7%94%A8%E2%80%94%E2%80%94%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/">数据结构（7）栈的应用——括号匹配问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

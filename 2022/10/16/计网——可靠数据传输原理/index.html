@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>计网——可靠数据传输原理 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="计网——可靠数据传输原理最近也是用了几天时间读了一下top-down中运输层的可靠数据传输原理，之后看了一下科大的网课。其中的内容也是相当多，一节课的内容足足学了几天。在写这篇文章前，关于计网我从来没写过以书中知识为内容的博客，因为在之前的第一章总述以及应用层的学习中，计网都给我一种知识点很零碎的感觉，第一章相当于是把整本书的内容做了一个缩略的介绍，之后是应用层，应用层有很多协议，每个协议都有自己">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计网——可靠数据传输原理">
+<meta property="og:url" content="http://example.com/2022/10/16/%E8%AE%A1%E7%BD%91%E2%80%94%E2%80%94%E5%8F%AF%E9%9D%A0%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="计网——可靠数据传输原理最近也是用了几天时间读了一下top-down中运输层的可靠数据传输原理，之后看了一下科大的网课。其中的内容也是相当多，一节课的内容足足学了几天。在写这篇文章前，关于计网我从来没写过以书中知识为内容的博客，因为在之前的第一章总述以及应用层的学习中，计网都给我一种知识点很零碎的感觉，第一章相当于是把整本书的内容做了一个缩略的介绍，之后是应用层，应用层有很多协议，每个协议都有自己">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/15/e5d8b79855d144caa9044edfe55b32b9">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/15/1613f2185a4943e7ab07e0490ec754a1">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/15/00e828d947334842b8277530e99588af">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/15/ed9d2705b3a840b0b61b00b6250449bb">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/15/38b8c4eb7a7c45659687cf5bb2f9e54e">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/15/514a053b8a2e45dd92ab53e0c5bc5573">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/15/b47441a8ae554b69b0ec527728bd7239">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/15/ecc87f391bb54355addb55851067e7ad">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/15/ab37229874574294ad26ec23d4dd5038">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/15/2e54be60f01345bdb1c895b37b337068">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/15/931e263595c04bf8bd17114c54841de6">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/15/354e100497df43c1a945a3f48d172bb6">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/16/a0e28df51cc242a19ba8b290d5c1c67a">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/16/ed51aec18d334e41bdafd9d6aa74a5bb">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/15/d771a367504a4b5c9fee492547a64dfa">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/15/4236ea5a8eca4879a0f995161fc1f65e">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/15/7e45bf1318d0482b9e3e8a9411e1034d">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/15/95d121e55aa94829bf96fa66e2924135">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/15/88a019622a95462ea352bad21c576afb">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/16/5b5e557ba7f04c9d8648a64da3f2de65">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/16/b701d68e881442daa686cb81064090b4">
+<meta property="article:published_time" content="2022-10-16T02:10:00.000Z">
+<meta property="article:modified_time" content="2022-10-19T13:16:50.044Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="计网">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.vika.cn/space/2022/10/15/e5d8b79855d144caa9044edfe55b32b9">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-计网——可靠数据传输原理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/10/16/%E8%AE%A1%E7%BD%91%E2%80%94%E2%80%94%E5%8F%AF%E9%9D%A0%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E5%8E%9F%E7%90%86/" class="article-date">
+  <time class="dt-published" datetime="2022-10-16T02:10:00.000Z" itemprop="datePublished">2022-10-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%BD%91/">计网</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      计网——可靠数据传输原理
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="计网——可靠数据传输原理"><a href="#计网——可靠数据传输原理" class="headerlink" title="计网——可靠数据传输原理"></a>计网——可靠数据传输原理</h2><p>最近也是用了几天时间读了一下top-down中运输层的可靠数据传输原理，之后看了一下科大的网课。其中的内容也是相当多，一节课的内容足足学了几天。在写这篇文章前，关于计网我从来没写过以书中知识为内容的博客，因为在之前的第一章总述以及应用层的学习中，计网都给我一种知识点很零碎的感觉，第一章相当于是把整本书的内容做了一个缩略的介绍，之后是应用层，应用层有很多协议，每个协议都有自己的知识点，所以没办法一条线把它们串起来。</p>
+<p>但学到运输层给我的感觉就不一样了，先学了运输层的一个职责（把网络层主机到主机间的通信转换为不同主机上进程与进程之间的通信），接着又学习了多路复用和分解的技术，这是实现运输层职责的关键。至此，我们可以用多路复用和解复用技术完成运输层的一个基本职责。但是我们知道，网络层的IP协议向上层交付的数据是<strong>尽力而为的交付</strong>，也就是不可靠的服务，那么在应用层能否把不可靠的服务转变为可靠的服务呢？在学习这一章之前，我们在早期的学习中了解到这是TCP协议可以实现的功能，在学习TCP如何实现这些功能前，我们先来看如何来传输可靠的数据，即——可靠数据传输原理。</p>
+<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>在正式开始学习前，我们要写了解这个问题。我们知道，计算机网络的每一层都是接受下层的服务然后实现功能为上层提供服务。我们假设提供可靠数据传输(rdt)的是运输层（实际上rdt的实现也会在链路层以及应用层），图示说明了我们学习可靠数据传输的框架：为上层提供服务的抽象是：数据可以通过一条<strong>可靠的信道</strong>传输，借助与可靠信道，数据就不会损坏或丢失，且按顺序交付。</p>
+<img src="https://s1.vika.cn/space/2022/10/15/e5d8b79855d144caa9044edfe55b32b9" style="zoom:67%;" />	
+
+<p>但刚刚提到过，网络层IP协议提供的是不可靠的服务，所以在运输层中，我们需要实现一些协议，来把不可靠的数据传输变为可靠的数据传输，这个协议就是**可靠数据传输协议(rdt)**。我们还是以应用层，运输层，网络层为例：</p>
+<img src="https://s1.vika.cn/space/2022/10/15/1613f2185a4943e7ab07e0490ec754a1" style="zoom: 67%;" />				
+
+<ul>
+<li>调用<strong>rdt_send()<strong>函数，上层可以</strong>调用rdt发送方</strong>，把要传输的数据交付给它</li>
+<li>rdt的发送方和接收方都需调用**udt_send()**发送分组给对方（udt为不可靠数据传输）</li>
+<li>当分组通过信道到达接收方时，调用<strong>rdt_rcv()</strong></li>
+<li>通过**deliver_data()**，rdt向上层交付数据</li>
+</ul>
+<h3 id="研究方法"><a href="#研究方法" class="headerlink" title="研究方法"></a>研究方法</h3><p>我们知道，一个可靠的数据传输协议可以使数据不受损，不丢失，不乱序。现在我们将一步步的研究rdt协议，先从最简单的情况考虑起，一步步构造一个完美、可靠的数据传输协议。在正式开始之前，我们要先知道：<strong>底层的可靠性决定了rdt协议实体的复杂度</strong>。什么意思呢？还是拿IP协议举例，如果IP自己就可以实现可靠的数据传输，那我运输层只需要做一个多路复用就可以了，此时的rdt协议便非常简单。所以我们先假设IP协议是一个完美无缺的可靠性数据传输协议，再一层层放开这个假设，最终使IP协议变为一个不可靠的（即现在的IP协议的样子），在此过程中，我们的rdt协议也将一点点复杂起来。此外，我们使用**有限状态机（FSM)**来描述发送方和接收方的状态。</p>
+<p><img src="https://s1.vika.cn/space/2022/10/15/00e828d947334842b8277530e99588af">	</p>
+<h3 id="rdt1-0（经完全可靠信道的可靠数据传输）"><a href="#rdt1-0（经完全可靠信道的可靠数据传输）" class="headerlink" title="rdt1.0（经完全可靠信道的可靠数据传输）"></a>rdt1.0（经完全可靠信道的可靠数据传输）</h3><p>首先我们考虑最简单的情况，即底层信道是完全可靠的，没有比特出错，也没有分组丢失。那么此时发送方和接收方的FSM为：</p>
+<ul>
+<li>发送方从上层拿到要方式的数据，将数据发送至下层信道</li>
+<li>接收方从下层信道接收数据，将数据deliver到上层</li>
+</ul>
+<img src="https://s1.vika.cn/space/2022/10/15/ed9d2705b3a840b0b61b00b6250449bb" style="zoom:67%;" />	
+
+<h3 id="rdt2-0（经有比特差错信道的可靠数据传输）"><a href="#rdt2-0（经有比特差错信道的可靠数据传输）" class="headerlink" title="rdt2.0（经有比特差错信道的可靠数据传输）"></a>rdt2.0（经有比特差错信道的可靠数据传输）</h3><p>在rdt1.0中，我们假设底层信道是完全可靠的，现在我们放开一点这个条件，我们假设<strong>经底层信道传输的数据可能会出现比特差错</strong>，其余不可靠的情况不会出现。那么此时，rdt协议应如何设计呢？我们不妨来设想一个场景中的三种情况：</p>
+<ul>
+<li><p>在课堂中，老师在课堂上提问你，这道题的答案是什么，在通常情况下，你回答了老师，老师会对你说“OK”，但如果你在回答的时候没有说清楚，老师可能会让你“重复一下你的回答”，人们是这样的，协议亦是如此。在接收方收到正确的分组时，它会告诉发送方一个<strong>肯定确认</strong>（ACK），相反就告诉发送方一个<strong>否定确认</strong>（NAK）。</p>
+</li>
+<li><p>现在再次回到我们的课堂场景，在老师向你提出“请重复一遍你的回答”后，你会再向老师说一遍这个答案。在协议中，如果接收方给发送方一个否定回答，那么发送方将会<strong>重传该分组</strong>，基于这样重传机制的可靠数据传输协议称为<strong>自动重传请求协议（ARQ）</strong>。</p>
+</li>
+<li><p>最后再来思考一个问题，老师可以辨别你答案是否清楚明确是因为老师有自己的判断机制，当你没说清楚时老师可以直接听出来。那么放在协议中，接收方怎么知道发送方传的分组是错的呢？还记得在学习UDP的时候，UDP<strong>校验和</strong>提供了差错检测功能，在rdt协议中，我们同样可以使用校验和来进行差错检测。</p>
+</li>
+</ul>
+<p>至此，针对经有比特差错信道的可靠数据传输，rdt也通过了上述三种功能来解决它，即<strong>差错检验、接收方反馈以及重传</strong>。以下为rdt2.0中发送方与接收方的FSM，我们分别来盘一下：</p>
+<img src="https://s1.vika.cn/space/2022/10/15/38b8c4eb7a7c45659687cf5bb2f9e54e" style="zoom:67%;" />	
+
+<ul>
+<li>对于发送方：接收上层的数据后，封装好并设置好<strong>校验和</strong>，发送给接收方后，自身变为<strong>等待ACK或NAK的状态</strong>，若收到接收方的NAK，则重发分组；若收到接收方的ACK，发送方转变为等待上层调用的状态。<ul>
+<li>需要注意的是，发送方在<strong>等待ACK或NAK状态</strong>时不能从上层获得更多的数据，即不会出现rdt_send()事件，发送方也<strong>不会发生新的数据</strong>，仅当接收到ACK离开此状态才会继续发送新的数据。这样的协议被称为<strong>停等协议</strong>。</li>
+</ul>
+</li>
+<li>对于接收方，接收分组后<ul>
+<li>如果corrupt（腐败），代表没有通过校验，即发生了比特差错，则发送NAK给发送方。</li>
+<li>如果notcorrupt（未腐败），代表通过校验和，则发送ACK给发送方。</li>
+</ul>
+</li>
+</ul>
+<h3 id="rdt2-1（解决rdt2-0的致命缺陷）"><a href="#rdt2-1（解决rdt2-0的致命缺陷）" class="headerlink" title="rdt2.1（解决rdt2.0的致命缺陷）"></a>rdt2.1（解决rdt2.0的致命缺陷）</h3><p>在刚刚的rdt2.0的假设中，我们只考虑到了分组在传输信道中受损的情况，如果接收方给ACK，发送方就传下一个分组，如果接收方给NAK，发送方就重传当前分组，但我们没有考虑到<strong>ACK或NAK分组受损的可能性</strong>。即如果接收方给发送方的ACK或NAK受损后变成了“乌拉乌拉”，那么2.0的发送方将直接懵比，所以为了解决这个问题，我们让<strong>发送方对其数据分组进行编号</strong>。而编号也并非需要很多序号，只需要0,1两个即可，分别表示前一个分组以及一个新分组两种状态。以下为rdt2.1中发送方和接收方的FSM，一眼看上去好像很复杂，我们一点点来看：</p>
+<p><strong>发送方</strong></p>
+<img src="https://s1.vika.cn/space/2022/10/15/514a053b8a2e45dd92ab53e0c5bc5573" style="zoom: 80%;" />	
+
+<p>大概可以看出发送方的状态数变成了2倍，因为要区分0和1</p>
+<ul>
+<li>上层通过rdt_send()调用后，打包分组，设置好校验和发送，这和rdt之前的版本无任何区别</li>
+<li>发送分组0后，发送方转换为<strong>等待ACK或NAK0状态</strong><ul>
+<li>若接收方给出ACK，则转换为等待上层的调用1状态</li>
+<li>若接收方给出<strong>NAK0</strong>或<strong>接收方给出的确定受损</strong>，给出“乌拉乌拉”，则<strong>重发0号分组</strong>，直到收到ACK</li>
+</ul>
+</li>
+<li>发送1号分组以及等待ACK或NAK1两个状态和上面相同，不再说明。</li>
+</ul>
+<p><strong>接收方</strong></p>
+<img src="https://s1.vika.cn/space/2022/10/15/b47441a8ae554b69b0ec527728bd7239" style="zoom:80%;" />	
+
+<p>通过大体的浏览这个图我们大概可以看出来接收方一个状态是有三个动作的，我们一个个来看，还是拿<strong>收到分组0</strong>来看，分组1原理相同</p>
+<ul>
+<li>收到分组0，但corrupt（校验出错），发送NAK给发送方</li>
+<li>收到分组0，校验没出错，发送ACK给发送方，自己转换到<strong>等1的状态</strong></li>
+<li>在<strong>等0的时候收到了1</strong>（左二行），则发送ACK给发送方，因为只有这样发送方才能发1</li>
+</ul>
+<p>其中第三点需要注意一下，在等0的时候收到了1，就意味着接收方自己在<strong>上一次的分组确认受损了</strong>，导致发送方收到了乌拉呜啊，就重新把上一个分组发送了一遍，此时<strong>接收方要给出ACK确认该分组</strong>，<strong>使发送方发送下一个分组</strong></p>
+<p>为了方便理解，贴一张实际运行中可能出现的情景：</p>
+<img src="https://s1.vika.cn/space/2022/10/15/ecc87f391bb54355addb55851067e7ad" style="zoom: 50%;" />	
+
+<h3 id="rdt2-2（无NAK"><a href="#rdt2-2（无NAK" class="headerlink" title="rdt2.2（无NAK)"></a>rdt2.2（无NAK)</h3><p>rdt2.2在功能上和2.1无任何区别，只是<strong>把否定确认NAK变为对前一个分组的ACK</strong>，即如果收到1，校验失败，按照rdt2.1应发送NAK给发送方，在rdt2.2则直接发送ACK0即可，这样就可以实现一个无NAK的可靠数据传输协议。</p>
+<p>这里还是带入一个生活中的例子，是中科大的郑老师在课堂上讲的，觉得很有意思，这里也分享出来。假设一个女生问你：我温柔吗？你觉得她很温柔，于是回答她：你很温柔。接着她问你：我漂亮吗？你觉得她在你心中不漂亮，于是你回答她：你很温柔。这就是rdt2.2，<strong>对本次分组的否定用对上一个分组的肯定来代替</strong>。如果按rdt2.1的逻辑来，你应该直接回她：你不漂亮。</p>
+<p>所以rdt2.2发送方和接收方的FSM和2.1的区别就在于，<strong>等待ACK或NAK的状态</strong>变为<strong>等待ACK0</strong>（等0的情况）。</p>
+<h3 id="rdt3-0（经有比特差错的丢包信道的可靠数据传输）"><a href="#rdt3-0（经有比特差错的丢包信道的可靠数据传输）" class="headerlink" title="rdt3.0（经有比特差错的丢包信道的可靠数据传输）"></a>rdt3.0（经有比特差错的丢包信道的可靠数据传输）</h3><p>在前面的讨论中我们主要针对比特差错进行了学习，但在数据传输时，除了数据可能会出差错外，丢包也是经常会出现的问题（丢包包括丢数据或丢确认信息），那么针对丢包，我们又该如何解决呢？解决步骤大概分为两步，第一步就是<strong>如何检验丢包</strong>，第二步就是<strong>检查出丢包后我们该做些什么</strong>。</p>
+<p>我们令发送方负责检查和恢复丢包工作，采取的方法是让发送方选择一个<strong>时间值</strong>，如果在这个时间内没有收到确认信息，就判定发生了丢包。之后将<strong>重新传该分组</strong>。（一个分组如果经历了很长的时延，发送方可能会重新发送）</p>
+<p>既然设置了一个时间值，我们就需要一个<strong>倒计数定时器</strong>来计时，如果timeout，则判定丢包，重发分组。所以发送方应做到：</p>
+<ul>
+<li>每发送一个分组，启动一个倒计数 定时器</li>
+<li>响应定时器中断</li>
+<li>终止定时器</li>
+</ul>
+<p><strong>rdt3.0发送方的FSM：</strong>在分析是还是拿发送0来举例</p>
+<img src="https://s1.vika.cn/space/2022/10/15/ab37229874574294ad26ec23d4dd5038" style="zoom: 80%;" />	
+
+<ul>
+<li>收到上层调用后，打包分组，设置好校验和，<strong>启动计时器</strong>，发送后进入<strong>等待ACK0状态</strong></li>
+<li>若接收方给出ACK1或乌拉乌拉，重发0，这是rdt2.2的内容</li>
+<li>若接收方校验成功，给出ACK给发送方，则发送方<strong>停止这个分组的计时器</strong></li>
+<li>若在<strong>等待ACK0状态</strong>中一直没有收到确认信息，等待<strong>超时后</strong>，重传该分组。</li>
+</ul>
+<p>以上就是发送方的动作，接收方的动作和rdt2.2相同，因为解决丢包这事全是发送方干的。为了便于理解，这里还是贴一张实时运行中可能出现的情况，因为无丢包出现的时候流程和rdt2.2相同，所以这里只画出 出现丢包操作时的流程</p>
+<img src="https://s1.vika.cn/space/2022/10/15/2e54be60f01345bdb1c895b37b337068" style="zoom:50%;" />	
+
+<h3 id="流水线可靠数据传输协议"><a href="#流水线可靠数据传输协议" class="headerlink" title="流水线可靠数据传输协议"></a>流水线可靠数据传输协议</h3><p>rdt3.0，在功能上已经是一个完备的协议，但它的性能并不高，原因就在于它是一个<strong>停等协议</strong>，发送一个分组时单独占用一个信道，后一个分组必须等前一个分组传完之后才能传，也就是说<strong>发送方一次只能发送一个数据</strong>，它的信道利用率是极低的，就像这样：</p>
+<img src="https://s1.vika.cn/space/2022/10/15/931e263595c04bf8bd17114c54841de6" style="zoom: 67%;" />	
+
+<p>我们解决这个问题的一个方法就是不以停等的方式运行，允许<strong>发送方发送多个分组无需等待</strong>，即：</p>
+<img src="https://s1.vika.cn/space/2022/10/15/354e100497df43c1a945a3f48d172bb6" style="zoom: 67%;" />	
+
+<p>发送方一次发送多个分组的方式称为**流水线（pipeline）技术 **，对于流水线技术，我们应该注意：</p>
+<ul>
+<li><strong>增加序号范围</strong>，每个在传输中的分组必须有唯一序号，可见之前的0和1已经不能满足流水线的需求。</li>
+<li>发送方和接收方需要<strong>缓存多个分组。</strong></li>
+<li><strong>所需序号范围</strong>和<strong>对缓冲的要求</strong>取决于数据传输协议如何处理丢失、损坏以及延时大的分组。</li>
+</ul>
+<p>其中第三点是摘抄的top-down原话，要很好的解释它，我们必须先引出<strong>滑动窗口</strong>的内容。</p>
+<h3 id="滑动窗口（Slide-Window）协议"><a href="#滑动窗口（Slide-Window）协议" class="headerlink" title="滑动窗口（Slide Window）协议"></a>滑动窗口（Slide Window）协议</h3><p>在了解什么是滑动窗口之前，我们先回忆一下之前的内容。rdt协议中，发送方一次发送一个分组，接收方一次接收一个分组。但是人们不满足rdt协议的性能，于是提出流水线技术，使发送方一次发送多个分组，所以发送方需要缓存多个分组，按照缓存区内分组的不同类型，我们大概可以分为以下几种：①已发送且被确认的分组 ②已发送但未被确认的分组 ③待发送的分组</p>
+<p>我们把<strong>已发送但未确认</strong>的分组和<strong>待发送</strong>的分组的区域称为<strong>发送缓冲区</strong>，图中N即为缓冲区的大小</p>
+<p>把<strong>已发送但未确认</strong>的分组构成的空间称为<strong>发送窗口</strong>。可以发现，发送窗口是发送缓冲区的一部分。</p>
+<ul>
+<li>发送窗口的后沿等于发送缓冲区的后沿</li>
+<li>发送窗口的前沿不超过发送缓冲区的前沿</li>
+<li><strong>之后讨论的移动是指发送窗口在移动，发送窗口在0-N之间变化</strong></li>
+</ul>
+<img src="https://s1.vika.cn/space/2022/10/16/a0e28df51cc242a19ba8b290d5c1c67a" style="zoom:80%;" />	
+
+<p>关于以上的内容在第一次写这篇文章时一直没想明白，就去科大底下提问了，郑老师也很好的解答了我的疑惑：</p>
+<img src="https://s1.vika.cn/space/2022/10/16/ed51aec18d334e41bdafd9d6aa74a5bb" style="zoom: 67%;" />	
+
+<p>我们知道，rdt一次只能发送一个分组，所以sw &#x3D; 1（send window我们简称为sw，接收窗口简称为rw），而流水线技术中，一次可以发送多个分组 ，所以sw &gt; 1。而事实上，不仅是sw可以&gt;1，接收窗口rw也可以&gt;1，即一次接收确认多个分组。下面用一张表格来表示其中的关系：</p>
+<table>
+<thead>
+<tr>
+<th>sw</th>
+<th>rw</th>
+<th>协议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sw &#x3D; 1</td>
+<td>rw &#x3D; 1</td>
+<td>rdt协议</td>
+</tr>
+<tr>
+<td>sw &gt; 1</td>
+<td>rw &#x3D; 1</td>
+<td>GBN协议</td>
+</tr>
+<tr>
+<td>sw &gt; 1</td>
+<td>rw &gt; 1</td>
+<td>SR协议</td>
+</tr>
+</tbody></table>
+<p>至此，我们再次回到那就摘抄的话：<strong>所需序号范围</strong>和<strong>对缓冲的要求</strong>取决于数据传输协议如何处理丢失、损坏以及延时大的分组。这句话的后半句是：解决流水线的差错恢复有两种基本的方法：回退N步（GBN）和选择重传（SR）。下面我们就分别来看一下这两个协议。</p>
+<h3 id="回退N步（GBN）协议"><a href="#回退N步（GBN）协议" class="headerlink" title="回退N步（GBN）协议"></a>回退N步（GBN）协议</h3><p>首先我们来考虑，在正常情况下GBN协议中发送方和接收方两窗口的互动。对于发送窗口，可以参考上面的图。</p>
+<img src="https://s1.vika.cn/space/2022/10/15/d771a367504a4b5c9fee492547a64dfa" style="zoom: 80%;" />	
+
+<img src="https://s1.vika.cn/space/2022/10/15/4236ea5a8eca4879a0f995161fc1f65e" style="zoom:67%;" />	
+
+<p>其中有以下几点需要注意：</p>
+<ul>
+<li>因为rw &#x3D; 1，GBN协议一次只能<strong>确定接收1个分组</strong><ul>
+<li>所以GBN协议<strong>只能顺序接收</strong>，只有当收到最低序号的分组（代表顺序正确），才发送ACK给发送方</li>
+</ul>
+</li>
+</ul>
+<p>😴分割线—————————————————————————————————–</p>
+<p>那么以上就是正常情况下GBN协议两窗口的互动，在开始讨论异常情况前，我们要先清楚，对于GBN，什么是异常情况？答案即为<strong>乱序</strong>以及<strong>丢失</strong>。在上面说到，GBN只能顺序接收，所以先收到乱序的分组，我们要有解决方法。而丢失就更不用说了。下面给出异常情况下GBN协议两窗口的互动情况：</p>
+<img src="https://s1.vika.cn/space/2022/10/15/7e45bf1318d0482b9e3e8a9411e1034d" style="zoom: 80%;" />	
+
+<ul>
+<li>收到乱序分组时，因为没有落入接收窗口的范围内，接收方只能丢弃。</li>
+<li>重复发老分组的ACK给发送方后，发送方发<strong>后沿不移动</strong>，所以从上层新来的分组不能进入发送缓冲区。</li>
+<li>GBN<strong>只有一个计时器</strong>，这点是和rdt不同的，定时器的工作机制为<ul>
+<li>如果收到一个ACK，此时<strong>还有已发送但未确认的分组</strong>，则<strong>定时器重新启动</strong>。	</li>
+<li>如果收到一个ACK后，<strong>没有已发送但未确认的分组了</strong>，则<strong>停止该计时器</strong>。</li>
+</ul>
+</li>
+<li>当触发超时重传后，发送方将重传所有<strong>已发送但未被确认的分组</strong>，这就是所谓的回退N步。</li>
+</ul>
+<p>这样的工作机制保证了该定时器可以当做<strong>最早发送但未被确认的分组的定时器</strong></p>
+<p>关于GBN异常情况我们这里举一个栗子🌰：</p>
+<p>发送方发送0,1,2,3,4,5给接收方，我们假设分组2会丢失，由于接收方只能顺序接收，所以流程为：</p>
+<ul>
+<li>收到0，回复ACK0，后沿向右移动</li>
+<li>收到1，回复ACK1，后沿向右移动</li>
+<li>未收到2,2在中途丢失</li>
+<li>收到3，因为2没到来，所以接收方只能<strong>丢弃3并继续回复ACK1</strong>，此时发送发收到ACK且<strong>仍有已发送但未确定的分组</strong>（2），于是定时器启动。此时后沿不动</li>
+<li>收到4，回复ACK1</li>
+<li>收到5，回复ACK1</li>
+<li>某一时刻，<strong>定时器timeout</strong>，发送方重新发送2,3,4,5</li>
+</ul>
+<p>​	<img src="https://s1.vika.cn/space/2022/10/15/95d121e55aa94829bf96fa66e2924135" style="zoom:67%;" />	</p>
+<p>最后我们再来通过GBN协议中发送方和接收方的FSM来梳理一下GBN协议</p>
+<p><strong>发送方</strong></p>
+<img src="https://s1.vika.cn/space/2022/10/15/88a019622a95462ea352bad21c576afb" style="zoom:67%;" />	
+
+<ul>
+<li>发送窗口初始值为0（nextseqnum - base）</li>
+<li>收到上层rdt_send()调用后，判断是否在可发送范围内<ul>
+<li>在可发送范围内：发送，并启动定时器，前沿向右滑动</li>
+<li>在可发送范围外：没法发送（发送缓冲区用完）</li>
+</ul>
+</li>
+<li>timeout超时：重新启动定时器，重传所有已发送但未确认的分组</li>
+<li>收到确认：后沿向右滑动</li>
+</ul>
+<h3 id="选择重传（SR）协议"><a href="#选择重传（SR）协议" class="headerlink" title="选择重传（SR）协议"></a>选择重传（SR）协议</h3><p>SR协议和GBN协议相同，都使用了流水线技术，使sw&gt;1，SR和GBN的不同点在于，SR协议的RW&gt;1，即SR协议可以接收确定多个分组。和发送窗口一样，SR协议也有接收窗口。</p>
+<p>在正常情况下，SR协议的两窗口互动和GBN协议的相同，在之前我们也提到过，这两种的不同点在于处理异常情况的方式不同。因为SR的rw&gt;1，可以确认接收多个分组，也就是说，<strong>如果收到乱序分组，不必抛弃，可以把它缓存起来</strong>。下面给出异常情况下SR协议两窗口互动：</p>
+<img src="https://s1.vika.cn/space/2022/10/16/5b5e557ba7f04c9d8648a64da3f2de65" style="zoom:80%;" />	
+
+<p>除了接收窗口和GBN不同之外，SR协议为<strong>每个发送的分组都设置了一个定时器</strong>，不同于GBN协议只有一个定时器。这样在触发超时重传时，只需发送超时的那个分组即可。</p>
+<p>这里拿GBN协议中举的栗子🌰继续看一下：</p>
+<p>发送方发送0,1,2,3,4,5给接收方，我们假设分组2会丢失，流程为：</p>
+<ul>
+<li>收到分组0，发送ACK0，后沿滑动</li>
+<li>收到分组1，发送ACK1，后沿滑动</li>
+<li>分组2在发送过程中丢失</li>
+<li>收到分组3，<strong>发现是乱序，缓存起来，发送ACK3，后沿不滑动</strong></li>
+<li>收到分组4，发现是乱序，缓存起来，发送ACK4</li>
+<li>收到分组5，，发现是乱序，缓存起来，发送ACK5</li>
+<li>直到某个时刻，<strong>分组2的定时器timeout，重传分组2</strong></li>
+</ul>
+<p>​	<img src="https://s1.vika.cn/space/2022/10/16/b701d68e881442daa686cb81064090b4" style="zoom:80%;" /></p>
+<h3 id="对比GBN和SR"><a href="#对比GBN和SR" class="headerlink" title="对比GBN和SR"></a>对比GBN和SR</h3><table>
+<thead>
+<tr>
+<th></th>
+<th>GBN</th>
+<th>SR</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>优点</td>
+<td>简单，所需资源小（接收方一个缓存单元）</td>
+<td>出错时，只需重传1个，代价小</td>
+</tr>
+<tr>
+<td>缺点</td>
+<td>一旦出错，回退N步代价大</td>
+<td>复杂，所需 资源多（接收方多个缓存单元）</td>
+</tr>
+</tbody></table>
+<p>不难发现，GBN 和 SR 的优点和缺点是互相对应的，所以我们可以构想出它们的适用场景</p>
+<ul>
+<li>出错率低时，适合GBN </li>
+<li>链路容量大（延迟大，带宽大）时，适合SR，因为一旦出错GBN代价很大。</li>
+</ul>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>那么以上，就是计算机网络——可靠传输原理 的内容，敲了大概一整天的时间，6000字，目前也是我写过字数最多的博客了。在这之后就要进入TCP的学习了，到时候如果感觉想写东西的话也许会写一篇tcp的长文。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/10/16/%E8%AE%A1%E7%BD%91%E2%80%94%E2%80%94%E5%8F%AF%E9%9D%A0%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E5%8E%9F%E7%90%86/" data-id="clsk44q7m003l60f8fmel2y8e" data-title="计网——可靠数据传输原理" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%BD%91/" rel="tag">计网</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/10/17/%E4%B8%B2%E7%9A%84%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E4%B9%8BKMP%E7%AE%97%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          串的模式匹配之KMP算法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/10/13/%E4%B8%B2%E7%9A%84%E6%9C%B4%E7%B4%A0%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">串的朴素模式匹配算法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Go/">Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%AD%E7%BA%A7/">六级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%80%83%E7%A0%94/">考研</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%BD%91/">计网</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/">语言学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-MySql/" rel="tag">C++,MySql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/" rel="tag">Go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OS/" rel="tag">OS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R/" rel="tag">R</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo-butterfly/" rel="tag">hexo,butterfly</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%AD%E7%BA%A7/" rel="tag">六级</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" rel="tag">年终总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%80%83%E7%A0%94/" rel="tag">考研</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%BD%91/" rel="tag">计网</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 17.5px;">C++</a> <a href="/tags/C-MySql/" style="font-size: 10px;">C++,MySql</a> <a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/OS/" style="font-size: 17.5px;">OS</a> <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/hexo-butterfly/" style="font-size: 10px;">hexo,butterfly</a> <a href="/tags/%E5%85%AD%E7%BA%A7/" style="font-size: 10px;">六级</a> <a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" style="font-size: 10px;">年终总结</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 10px;">数学</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 20px;">数据结构</a> <a href="/tags/%E8%80%83%E7%A0%94/" style="font-size: 10px;">考研</a> <a href="/tags/%E8%AE%A1%E7%BD%91/" style="font-size: 12.5px;">计网</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/02/13/Hexo%20+%20Butterfly%20%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">Hexo + Butterfly 搭建博客</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/C++%E6%9F%A5%E7%BC%BA%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/">C++语法查缺学习(1)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E9%87%8D%E7%82%B9/">信息管理重点</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/">线性代数的本质</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%887%EF%BC%89%E6%A0%88%E7%9A%84%E5%BA%94%E7%94%A8%E2%80%94%E2%80%94%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/">数据结构（7）栈的应用——括号匹配问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>OS——经典进程同步问题 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="OS——经典进程同步问题在之前的章节我们介绍过，实现进程的同步与互斥可以有两种方法，即硬件同步机制与信号量机制，其中信号量机制又有整型信号量机制以及记录型信号量机制，而我们今天要介绍的两个问题，就是采用信号量机制的方法最终实现了进程间的同步与互斥。 生产者 - 消费者问题问题描述大概就是生产者生产的产品供消费者使用，为了让生产和消费并发的执行，就设置了一个有n个缓冲区的缓冲池，生产者生产的产品扔进">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OS——经典进程同步问题">
+<meta property="og:url" content="http://example.com/2022/10/03/OS%E2%80%94%E2%80%94%E7%BB%8F%E5%85%B8%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="OS——经典进程同步问题在之前的章节我们介绍过，实现进程的同步与互斥可以有两种方法，即硬件同步机制与信号量机制，其中信号量机制又有整型信号量机制以及记录型信号量机制，而我们今天要介绍的两个问题，就是采用信号量机制的方法最终实现了进程间的同步与互斥。 生产者 - 消费者问题问题描述大概就是生产者生产的产品供消费者使用，为了让生产和消费并发的执行，就设置了一个有n个缓冲区的缓冲池，生产者生产的产品扔进">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/03/6531ead6c1c84ba4bf8ff8317c3d3e3a">
+<meta property="og:image" content="https://s1.vika.cn/space/2022/10/04/7d076c1a5d784f22bc8083e39051bbb2">
+<meta property="article:published_time" content="2022-10-03T12:05:00.000Z">
+<meta property="article:modified_time" content="2022-10-19T13:13:58.016Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="OS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.vika.cn/space/2022/10/03/6531ead6c1c84ba4bf8ff8317c3d3e3a">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-OS——经典进程同步问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/10/03/OS%E2%80%94%E2%80%94%E7%BB%8F%E5%85%B8%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5%E9%97%AE%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2022-10-03T12:05:00.000Z" itemprop="datePublished">2022-10-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      OS——经典进程同步问题
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="OS——经典进程同步问题"><a href="#OS——经典进程同步问题" class="headerlink" title="OS——经典进程同步问题"></a>OS——经典进程同步问题</h2><p>在之前的章节我们介绍过，实现进程的同步与互斥可以有两种方法，即硬件同步机制与信号量机制，其中信号量机制又有整型信号量机制以及记录型信号量机制，而我们今天要介绍的两个问题，就是采用信号量机制的方法最终实现了进程间的同步与互斥。</p>
+<h3 id="生产者-消费者问题"><a href="#生产者-消费者问题" class="headerlink" title="生产者 - 消费者问题"></a>生产者 - 消费者问题</h3><h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>大概就是生产者生产的产品供消费者使用，为了让生产和消费并发的执行，就设置了一个有n个缓冲区的缓冲池，生产者生产的产品扔进去，消费者从缓冲池中取出来用。</p>
+<img src="https://s1.vika.cn/space/2022/10/03/6531ead6c1c84ba4bf8ff8317c3d3e3a" style="zoom:67%;" />	
+
+<p>但是我们注意到，缓冲池内只有n个缓冲区，也就是有限的，所以我们就可以得出来4个约束条件</p>
+<h4 id="约束条件"><a href="#约束条件" class="headerlink" title="约束条件"></a>约束条件</h4><ul>
+<li>有空生产者就可以放</li>
+<li>没空生产者就不能放，要等消费者取走一个腾出空间才能放</li>
+<li>有东西消费者就可以取</li>
+<li>没东西消费者就不能取，要等生产者放进去一个才能取</li>
+</ul>
+<h4 id="各进程间的关系"><a href="#各进程间的关系" class="headerlink" title="各进程间的关系"></a>各进程间的关系</h4><p>知道了场景以及约束条件，我们就可以来盘一盘每个进程之间的关系了，经过我们细心盘完之后，发现了以下三点</p>
+<ul>
+<li>互斥：<strong>每个进程</strong>互斥的访问缓冲池</li>
+<li>同步<ul>
+<li>缓冲池满后：生产者要等消费者取走再放</li>
+<li>缓冲区空时：消费者要等生产者放完再取</li>
+</ul>
+</li>
+</ul>
+<p>对于第一点互斥，在生产进程时：如果两个生产进程同时对一片缓冲池进行生产，那么第二次生产结果就会覆盖第一次生产的结果。在消费进程时：如果两个消费进程对一片缓冲区消费，则第二个消费进程将会取不到产品。</p>
+<h4 id="如何设置信号量"><a href="#如何设置信号量" class="headerlink" title="如何设置信号量"></a>如何设置信号量</h4><p>知道了进程间的互斥或同步的关系，我们就可以来设置信号量实现这些关系。</p>
+<h5 id="互斥实现"><a href="#互斥实现" class="headerlink" title="互斥实现"></a>互斥实现</h5><p>在之前我们讲过，对于实现互斥我们可以一个信号量mutex，初值为1，使用缓冲区前执行P操作，使用完后执行V操作即可</p>
+<h5 id="同步实现"><a href="#同步实现" class="headerlink" title="同步实现"></a>同步实现</h5><p>同样在之前讲过，对于实现进程间的同步，我们可以通过设置信号量后，在前操作执行后执行V操作，在后操作执行前执行P操作。因为这里涉及到两个同步关系，所以我们设置两个信号量：</p>
+<ul>
+<li>设置信号量full ，初值为0，表示当前缓冲池中<strong>有产品的缓冲区个数</strong>。</li>
+<li>设置信号量empty，初值为n，表示当前缓冲池<strong>无产品的缓冲区个数</strong></li>
+</ul>
+<p>生产进程</p>
+<ul>
+<li><p>在进程执行前，执行P(empty)，消耗一个空闲缓冲区，若empty&lt;0，就表示没有空闲资源了，此时生产进程就会阻塞自己。</p>
+</li>
+<li><p>在进程执行后，执行V(full)，增加一个产品</p>
+</li>
+</ul>
+<p>消费进程：</p>
+<ul>
+<li>在进程执行前，执行P(full)，消耗一个产品，如果full&lt;0，就表示没有产品消耗了，此时消费进程就会阻塞自己，直到生产进程执行一个V(full)操作才被唤醒</li>
+<li>在消费执行后，执行V(empty)，增加一个产品</li>
+</ul>
+<h4 id="代码表示"><a href="#代码表示" class="headerlink" title="代码表示"></a>代码表示</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">smaphore empty = n;</span><br><span class="line">smaphore full = <span class="number">0</span>;</span><br><span class="line">smaphore mutex = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">producer()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        生产一个产品;</span><br><span class="line">        P(empty);</span><br><span class="line">        P(mutex);</span><br><span class="line">        把产品放进去;</span><br><span class="line">        V(mutex);</span><br><span class="line">        V(full);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">consumer()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        P(full);</span><br><span class="line">        P(mutex);</span><br><span class="line">        取走一个产品;</span><br><span class="line">        V(mutex);</span><br><span class="line">        V(empty);</span><br><span class="line">        使用产品;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们同时可以发现：<strong>实现互斥是同一进程中执行PV操作，实现同步是其中一个进程执行P，另一个进程执行V</strong></p>
+<h4 id="思考问题"><a href="#思考问题" class="headerlink" title="思考问题"></a>思考问题</h4><h5 id="能否将生产进程中的P-mutex-放在P-empty-的前面，将消费进程中的-mutex-放在P-full-的前面"><a href="#能否将生产进程中的P-mutex-放在P-empty-的前面，将消费进程中的-mutex-放在P-full-的前面" class="headerlink" title="能否将生产进程中的P(mutex)放在P(empty)的前面，将消费进程中的(mutex)放在P(full)的前面"></a>能否将生产进程中的P(mutex)放在P(empty)的前面，将消费进程中的(mutex)放在P(full)的前面</h5><p>首先这是不能的，再来说说为什么：如果生产者先使用P(mutex)操作占用了缓冲区，如果此时缓冲区满了，你就会阻塞自己，一直等消费者取走东西，但此时的消费进程，会执行P(mutex)一直失败，因为你生产者一直占着呢。这样就会两者互相等待，即<strong>死锁</strong></p>
+<h5 id="能否将生产进程中的“生产一个产品”和消费进程中的“消费产品”放入缓冲区内完成？"><a href="#能否将生产进程中的“生产一个产品”和消费进程中的“消费产品”放入缓冲区内完成？" class="headerlink" title="能否将生产进程中的“生产一个产品”和消费进程中的“消费产品”放入缓冲区内完成？"></a>能否将生产进程中的“生产一个产品”和消费进程中的“消费产品”放入缓冲区内完成？</h5><p>也就是说生产者<strong>先占用缓存区</strong>，在生产，再放进去。在功能实现上，也并不会造成错误，但我们应该**减少使用缓冲区的时间，把一些不必要的操作放在外部执行，以提高并发度。</p>
+<h3 id="读者-写者问题"><a href="#读者-写者问题" class="headerlink" title="读者 - 写者问题"></a>读者 - 写者问题</h3><h4 id="问题描述-1"><a href="#问题描述-1" class="headerlink" title="问题描述"></a>问题描述</h4><p>有一个数据区被多个用户共享，用户大概可以分为读者和写者，我们规定：读者只读，且允许多个读者同时读，写者只写，但只允许一个写者写，且写者在写的时候，读者不能读。6</p>
+<h4 id="约束条件-1"><a href="#约束条件-1" class="headerlink" title="约束条件"></a>约束条件</h4><p>在读完问题后，约束条件大概就出来了</p>
+<ul>
+<li>多个读者可以同时读 </li>
+<li>一个时刻只能一个写者写 </li>
+<li>如果写者正在写，读者就不能读</li>
+</ul>
+<h4 id="进程间的关系"><a href="#进程间的关系" class="headerlink" title="进程间的关系"></a>进程间的关系</h4><p>有了约束条件，我们就可以来盘进程之间的关系。</p>
+<ul>
+<li>互斥<ul>
+<li>写和写之间是互斥的，一次只能一个人写</li>
+<li>写和者之间是互斥的，写者在写时读者不能读</li>
+<li>读进程之间不存在互斥，因为允许多个人同时读</li>
+</ul>
+</li>
+</ul>
+<h4 id="信号量的设置及代码表示"><a href="#信号量的设置及代码表示" class="headerlink" title="信号量的设置及代码表示"></a>信号量的设置及代码表示</h4><ul>
+<li>设置信号量rw，初值为1，实现对数据区的互斥访问。那么我们可以脑侧到，在写操作中，因为各写进程是互斥的，所以会在进程中依次执行PV操作，在读操作中，因为读操作和写操作也是互斥的，所以读操作中也会依次执行PV操作。那么问题就来了：<strong>读进程之前不互斥呀，在第一个读进程中执行P操作后，执行V操作前，我第二个读进程怎么读？</strong>，那就要引入下一个变量了。</li>
+<li>设置整型变量count &#x3D; 0，来<strong>记录当前有几个在读</strong>，那么在读进程中，我们只需要在第一个读进程开始前执行P，最后一个读进程结束后执行V，问题就解决了。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">smaphore rw = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">write()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        P(rw);</span><br><span class="line">        写进去;</span><br><span class="line">        V(rw);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">read()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">       <span class="keyword">if</span>(count==<span class="number">0</span>)</span><br><span class="line">           P(rw);<span class="comment">//第一个读进程加锁</span></span><br><span class="line">        count++;</span><br><span class="line">        读一读;</span><br><span class="line">        count--;<span class="comment">//一个进程读完之后，使count-1，表示读进程数-1</span></span><br><span class="line">        <span class="keyword">if</span>(count==<span class="number">0</span>)</span><br><span class="line">            V(rw);<span class="comment">//最后一个读进程解锁</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在进行了上面的操作后，看似非常合理，但还有个问题：如果<strong>两个读进程并发执行</strong>，在第一个读进程执行P(rw)后，第二个进程执行P(rw)可能被阻塞，原因就在于<strong>count变量的检查和更改不能一气呵成</strong>。那么，我们就想办法让count的检查以及更改过程中<strong>不被打扰</strong></p>
+<ul>
+<li>设置信号量mutex &#x3D; 1，表示对count的互斥访问。把count的检查以及修改操作放入PV里面，即：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">read()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">       P(mutex);</span><br><span class="line">       <span class="keyword">if</span>(count==<span class="number">0</span>)</span><br><span class="line">           P(rw);</span><br><span class="line">        count++;</span><br><span class="line">        V(mutex);</span><br><span class="line">        读一读;</span><br><span class="line">        P(mutex);</span><br><span class="line">        count--; </span><br><span class="line">        <span class="keyword">if</span>(count==<span class="number">0</span>)</span><br><span class="line">            V(rw); </span><br><span class="line">        V(mutex);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在进行完上面的操作之后，我们已经满足了问题的要求，但现在又出现了一个问题：如果<strong>一直有新的读进程源源不断的读数据</strong>，写操作啥时候才能执行啊？就出现了写者<strong>饥饿</strong>的情况。所以为了解决这个问题，我们推出了<strong>写优先方法</strong>，上面的实现也称之为<strong>读优先方法</strong>。</p>
+<h4 id="写优先方法"><a href="#写优先方法" class="headerlink" title="写优先方法"></a>写优先方法</h4><p>目的：在读进程执行时有写操作想执行，则<strong>先执行完本个读进程，再去执行写进程</strong>，不管有多少个读进程去读这个数据，在执行完本个读进程后，就转去执行写进程。</p>
+<p>解决方法：设置新的信号量w &#x3D; 1,加在以下位置：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">smaphore empty = n;</span><br><span class="line">smaphore full = <span class="number">0</span>;</span><br><span class="line">smaphore mutex = <span class="number">1</span>;</span><br><span class="line">smaphore w = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">write()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        P(w)<span class="comment">//</span></span><br><span class="line">        P(rw);</span><br><span class="line">        写进去;</span><br><span class="line">        V(rw);</span><br><span class="line">        V(w);<span class="comment">//</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">read()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">       P(w);<span class="comment">//</span></span><br><span class="line">       P(mutex);</span><br><span class="line">       <span class="keyword">if</span>(count==<span class="number">0</span>)</span><br><span class="line">           P(rw);</span><br><span class="line">        count++;</span><br><span class="line">        V(mutex);</span><br><span class="line">        V(w)<span class="comment">//</span></span><br><span class="line">        读一读;</span><br><span class="line">        P(mutex);</span><br><span class="line">        count--; </span><br><span class="line">        <span class="keyword">if</span>(count==<span class="number">0</span>)</span><br><span class="line">            V(rw); </span><br><span class="line">        V(mutex);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>这样对于<strong>写者与写者</strong>之间，以及<strong>读者与读者</strong>之间：和之前无差别，只是执行时<strong>多了一个上锁以及解锁的过程</strong>。</p>
+</li>
+<li><p>对于 <strong>写者1-&gt;读者1</strong>，写者在写之前执行P(w)，在执行V(w)前，读者的读操作都会一直被阻塞。写者写完后执行V操作，读者就开始读，也就是说<strong>读者和写者之间的互斥也没有受到影响。</strong></p>
+</li>
+<li><p>对于<strong>读者1-&gt;写者1-&gt;读者2</strong>：也就是我们刚刚提到的写者可能饥饿的情况。步骤为：读者1先执行P(w)操作，如果期间写者1想执行写操作，就会在读者1读完之后执行V(w)后就可以执行了，不必再等读者2读完，这也就是实现了写优先。</p>
+</li>
+<li><p>对于<strong>写者1-&gt;读者1-&gt;写者2</strong>：步骤为：写1在执行P(w)操作后，读1想读，被阻塞，待写1写完之后执行V(w)后，会优先执行读进程，在读进程的执行过程中，如果写进程2想执行写操作，需等待读进程1读完。也就是说，<strong>写优先并不是绝对的写优先，而是相对公平的<em>先来先服务</em> 原则。</strong></p>
+</li>
+</ul>
+<h3 id="哲学家就餐问题"><a href="#哲学家就餐问题" class="headerlink" title="哲学家就餐问题"></a>哲学家就餐问题</h3><h4 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h4><p>一个桌子上坐着5个哲学家，每个哲学家两侧都有一个筷子，桌子中间放着饭菜。哲学家的行为描述为：思考-饥饿-吃饭-思考。饥饿时需要拿起两个筷子才能进餐，如果筷子在别人手上，就需要等别人吃完放下筷子。这里直接偷王道的一张图了：</p>
+<img src="https://s1.vika.cn/space/2022/10/04/7d076c1a5d784f22bc8083e39051bbb2" style="zoom:67%;" />	
+
+
+
+<h4 id="约束条件-2"><a href="#约束条件-2" class="headerlink" title="约束条件"></a>约束条件</h4><p>通过描述我们可以知道，哲学家在思考时互不影响他人，在进餐时每个人和旁边的两个人都存在互斥关系，因为每个人要拿起两个筷子才能吃饭。我们把筷子作为临界资源，也就是每个人需要同时持有两个临界资源才能开吃</p>
+<h4 id="信号量设置"><a href="#信号量设置" class="headerlink" title="信号量设置"></a>信号量设置</h4><p>我们定义互斥信号量数组chopstick[0,1,2,3,4]，用于表示对5个筷子的互斥访问，哲学家标号为0,1,2,3,4，其中<strong>哲学家i左边的筷子为i，右边的筷子为(i+1)%5</strong>。设置完后我们可以如下表示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">semaphore chopstick[<span class="number">5</span>]=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">pi()&#123;<span class="comment">//哲学家i的进程</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        P(chopstick[i]);</span><br><span class="line">        P(chopstick[i+<span class="number">1</span>]%<span class="number">5</span>);</span><br><span class="line">        吃饭;</span><br><span class="line">        V(hopstick[i]);</span><br><span class="line">        V(hopstick[i+<span class="number">1</span>]%<span class="number">5</span>);</span><br><span class="line">        思考；</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但这样设置有个问题：若5个哲学家同时想吃饭，每位哲学家都拿起自己左边的筷子，再去拿右边的筷子时发现已经被拿了，就需要一直等待，就成了：<strong>每个哲学家都等自己右边的哲学家放下筷子</strong>，形成死锁。下面就来讲解如何解决死锁？</p>
+<ul>
+<li>法一：奇数号哲学家先拿左边，再拿右边，偶数号哲学家相反</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">semaphore chopstick[<span class="number">5</span>]=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">pi()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i%<span class="number">2</span>==<span class="number">0</span>)&#123;</span><br><span class="line">            P(chopstick[i+<span class="number">1</span>]%<span class="number">5</span>);</span><br><span class="line">            P(chopstick[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            P(chopstick[i]);</span><br><span class="line">            P(chopstick[i+<span class="number">1</span>]%<span class="number">5</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        吃饭;</span><br><span class="line">         V(chopstick[i]);</span><br><span class="line">         V(chopstick[i+<span class="number">1</span>]%<span class="number">5</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>法二：最多允许4个人同时拿筷子</li>
+</ul>
+<p>原理就是5个人同时拿筷子会死锁，那就让最多4个人拿，这样一次总会有一个哲学家能吃到饭。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">smaphore count == <span class="number">4</span>;控制吃饭人数</span><br><span class="line">semaphore chopstick[<span class="number">5</span>]=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">pi()&#123;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        P(count);</span><br><span class="line">        P(chopstick[i]);</span><br><span class="line">        P(chopstick[i+<span class="number">1</span>]%<span class="number">5</span>);</span><br><span class="line">        吃饭;</span><br><span class="line">        V(hopstick[i]);</span><br><span class="line">        V(hopstick[i+<span class="number">1</span>]%<span class="number">5</span>);</span><br><span class="line">        V(count);</span><br><span class="line">        思考；</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>法三：设置mutex&#x3D;1，使<strong>哲学家拿筷子这件事互斥的进行。</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">semaphore mutex = <span class="number">1</span>;</span><br><span class="line">semaphore chopstick[<span class="number">5</span>]=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">pi()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        P(mutex);</span><br><span class="line">		P(chopstick[i]);</span><br><span class="line">        P(chopstick[i+<span class="number">1</span>]%<span class="number">5</span>);</span><br><span class="line">        V(mutex);</span><br><span class="line">        吃饭;</span><br><span class="line">        V(chopstick[i]);</span><br><span class="line">        V(chopstick[i+<span class="number">1</span>]%<span class="number">5</span>);</span><br><span class="line">        思考;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样就保证了一个人拿筷子拿到一半时被阻塞，在一个人拿筷子时，不会有别人拿筷子。原理就是既然可能出现同时拿筷子而导致的死锁，那就将拿筷子这个动作从头到尾用一个信号量锁起来即可。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/10/03/OS%E2%80%94%E2%80%94%E7%BB%8F%E5%85%B8%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5%E9%97%AE%E9%A2%98/" data-id="clsk44q6w001860f816dy4oh2" data-title="OS——经典进程同步问题" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OS/" rel="tag">OS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/10/09/OS%E2%80%94%E2%80%94%E6%AD%BB%E9%94%81%E7%9A%84%E9%81%BF%E5%85%8D%E4%B8%8E%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          OS——死锁的避免与银行家算法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/10/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%888%EF%BC%89%E6%A0%88%E7%9A%84%E5%BA%94%E7%94%A8%E2%80%94%E2%80%94%E6%B1%82%E5%80%BC%E8%A1%A8%E8%BE%BE%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">数据结构（8）栈的应用——求值表达式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Go/">Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%AD%E7%BA%A7/">六级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/">数据分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%80%83%E7%A0%94/">考研</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%BD%91/">计网</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/">语言学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-MySql/" rel="tag">C++,MySql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/" rel="tag">Go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OS/" rel="tag">OS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R/" rel="tag">R</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo-butterfly/" rel="tag">hexo,butterfly</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%AD%E7%BA%A7/" rel="tag">六级</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" rel="tag">年终总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%80%83%E7%A0%94/" rel="tag">考研</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%BD%91/" rel="tag">计网</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 17.5px;">C++</a> <a href="/tags/C-MySql/" style="font-size: 10px;">C++,MySql</a> <a href="/tags/Go/" style="font-size: 15px;">Go</a> <a href="/tags/OS/" style="font-size: 17.5px;">OS</a> <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/hexo-butterfly/" style="font-size: 10px;">hexo,butterfly</a> <a href="/tags/%E5%85%AD%E7%BA%A7/" style="font-size: 10px;">六级</a> <a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" style="font-size: 10px;">年终总结</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 10px;">数学</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 20px;">数据结构</a> <a href="/tags/%E8%80%83%E7%A0%94/" style="font-size: 10px;">考研</a> <a href="/tags/%E8%AE%A1%E7%BD%91/" style="font-size: 12.5px;">计网</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/02/13/Hexo%20+%20Butterfly%20%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">Hexo + Butterfly 搭建博客</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/C++%E6%9F%A5%E7%BC%BA%E5%AD%A6%E4%B9%A0%EF%BC%881%EF%BC%89/">C++语法查缺学习(1)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E9%87%8D%E7%82%B9/">信息管理重点</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/">线性代数的本质</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/13/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%887%EF%BC%89%E6%A0%88%E7%9A%84%E5%BA%94%E7%94%A8%E2%80%94%E2%80%94%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/">数据结构（7）栈的应用——括号匹配问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
