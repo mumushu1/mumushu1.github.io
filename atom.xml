@@ -3,11 +3,11 @@
   <title>拒绝熬夜</title>
   
   <subtitle>我是副标题</subtitle>
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <link href="https://mumushu1.github.io/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
+  <link href="https://mumushu1.github.io/"/>
   <updated>2024-02-15T08:51:29.190Z</updated>
-  <id>http://example.com/</id>
+  <id>https://mumushu1.github.io/</id>
   
   <author>
     <name>Coding_ch</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Qt从0到1</title>
-    <link href="http://example.com/2024/02/15/QT%E5%9F%BA%E7%A1%80/"/>
-    <id>http://example.com/2024/02/15/QT%E5%9F%BA%E7%A1%80/</id>
+    <link href="https://mumushu1.github.io/2024/02/15/QT%E5%9F%BA%E7%A1%80/"/>
+    <id>https://mumushu1.github.io/2024/02/15/QT%E5%9F%BA%E7%A1%80/</id>
     <published>2024-02-15T08:51:00.000Z</published>
     <updated>2024-02-15T08:51:29.190Z</updated>
     
@@ -44,7 +44,7 @@
     
     
     
-    <category term="Qt" scheme="http://example.com/tags/Qt/"/>
+    <category term="Qt" scheme="https://mumushu1.github.io/tags/Qt/"/>
     
   </entry>
   
